@@ -1,0 +1,132 @@
+<div id="red-dragon-brands-vibe">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap');
+:root,:root.light,:root[data-theme="light"]{
+color-scheme:light;
+--background:#f5f5f5;
+--foreground:#18181b;
+--surface:#fff;
+--surface-secondary:#efeff0;
+--surface-tertiary:#eaeaeb;
+--surface-hover:#f1f1f2;
+--muted:#71717a;
+--default:#ebebec;
+--default-hover:#dfdfe1;
+--border:#e3e3e5
+}
+:root.dark,:root[data-theme="dark"]{
+color-scheme:dark;
+--background:#060607;
+--foreground:#f5f5f5;
+--surface:#18181b;
+--surface-secondary:#232325;
+--surface-tertiary:#262728;
+--surface-hover:#202024;
+--muted:#9f9fa9;
+--default:#29292c;
+--default-hover:#323236;
+--border:#303034
+}
+#red-dragon-brands-vibe{
+width:100%;
+--accent:#d92f2f;
+--accent-soft:rgba(217,47,47,.12);
+--accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);
+--accent-g-text:linear-gradient(135deg,#b81f23 0%,#8b1316 40%,#5e0808 75%,#2d0303 100%);
+font:400 14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:var(--foreground);
+background:var(--background);
+min-height:100vh;
+-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility;
+font-synthesis:none
+}
+#red-dragon-brands-vibe *{box-sizing:border-box}
+#red-dragon-brands-vibe a{text-decoration:none;color:inherit}
+#red-dragon-brands-vibe button{font:inherit}
+#red-dragon-brands-vibe svg{display:block}
+#red-dragon-brands-vibe .rdw-page{padding:40px 0 64px;background:radial-gradient(circle at 85% 8%,rgba(180,20,20,.055),transparent 28%),linear-gradient(180deg,var(--background),var(--background));color:var(--foreground);transition:background .18s ease,color .18s ease}
+#red-dragon-brands-vibe .rdw-main{width:min(1152px,calc(100% - 32px));margin:auto}
+#red-dragon-brands-vibe .rdw-crumbs{display:flex;align-items:center;gap:7px;color:var(--muted);font:500 13px/1.4 Inter,ui-sans-serif,system-ui,sans-serif;margin:0 0 24px;padding:0}
+#red-dragon-brands-vibe .rdw-crumbs a{color:var(--muted);transition:color .18s ease}
+#red-dragon-brands-vibe .rdw-crumbs a:hover{color:var(--foreground)}
+#red-dragon-brands-vibe .rdw-crumbs span{color:var(--muted)}
+#red-dragon-brands-vibe .rdw-title{margin:0;font-size:40px;line-height:1.05;letter-spacing:-.045em;font-weight:800;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 4px 18px rgba(120,10,10,.12))}
+#red-dragon-brands-vibe .rdw-sub{margin:10px 0 22px;color:var(--muted);font-size:15px;line-height:1.5;max-width:720px}
+#red-dragon-brands-vibe .rdw-search{height:46px;display:flex;align-items:center;gap:10px;width:min(520px,100%);padding:0 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:24px;box-shadow:0 4px 18px rgba(120,10,10,.035)}
+#red-dragon-brands-vibe .rdw-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--foreground);font:inherit}
+#red-dragon-brands-vibe .rdw-search input::placeholder{color:var(--muted)}
+#red-dragon-brands-vibe .rdw-alpha{display:flex;flex-wrap:wrap;gap:4px;padding:8px;margin:0 0 34px;border:1px solid var(--border);border-radius:12px;background:var(--surface);box-shadow:0 4px 18px rgba(120,10,10,.025)}
+#red-dragon-brands-vibe .rdw-alpha button{min-width:30px;height:30px;padding:0 8px;border:0;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;font:600 13px/1 Inter,sans-serif;transition:.2s}
+#red-dragon-brands-vibe .rdw-alpha button:hover,#red-dragon-brands-vibe .rdw-alpha button.active{background:var(--accent-g);color:#fff;box-shadow:0 4px 12px rgba(150,15,15,.22)}
+#red-dragon-brands-vibe .rdw-group{scroll-margin-top:86px;margin:0 0 34px}
+#red-dragon-brands-vibe .rdw-letter{margin:0 0 12px 2px;font:700 15px/1 "Roboto Mono",monospace;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#red-dragon-brands-vibe .rdw-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#red-dragon-brands-vibe .brand{overflow:hidden;border-radius:16px;border:1px solid var(--border);background:var(--surface);transition:border-color .15s,box-shadow .15s,background .15s,color .15s;box-shadow:0 1px 2px rgba(0,0,0,.025)}
+#red-dragon-brands-vibe .brand:hover{border-color:rgba(217,47,47,.25);box-shadow:0 10px 28px rgba(120,10,10,.07)}
+#red-dragon-brands-vibe .brandbtn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:0;background:transparent;color:var(--foreground);text-align:left;cursor:pointer;transition:background .15s}
+#red-dragon-brands-vibe .brandbtn:hover{background:linear-gradient(90deg,var(--accent-soft),transparent)}
+#red-dragon-brands-vibe .brandname{min-width:0}
+#red-dragon-brands-vibe .brandname b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px;line-height:1.25;font-weight:600}
+#red-dragon-brands-vibe .brandname span{display:block;margin-top:4px;color:var(--muted);font:500 12px/1.2 "Roboto Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+#red-dragon-brands-vibe .chev{color:var(--muted);flex:none;transition:transform .18s}
+#red-dragon-brands-vibe .brand.open .chev{transform:rotate(180deg);color:var(--accent)}
+#red-dragon-brands-vibe .models{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s cubic-bezier(.16,1,.3,1);will-change:grid-template-rows}
+#red-dragon-brands-vibe .brand.open .models{grid-template-rows:1fr}
+#red-dragon-brands-vibe .modelsin{min-height:0;overflow:hidden;border-top:1px solid var(--border);padding:0 4px;opacity:0;transform:translateY(-6px);transition:opacity .24s ease,transform .42s cubic-bezier(.16,1,.3,1),padding .42s cubic-bezier(.16,1,.3,1)}
+#red-dragon-brands-vibe .brand.open .modelsin{opacity:1;transform:translateY(0);padding:4px}
+#red-dragon-brands-vibe .models ul{list-style:none;margin:0;padding:0}
+#red-dragon-brands-vibe .models li a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px;border-radius:8px;font-size:13px;font-weight:500;transition:background .15s,color .15s}
+#red-dragon-brands-vibe .models li a:hover{background:linear-gradient(90deg,var(--accent-soft),transparent);color:var(--accent)}
+#red-dragon-brands-vibe .modelmeta{display:flex;align-items:baseline;gap:6px;flex:none;color:var(--muted);font:400 12px/1.2 "Roboto Mono",ui-monospace,monospace}
+#red-dragon-brands-vibe .modelmeta .price{color:color-mix(in oklab,var(--foreground) 70%,transparent)}
+#red-dragon-brands-vibe .brandlink{margin:4px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-radius:8px;background:linear-gradient(135deg,rgba(217,47,47,.075),rgba(122,13,13,.025));padding:8px 12px;font-size:13px;font-weight:600;transition:background .15s,color .15s,box-shadow .15s}
+#red-dragon-brands-vibe .brandlink:hover{background:var(--accent-g);color:#fff;box-shadow:0 4px 14px rgba(150,15,15,.2)}
+#red-dragon-brands-vibe .empty,#red-dragon-brands-vibe .state{padding:12px;color:var(--muted);font-size:12px}
+#red-dragon-brands-vibe .rdw-skeleton{overflow:hidden;border-radius:16px;border:1px solid var(--border);background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.025);min-height:78px;position:relative}
+#red-dragon-brands-vibe .rdw-skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.34) 35%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.34) 65%,transparent 100%);animation:rdw-skeleton 1.8s linear infinite}
+#red-dragon-brands-vibe[data-theme="dark"] .rdw-skeleton::after{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.06) 35%,rgba(255,255,255,.16) 50%,rgba(255,255,255,.06) 65%,transparent 100%)}
+#red-dragon-brands-vibe .rdw-skeleton-line{height:16px;width:42%;border-radius:6px;background:#e3e3e3}
+#red-dragon-brands-vibe .rdw-skeleton-line.small{height:12px;width:29%;margin-top:9px}
+#red-dragon-brands-vibe[data-theme="dark"] .rdw-skeleton-line{background:#29292b}
+#red-dragon-brands-vibe .rdw-skeleton-inner{padding:17px 20px}
+@keyframes rdw-skeleton{100%{transform:translateX(100%)}}
+@media(max-width:900px){#red-dragon-brands-vibe .rdw-cards{grid-template-columns:repeat(2,minmax(0,1fr))}#red-dragon-brands-vibe .rdw-title{font-size:36px}}
+@media(max-width:560px){#red-dragon-brands-vibe .rdw-alpha{gap:4px}#red-dragon-brands-vibe .rdw-alpha button{min-width:28px}#red-dragon-brands-vibe .rdw-page{padding-top:26px}#red-dragon-brands-vibe .rdw-cards{grid-template-columns:1fr}#red-dragon-brands-vibe .rdw-title{font-size:32px}}
+</style>
+<main class="rdw-main rdw-page">
+<div class="rdw-crumbs"><a href="/">Главная</a><span>›</span><span>Марки</span></div>
+<h1 class="rdw-title">Марки автомобилей</h1>
+<p class="rdw-sub">Все марки автомобилей, представленные в каталоге КРАСНОГО ДРАКОНА. Выберите марку, чтобы посмотреть доступные модели, количество автомобилей и ориентировочные цены.</p>
+<div class="rdw-search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="rdwSearch" type="search" placeholder="Поиск марки" autocomplete="off"></div>
+<h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Все марки автомобилей в каталоге</h2>
+<div id="rdwState" class="state" style="display:none"></div>
+<nav id="rdwAlpha" class="rdw-alpha" aria-label="Алфавитный список марок автомобилей"></nav>
+<div id="rdwGrid"><div class="rdw-cards"><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div><div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div></div></div>
+</main>
+<script>
+(()=>{
+const root=document.getElementById('red-dragon-brands-vibe');
+const state=document.getElementById('rdwState');
+const grid=document.getElementById('rdwGrid');
+const search=document.getElementById('rdwSearch');
+const alpha=document.getElementById('rdwAlpha');
+let brands=[];
+const API='https://red-dragon-api.red-dragon-minsk.workers.dev/api';
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[m]))}
+function plural(n){const a=n%10,b=n%100;return b>=11&&b<=14?'моделей':a===1?'модель':a>=2&&a<=4?'модели':'моделей'}
+function money(v){return new Intl.NumberFormat('ru-RU').format(Math.round(Number(v)||0))+' $'}
+function first(s){const c=(s||'').trim().charAt(0).toLocaleUpperCase('ru-RU');return /[А-ЯЁ]/.test(c)?c:/[A-Z0-9]/.test(c)?c:'#'}
+function catalogUrl(brandCode,modelCode){const q='/?brand='+encodeURIComponent(String(brandCode||''))+(modelCode?'&model='+encodeURIComponent(String(modelCode)):'');return '/catalog#ccm='+encodeURIComponent(q)}
+function setMeta(name,value){let el=document.head.querySelector('meta[name="'+name+'"]');if(!el){el=document.createElement('meta');el.setAttribute('name',name);document.head.appendChild(el)}el.setAttribute('content',value)}
+function setProperty(property,value){let el=document.head.querySelector('meta[property="'+property+'"]');if(!el){el=document.createElement('meta');el.setAttribute('property',property);document.head.appendChild(el)}el.setAttribute('content',value)}
+function setCanonical(url){let el=document.head.querySelector('link[rel="canonical"]');if(!el){el=document.createElement('link');el.setAttribute('rel','canonical');document.head.appendChild(el)}el.setAttribute('href',url)}
+function applySeo(){const canonical='https://red-dragon.by/brands/';const title='Марки автомобилей — каталог авто из Китая и Кореи | КРАСНЫЙ ДРАКОН';const description='Все марки автомобилей в каталоге КРАСНОГО ДРАКОНА. Автомобили из Китая и Кореи с ценами, характеристиками и фотографиями. Выберите марку и модель, чтобы перейти в каталог автомобилей.';const keywords=['марки автомобилей','автомобильные марки','бренды автомобилей','марки авто','модели автомобилей','автомобили из Китая','авто из Китая','автомобили из Кореи','авто из Кореи','каталог автомобилей','каталог авто','купить авто в Беларуси','автомобили с доставкой в Беларусь','КРАСНЫЙ ДРАКОН'];document.title=title;setMeta('description',description);setMeta('keywords',keywords.join(', '));setMeta('robots','index,follow,max-image-preview:large');setProperty('og:title',title);setProperty('og:description',description);setProperty('og:type','website');setProperty('og:url',canonical);setProperty('og:site_name','КРАСНЫЙ ДРАКОН');setProperty('og:locale','ru_BY');setMeta('twitter:card','summary_large_image');setMeta('twitter:title',title);setMeta('twitter:description',description);setCanonical(canonical);let oldSchema=document.getElementById('rdw-seo-schema');if(oldSchema)oldSchema.remove();const schema=document.createElement('script');schema.type='application/ld+json';schema.id='rdw-seo-schema';schema.textContent=JSON.stringify({'@context':'https://schema.org','@type':'CollectionPage','name':'Марки автомобилей','url':canonical,'inLanguage':'ru-BY','description':description,'isPartOf':{'@type':'WebSite','name':'КРАСНЫЙ ДРАКОН','url':'https://red-dragon.by/'},'breadcrumb':{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Главная','item':'https://red-dragon.by/'},{'@type':'ListItem','position':2,'name':'Марки','item':canonical}]}});document.head.appendChild(schema)}
+applySeo();
+function card(b){const m=(Array.isArray(b.models)?b.models:[]).filter(x=>Number(x.count||0)>0);const d=document.createElement('article');d.className='brand';const modelsHtml=m.length?'<ul>'+m.map(x=>{const href=catalogUrl(b.code,x.code);return'<li><a href="'+esc(href)+'"><span>'+esc(x.name)+'</span><span class="modelmeta"><span>'+Number(x.count||0).toLocaleString('ru-RU')+' авто</span>'+(x.price!=null?'<span>·</span><span class="price">'+money(x.price)+'</span>':'')+'</span></a></li>'}).join('')+'</ul>'+'<a class="brandlink" href="'+esc(catalogUrl(b.code))+'"><span>Открыть '+esc(b.name)+' в каталоге</span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>':'<p class="empty">Пока нет моделей</p>';d.innerHTML='<button class="brandbtn" type="button"><span class="brandname"><b>'+esc(b.name)+'</b><span>'+Number(b.count||0).toLocaleString('ru-RU')+' авто · '+m.length+' '+plural(m.length)+'</span></span><svg class="chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"/></svg></button><div class="models"><div class="modelsin">'+modelsHtml+'</div></div>';d.querySelector('.brandbtn').onclick=()=>{document.querySelectorAll('#red-dragon-brands-vibe .brand.open').forEach(x=>{if(x!==d)x.classList.remove('open')});d.classList.toggle('open')};return d}
+function render(){const q=search.value.trim().toLocaleLowerCase('ru-RU');const list=brands.filter(b=>{const name=String(b.name||'');return !q||name.toLocaleLowerCase('ru-RU').includes(q)});const groups={};grid.innerHTML='';alpha.innerHTML='';state.style.display='none';list.filter(b=>b.name!=='212').forEach(b=>{const k=first(b.name);(groups[k]??=[]).push(b)});const keys=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'ru'));if(list.some(b=>b.name==='212')&&(!q||'212'.includes(q))){groups['212']=[list.find(b=>b.name==='212')];keys.push('212')}keys.forEach(k=>{const sec=document.createElement('section');sec.className='rdw-group';sec.id='rdw-'+k;sec.innerHTML='<h2 class="rdw-letter">'+esc(k)+'</h2><div class="rdw-cards"></div>';groups[k].sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ru')).forEach(b=>{sec.querySelector('.rdw-cards').appendChild(card(b))});grid.appendChild(sec);const bt=document.createElement('button');bt.type='button';bt.textContent=k;bt.onclick=()=>{document.getElementById('rdw-'+k)?.scrollIntoView({behavior:'smooth',block:'start'})};alpha.appendChild(bt)});alpha.style.display=keys.length?'flex':'none';if(!list.length){state.style.display='block';state.textContent='Марки не найдены'}}
+function syncTheme(){const d=document.documentElement;const t=d.getAttribute('data-theme');const dark=t==='dark'||d.classList.contains('dark')||document.body.classList.contains('dark');root.setAttribute('data-theme',dark?'dark':'light');root.style.colorScheme=dark?'dark':'light'}
+syncTheme();new MutationObserver(syncTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class']});new MutationObserver(syncTheme).observe(document.body,{attributes:true,attributeFilter:['data-theme','class']});search.oninput=render;state.style.display='none';grid.innerHTML='<div class="rdw-cards">'+Array.from({length:9},function(){return'<div class="rdw-skeleton"><div class="rdw-skeleton-inner"><div class="rdw-skeleton-line"></div><div class="rdw-skeleton-line small"></div></div></div>'}).join('')+'</div>';fetch(API+'/brands',{cache:'no-store',headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(function(data){brands=Array.isArray(data)?data:(data.brands||data.data?.brands||[]);if(!Array.isArray(brands)||!brands.length)throw Error('EMPTY_BRANDS');render()}).catch(function(e){console.error('[Red Dragon brands]',e);state.style.display='block';state.textContent='Не удалось загрузить марки.';grid.innerHTML='';alpha.innerHTML='';alpha.style.display='none'});
+})();
+</script>
+</div>
