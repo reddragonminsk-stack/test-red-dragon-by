@@ -1,0 +1,44 @@
+name: adapt-request-once
+on:
+  push:
+    paths:
+      - 'pages/request.html'
+      - '.github/workflows/adapt-request-once.yml'
+jobs:
+  adapt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove Tilda form dependencies
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('pages/request.html')
+          s=p.read_text(encoding='utf-8')
+          reps={
+            'class="rds-native-form t-form js-form-proccess" role="form" action="https://forms.tildacdn.com/procces/" method="POST" data-vibeblock-form="true" data-inputbox=".vb-input-group" data-formactiontype="2" data-success-popup="y" data-error-popup="y" novalidate=""':'class="rds-native-form" role="form" action="/api/lead" method="POST" novalidate',
+            ' class="js-tilda-rule"':'',
+            ' data-tilda-req="1"':'',
+            ' data-tilda-rule="name"':'',
+            ' data-tilda-rule="phone"':'',
+            ' data-tilda-rule="string"':'',
+            ' data-tilda-rule="number"':'',
+            ' class="rds-submit t-submit t-btnflex t-btnflex_lg"':' class="rds-submit"',
+            ' class="js-successbox t-form__successbox"':' class="js-successbox"',
+            '    <div class="js-errorbox-all" style="display:none"><div class="js-rule-error-all"></div></div>':'',
+            '<div class="t-input-error"></div>':'',
+            '<div class="t-input-error"></div>':'',
+            '<input type="hidden" name="formservices[]" value="92ffb50ccf11d9776dbb90083c8b4a21" class="js-formaction-services">\n<input type="hidden" name="formservices[]" value="29125874d7555989bee6a5b953555269" class="js-formaction-services">':'',
+          }
+          for a,b in reps.items(): s=s.replace(a,b)
+          s=s.replace('.rds-native-form .js-rule-error-all{padding:', '.rds-native-form .js-rule-error-all{padding:')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit adaptation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pages/request.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Adapt request page form for server'
+          git push
