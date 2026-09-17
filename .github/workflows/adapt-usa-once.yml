@@ -31,11 +31,10 @@ jobs:
           s=s.replace('<div class="t-input-error"></div>','')
           s=re.sub(r'<input type="hidden" name="formservices\[\]"[^>]*>\s*','',s)
           s=s.replace(' class="rdu-btn rdu-btn-primary rdu-submit t-submit t-btnflex t-btnflex_lg"',' class="rdu-btn rdu-btn-primary rdu-submit"').replace('<span class="t-btnflex__text">','<span>')
-          start=s.find("if(form&&submitButton){\nform.addEventListener(")
-          end=s.find("var phoneInput=byId('rduSelPhone');",start)
-          if start<0 or end<0: raise SystemExit('USA submit handler boundaries not found')
+          pattern=r"if\(form\s*&&\s*submitButton\)\s*\{.*?(?=var\s+phoneInput=byId\('rduSelPhone'\);)"
           new_handler="if(form&&submitButton){form.addEventListener('submit',function(event){event.preventDefault();if(!validPhone()){showPhoneError();if(phoneInput)phoneInput.focus();return}var formData=new FormData(form);var box=form.querySelector('.rdu-successbox');submitButton.disabled=true;fetch('/api/lead',{method:'POST',body:formData,headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);if(box){box.textContent='Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.';box.style.display='block';box.classList.remove('err')}form.reset();initPhone();updateChannels();}).catch(function(){if(box){box.textContent='Не удалось отправить заявку. Попробуйте ещё раз.';box.style.display='block';box.classList.add('err')}}).finally(function(){submitButton.disabled=false})})}\n"
-          s=s[:start]+new_handler+s[end:]
+          s,n=re.subn(pattern,new_handler,s,count=1,flags=re.S)
+          if n!=1: raise SystemExit(f'USA submit handler replacement count: {n}')
           s=s.replace('.rdu-native-form .js-successbox','.rdu-native-form .rdu-successbox').replace('.rdu-native-form .js-errorbox-all','.rdu-native-form .rdc-unused-errorbox').replace('.rdu-native-form .js-rule-error-all','.rdu-native-form .rdc-unused-rule-error').replace('.rdu-native-form .t-input-error','.rdu-native-form .rdc-unused-error').replace('.rdu-submit.t-submit','.rdu-submit').replace('.t-btnflex__text','.rdc-unused-btn-text').replace('.t-btnflex__icon','.rdc-unused-btn-icon')
           s=re.sub(r'\n#red-dragon-usa \.rdu-native-form \.rdc-unused-errorbox\{[^}]*\}','',s)
           s=re.sub(r'\n#red-dragon-usa \.rdu-native-form \.rdc-unused-rule-error\{[^}]*\}','',s)
@@ -49,4 +48,4 @@ jobs:
           git rm .github/workflows/adapt-usa-once.yml
           git commit -m 'Remove temporary USA adaptation workflow'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
-# trigger2
+# regex-fix
