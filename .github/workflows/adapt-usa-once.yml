@@ -2,14 +2,16 @@ name: adapt-usa-once
 permissions:
   contents: write
 on:
-  push:
-    paths:
-      - '.github/workflows/adapt-usa-once.yml'
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   adapt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
       - name: Adapt USA page
         run: |
           python3 - <<'PY'
@@ -46,5 +48,4 @@ jobs:
           git commit -m 'Adapt USA page for clean server'
           git rm .github/workflows/adapt-usa-once.yml
           git commit -m 'Remove temporary USA adaptation workflow'
-          git push
-# retrigger
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
