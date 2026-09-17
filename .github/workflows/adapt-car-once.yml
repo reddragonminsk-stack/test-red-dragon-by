@@ -1,1 +1,7 @@
-__REMOVE__
+name: placeholder
+on: push
+jobs:
+  none:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo cleanup
