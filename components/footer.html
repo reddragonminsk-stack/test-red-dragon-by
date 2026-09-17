@@ -1,0 +1,128 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;600&display=swap');
+.rd-footer{--accent:#d92f2f;--accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);--accent-g-text:linear-gradient(135deg,#b81f23 0%,#8b1316 40%,#5e0808 75%,#2d0303 100%);--rd-background:var(--background,#f5f5f5);--rd-foreground:var(--foreground,#18181b);--rd-surface:var(--surface,#fff);--rd-surface-secondary:var(--surface-secondary,#efeff0);--rd-muted:var(--muted,#71717a);--rd-border:var(--border,#e3e3e5);--rd-accent-soft:rgba(217,47,47,.08);background:radial-gradient(circle at 85% 10%,rgba(217,47,47,.055),transparent 28%),linear-gradient(180deg,var(--rd-surface) 0%,var(--rd-background) 100%);color:var(--rd-foreground);font:400 14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;border-top:1px solid var(--rd-border);content-visibility:visible!important;contain:none!important}
+.rd-footer *,.rd-footer *::before,.rd-footer *::after{box-sizing:border-box}
+.rd-footer a{color:inherit;text-decoration:none}
+.rd-footer__wrap{width:min(1152px,calc(100% - 32px));margin:0 auto}
+.rd-footer__main{padding:48px 0 36px;display:grid;grid-template-columns:minmax(260px,1.45fr) repeat(3,minmax(140px,1fr));gap:42px}
+.rd-footer__brand{min-width:0}
+.rd-footer__logo{display:inline-block;margin-bottom:16px;line-height:0}
+.rd-footer__logo-img{display:block;height:auto;width:auto;max-height:56px;max-width:100%}
+.rd-footer__logo-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--accent-g);color:#fff;font-size:18px;font-weight:800;letter-spacing:-.06em;box-shadow:0 8px 18px rgba(180,20,20,.2),inset 0 1px 0 rgba(255,255,255,.22)}
+.rd-footer__logo-text{font-size:16px;line-height:1.1;font-weight:800;letter-spacing:-.03em}
+.rd-footer__description{max-width:360px;margin:0;color:var(--rd-muted);font-size:13px;line-height:1.65}
+.rd-footer__social{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.rd-footer__social a{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--rd-border);border-radius:10px;background:var(--rd-surface);color:var(--rd-muted);transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease}
+.rd-footer__social a:hover{transform:translateY(-2px);background:var(--rd-accent-soft);border-color:rgba(217,47,47,.25);color:var(--accent);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+.rd-footer__title{margin:3px 0 12px;font-size:12px;line-height:1.2;font-weight:700;text-transform:uppercase;letter-spacing:.12em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rd-footer__links{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.rd-footer__links a{color:var(--rd-muted);font-size:13px;transition:color .18s ease,transform .18s ease}
+.rd-footer__links a:hover{color:var(--accent);transform:translateX(2px)}
+.rd-footer__usd-note{grid-column:2 / 4;width:100%;margin:-10px 0 0;color:var(--rd-muted);font-size:11px;line-height:1.5}
+.rd-footer__bottom{padding:18px 0 22px;border-top:1px solid var(--rd-border);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.rd-footer__copyright{color:var(--rd-muted);font-size:12px}
+.rd-footer__meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto}
+.rd-footer__meta a{color:var(--rd-muted);font-size:12px;transition:color .18s ease}
+.rd-footer__meta a:hover{color:var(--rd-foreground)}
+.rd-footer__status{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--rd-border);border-radius:999px;background:var(--rd-surface);color:var(--rd-muted);font-size:11px;font-weight:500}
+.rd-footer__status-dot{width:7px;height:7px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.10);flex:none;animation:rd-footer-status-pulse 1.8s ease-in-out infinite}
+@keyframes rd-footer-status-pulse{0%,100%{opacity:1;box-shadow:0 0 0 4px rgba(22,163,74,.10)}50%{opacity:.35;box-shadow:0 0 0 7px rgba(22,163,74,.03)}}
+.rd-footer__mono{font:500 10px/1 Roboto Mono,ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em}
+.rd-footer__privacy-trigger{cursor:pointer;border:0;background:none;padding:0}
+.rd-footer__privacy-overlay{position:fixed;z-index:999999;display:none;inset:0;width:100%;height:100%;padding:0;background:transparent;pointer-events:none}
+.rd-footer__privacy-overlay.open{display:block;pointer-events:none}
+.rd-footer__privacy-modal{position:fixed;width:min(440px,calc(100vw - 32px));padding:26px 28px 28px;border:1px solid var(--border,#e3e3e5);border-radius:18px;background:var(--surface,#fff);color:var(--foreground,#18181b);box-shadow:0 20px 55px rgba(0,0,0,.18),0 4px 18px rgba(0,0,0,.08);pointer-events:auto;opacity:0;visibility:hidden;transform:translateY(10px) scale(.97);transform-origin:top right;transition:opacity .24s ease,transform .24s ease,visibility .24s ease}
+.rd-footer__privacy-overlay.open .rd-footer__privacy-modal{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.rd-footer__privacy-close{position:absolute;top:12px;right:12px;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:8px;background:transparent;color:var(--muted,#71717a);cursor:pointer;font:400 22px/1 Inter,ui-sans-serif,system-ui,sans-serif;transition:background .18s ease,color .18s ease,transform .18s ease}
+.rd-footer__privacy-close:hover{background:rgba(217,47,47,.08);color:#d92f2f;transform:rotate(90deg)}
+.rd-footer__privacy-title{margin:0 34px 14px 0;font-size:20px;line-height:1.2;font-weight:800;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rd-footer__privacy-text{margin:0;color:var(--muted,#71717a);font:400 14px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.rd-footer__privacy-text+p{margin-top:12px}
+@media (max-width:900px){
+.rd-footer__main{grid-template-columns:1.5fr 1fr 1fr;gap:30px}
+.rd-footer__brand{grid-column:1 / -1}
+.rd-footer__description{max-width:600px}
+.rd-footer__logo-img{max-height:50px}
+.rd-footer__usd-note{grid-column:2 / 4}
+}
+@media (max-width:560px){
+.rd-footer__wrap{width:min(100% - 24px,1152px)}
+.rd-footer__main{padding:34px 0 28px;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px}
+.rd-footer__brand{grid-column:1 / -1}
+.rd-footer__description{font-size:12.5px}
+.rd-footer__logo-img{max-height:44px}
+.rd-footer__usd-note{grid-column:1 / -1;margin-top:0}
+.rd-footer__bottom{align-items:flex-start;flex-direction:column;gap:12px}
+.rd-footer__meta{gap:10px 14px;margin-left:0}
+.rd-footer__privacy-modal{width:calc(100vw - 32px);max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:22px 20px 20px;border-radius:16px}
+.rd-footer__privacy-close{top:10px;right:10px;width:28px;height:28px;font-size:20px}
+.rd-footer__privacy-title{font-size:18px;margin:0 32px 12px 0}
+.rd-footer__privacy-text{font-size:13px;line-height:1.6}
+.rd-footer__privacy-text+p{margin-top:10px}
+}
+</style>
+<footer class="rd-footer">
+<div class="rd-footer__wrap">
+<div class="rd-footer__main">
+<div class="rd-footer__brand">
+<a class="rd-footer__logo" href="/" aria-label="КРАСНЫЙ ДРАКОН — на главную">
+<img class="rd-footer__logo-img" src="https://static.tildacdn.biz/tild3166-6137-4336-b933-353734616162/RD-002_1.png" alt="КРАСНЫЙ ДРАКОН" width="520" height="120">
+</a>
+<p class="rd-footer__description">Подбор, поставка и обслуживание автомобилей из Китай, Кореи и США. Более 1 млн. актуальных предложений в каталоге.</p>
+<div class="rd-footer__social" aria-label="Социальные сети">
+<a href="#" aria-label="Telegram" title="Telegram"><div aria-hidden="true" style="display:inline-block;width:17px;height:17px;background-image:url(&quot;https://static.tildacdn.biz/tild3931-6331-4031-b462-323538393537/telegram_cvet-d23c11.png&quot;);background-repeat:no-repeat;background-position:center;background-size:contain"></div></a>
+<a href="#" aria-label="VK" title="VK"><div aria-hidden="true" style="display:inline-block;width:17px;height:17px;background-image:url(&quot;https://static.tildacdn.biz/tild6231-3636-4639-a339-663739326431/whatsapp733.png&quot;);background-repeat:no-repeat;background-position:center;background-size:contain"></div></a>
+<a href="#" aria-label="YouTube" title="YouTube"><div aria-hidden="true" style="display:inline-block;width:17px;height:17px;background-image:url(&quot;https://static.tildacdn.biz/tild3964-3865-4666-a439-643161623139/tiktok492.png&quot;);background-repeat:no-repeat;background-position:center;background-size:contain"></div></a>
+</div>
+</div>
+<div>
+<h3 class="rd-footer__title">Навигация</h3>
+<nav class="rd-footer__links">
+<a href="/catalog/">Каталог</a>
+<a href="/brands/">Марки</a>
+<a href="/podbor-auto/">Подбор авто</a>
+<a href="/credit/">Кредит</a>
+<a href="/about-us/">О нас</a>
+</nav>
+</div>
+<div>
+<h3 class="rd-footer__title">Популярное</h3>
+<nav class="rd-footer__links">
+<a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dhybrid">Гибриды</a>
+<a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Delectric">Электро</a>
+<a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dgasoline%2Cdiesel">ДВС</a>
+<a href="https://red-dragon.by/catalog/#ccm=%2F%3FminYear%3D2021%26maxYear%3D2023">3-5 Лет</a>
+<a href="/brands/">Все марки</a>
+</nav>
+</div>
+<div>
+<h3 class="rd-footer__title">КОНТАКТЫ</h3>
+<nav class="rd-footer__links">
+<a>ООО "РЭД ДРЭГОН"</a>
+<a>г. Минск, Партизанский пр-т, д. 178/2, оф. 707</a>
+<a>Тел.:</a>
+<a href="tel:+375445552929">+375 44 555 29 29</a>
+</nav>
+</div>
+<div class="rd-footer__usd-note">Цены в USD указаны ориентировочно, все расчёты в BYN по курсу НБРБ.</div>
+</div>
+<div class="rd-footer__bottom">
+<div class="rd-footer__copyright">© ООО "РЭД ДРЭГОН, УНП 193714559</div>
+<div class="rd-footer__meta">
+<span class="rd-footer__status"><span class="rd-footer__status-dot"></span>Данные каталога актуальны</span>
+<button class="rd-footer__mono rd-footer__privacy-trigger" type="button" aria-expanded="false" aria-controls="rdFooterPrivacy">Конфиденциальность</button>
+</div>
+</div>
+</div>
+</footer>
+<div class="rd-footer__privacy-overlay" id="rdFooterPrivacy" aria-hidden="true">
+<div class="rd-footer__privacy-modal" role="dialog" aria-modal="false" aria-labelledby="rdFooterPrivacyTitle">
+<button class="rd-footer__privacy-close" type="button" aria-label="Закрыть">×</button>
+<h2 class="rd-footer__privacy-title" id="rdFooterPrivacyTitle">Конфиденциальность</h2>
+<p class="rd-footer__privacy-text">Мы уважаем конфиденциальность посетителей сайта. Персональные данные, которые вы предоставляете при обращении в компанию, используются исключительно для связи с вами, обработки вашего запроса и предоставления необходимой информации об автомобилях и услугах.</p>
+<p class="rd-footer__privacy-text">Мы не передаём предоставленные вами данные третьим лицам, за исключением случаев, предусмотренных законодательством Республики Беларусь. Используя сайт и отправляя свои данные, вы соглашаетесь на их обработку в целях, связанных с вашим обращением.</p>
+</div>
+</div>
+<script>
+(function(){var f=document.querySelector('.rd-footer');if(!f)return;var b=f.querySelector('.rd-footer__privacy-trigger'),o=document.getElementById('rdFooterPrivacy'),m=o?o.querySelector('.rd-footer__privacy-modal'):null,c=o?o.querySelector('.rd-footer__privacy-close'):null;if(!b||!o||!m||!c)return;function p(){var r=b.getBoundingClientRect(),w=m.offsetWidth,h=m.offsetHeight,g=12,x=r.right-w,y=r.bottom+g;if(x<16)x=16;if(x+w>window.innerWidth-16)x=window.innerWidth-w;if(y+h>window.innerHeight-16)y=r.top-h-g;if(y<16)y=16;m.style.left=x+'px';m.style.top=y+'px'}function close(){o.classList.remove('open');o.setAttribute('aria-hidden','true');b.setAttribute('aria-expanded','false')}function open(){o.classList.add('open');o.setAttribute('aria-hidden','false');p();requestAnimationFrame(p)}b.addEventListener('click',function(e){e.stopPropagation();o.classList.contains('open')?close():open()});c.addEventListener('click',close);document.addEventListener('click',function(e){if(o.classList.contains('open')&&!m.contains(e.target)&&e.target!==b)close()});window.addEventListener('resize',function(){if(o.classList.contains('open'))p()});window.addEventListener('scroll',function(){if(o.classList.contains('open'))p()},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o.classList.contains('open'))close()})})();
+</script>
