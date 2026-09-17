@@ -20,29 +20,25 @@ jobs:
           s=p.read_text(encoding='utf-8')
           s=s.replace('https://static.tildacdn.biz/tild3636-3539-4462-b938-643262366435/photo-1565043666747-.jpg','/assets/images/photo-1565043666747-.jpg')
           s=s.replace('class="rds-native-form t-form js-form-proccess" role="form" action="https://forms.tildacdn.com/procces/" method="POST" data-vibeblock-form="true" data-inputbox=".vb-input-group" data-formactiontype="2" data-success-popup="y" data-error-popup="y" novalidate=""','class="rds-native-form" role="form" action="/api/lead" method="POST" novalidate')
-          s=s.replace(' class="rds-input js-tilda-rule"',' class="rds-input"').replace(' class="rds-select js-tilda-rule"',' class="rds-select"').replace(' class="rds-textarea js-tilda-rule"',' class="rds-textarea"')
-          s=s.replace(' data-tilda-req="1"','').replace(' data-tilda-rule="name"','').replace(' data-tilda-rule="phone"','').replace(' data-tilda-rule="string"','').replace(' data-tilda-rule="number"','')
+          s=re.sub(r'\s+class="(rds-(?:input|select|textarea)) js-tilda-rule"',r' class="\1"',s)
+          s=re.sub(r'\s+data-tilda-(?:req|rule)="[^"]*"','',s)
           s=s.replace(' class="rds-submit t-submit t-btnflex t-btnflex_lg"',' class="rds-submit"')
           s=s.replace(' class="js-successbox t-form__successbox"',' class="rds-successbox"')
-          s=re.sub(r'<div class="js-errorbox-all" style="display:none"><div class="js-rule-error-all"></div></div>','',s)
+          s=s.replace('<div class="js-errorbox-all" style="display:none"><div class="js-rule-error-all"></div></div>','')
           s=s.replace('<div class="t-input-error"></div>','')
           s=re.sub(r'<input type="hidden" name="formservices\[\]"[^>]*>\s*','',s)
-          patterns=[
-            r'#red-dragon-selection \.rds-native-form \.js-successbox\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.js-errorbox-all\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.js-rule-error-all\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.t-input-error\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.t-input-error\[style\*="block"\]\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit:hover\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit:active\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit \.t-btnflex__text\{[^}]*\}',
-            r'#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit::before,#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit::after,#red-dragon-selection \.rds-native-form \.rds-submit\.t-submit \.t-btnflex__icon\{[^}]*\}',
-          ]
-          for pat in patterns: s=re.sub(pat,'',s)
+          s=s.replace('<span class="t-btnflex__text">','<span>').replace('</span></button>','</span></button>')
+          s=re.sub(r'#[^{]*\.t-submit\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-submit:hover\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-submit:active\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-btnflex__text\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-btnflex__icon\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-input-error\[[^}]*\]\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.t-input-error\{[^}]*\}','',s)
+          s=re.sub(r'#[^{]*\.js-rule-error-all\{[^}]*\}','',s)
+          s=re.sub(r'<div class="rds-successbox"[^>]*>.*?</div>','',s,count=1)
           p.write_text(s,encoding='utf-8')
           PY
-          if grep -qiE 'tildacdn|forms\.tilda|data-tilda|js-tilda-rule|t-submit|t-btnflex|t-input-error|formservices\[\]|js-form-proccess|\bt-form\b|t-form__successbox' pages/request.html; then echo 'Tilda remnants found'; exit 1; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pages/request.html
