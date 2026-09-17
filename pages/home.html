@@ -1,0 +1,360 @@
+<div id="red-dragon-home-vibe">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+:root,:root.light,:root[data-theme="light"]{color-scheme:light;--background:#f5f5f5;--foreground:#18181b;--surface:#fff;--surface-secondary:#efeff0;--surface-tertiary:#eaeaeb;--surface-hover:#f1f1f2;--muted:#71717a;--default:#ebebec;--default-hover:#dfdfe1;--border:#e3e3e5;--separator:#e1e1e3}
+:root.dark,:root[data-theme="dark"]{color-scheme:dark;--background:#060607;--foreground:#f5f5f5;--surface:#18181b;--surface-secondary:#232325;--surface-tertiary:#262728;--surface-hover:#202024;--muted:#9f9fa9;--default:#29292c;--default-hover:#323236;--border:#303034;--separator:#212124}
+#red-dragon-home-vibe{--accent:#d92f2f;--accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);--accent-g-text:linear-gradient(135deg,#b81f23 0%,#8b1316 40%,#5e0808 75%,#2d0303 100%);--bg:var(--background);--fg:var(--foreground);--surface2:var(--surface-secondary);--soft:rgba(217,47,47,.08);--abr:rgba(217,47,47,.22);--glow:rgba(180,20,20,.07);--r:18px;--rs:12px;--rx:10px;--sx:0 1px 2px rgba(0,0,0,.04);--sm:0 1px 3px rgba(0,0,0,.06);--md:0 6px 20px rgba(0,0,0,.07);--lg:0 14px 38px rgba(0,0,0,.11);font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--fg);background:var(--bg);min-height:100vh;color-scheme:inherit;-webkit-font-smoothing:antialiased;transition:background .18s ease,color .18s ease;overflow-x:clip}
+#red-dragon-home-vibe[data-theme="dark"]{color-scheme:dark}
+#red-dragon-home-vibe *{box-sizing:border-box}
+#red-dragon-home-vibe a{text-decoration:none;color:inherit}
+#red-dragon-home-vibe button{font:inherit}
+#red-dragon-home-vibe svg{display:block}
+.cvw{width:min(1200px,calc(100% - 32px));margin:auto}
+.cv-hero{width:min(1440px,calc(100% - 32px));padding:64px 0 60px;text-align:center;position:relative}
+.cv-hero-inner{max-width:780px;margin:auto;display:flex;flex-direction:column;align-items:center;gap:22px;position:relative;z-index:2}
+.rd-emblem{position:absolute;top:50%;right:calc((100% - 100vw)/2 - 30px);transform:translateY(-50%);width:720px;height:720px;pointer-events:none;z-index:1;opacity:0;animation:rdFade 1.4s .4s forwards,rdFloat 8s ease-in-out infinite 1.4s}
+.rd-emblem img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 60px rgba(209,26,42,.4)) drop-shadow(0 0 120px rgba(255,46,63,.15));opacity:.18;mix-blend-mode:screen}
+@keyframes rdFloat{0%,100%{transform:translateY(-50%) rotate(0deg)}50%{transform:translateY(-53%) rotate(3deg)}}
+@keyframes rdFloatMobile{0%,100%{transform:translate3d(-50%,-38%,0) rotate(0deg)}50%{transform:translate3d(-50%,-43%,0) rotate(3deg)}}
+@keyframes rdFade{to{opacity:1}}
+.cv-h1{font-family:Manrope,Inter,sans-serif;margin:0;font-size:clamp(40px,5.6vw,68px);line-height:1.04;letter-spacing:-.055em;font-weight:900;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 6px 28px rgba(120,10,10,.18))}
+.cv-lead{margin:0;max-width:660px;color:var(--muted);font-size:17px;line-height:1.6}
+.cv-cats{display:flex;gap:12px;width:100%;max-width:780px}
+.cv-cat{flex:1;display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--sx);transition:.3s;position:relative;overflow:hidden;text-align:left;cursor:pointer}
+.cv-cat:hover{border-color:var(--abr);transform:translateY(-3px);box-shadow:0 12px 28px var(--glow)}
+.cv-cat-ico{width:46px;height:46px;border-radius:50%;position:relative;overflow:hidden;flex-shrink:0;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.18);transition:.35s}
+.cv-cat-ico svg,.cv-cat-ico img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cv-cat:hover .cv-cat-ico{transform:scale(1.08) rotate(-2deg)}
+.cv-cat-body{flex:1;min-width:0;display:flex;flex-direction:column}
+.cv-cat-title{font:700 14.5px/1.2 Inter,sans-serif;color:var(--fg)}
+.cv-cat-sub{font:500 11.5px/1.3 Inter,sans-serif;color:var(--muted);margin-top:3px}
+.cv-cat-arr{color:var(--muted);flex-shrink:0}
+.cv-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}
+.cv-pills a{padding:9px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--muted);transition:.25s}
+.cv-pills a:hover{background:var(--soft);border-color:var(--abr);color:var(--accent)}
+.cv-search{width:min(640px,100%);height:54px;display:flex;align-items:center;padding:5px 6px 5px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--md)}
+.cv-search input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:var(--fg);font:inherit;font-size:15px}
+.cv-search input::placeholder{color:var(--muted)}
+.cv-search button{height:42px;padding:0 22px;background:var(--accent-g);color:#fff;border:0;border-radius:10px;font-weight:600;cursor:pointer}
+.cv-section{padding:48px 0}
+.cv-default{width:100%;padding:56px max(16px,calc((100% - 1200px)/2));background:linear-gradient(180deg,var(--default),color-mix(in oklab,var(--default) 50%,var(--bg)))}
+.cv-headrow{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.cv-headrow>div:first-child{flex:1}
+.cv-eyebrow2{display:inline-block;font:700 11px/1 "Roboto Mono",monospace;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;padding:5px 11px;border-radius:6px;background:var(--soft);border:1px solid var(--abr)}
+.cv-h2{margin:0;font-size:clamp(26px,3vw,32px);line-height:1.1;letter-spacing:-.035em;font-weight:800;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cv-sub{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.5;max-width:560px}
+.cv-headrow-right{display:flex;align-items:center;gap:10px}
+.cv-nav-arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--fg);box-shadow:var(--sx)}
+.cv-nav-arrow:disabled{opacity:.3;cursor:not-allowed}
+.cv-more{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:600;padding:7px 13px;border-radius:var(--rx)}
+.cv-more:hover{color:var(--accent);background:var(--soft)}
+.cv-cars-wrap{width:1152px;max-width:100%;margin:0 auto;padding:0 16px;position:relative;overflow:hidden;touch-action:pan-y}
+.cv-cars{display:flex;gap:16px;transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
+.rd-card{overflow:hidden;border:1px solid color-mix(in srgb,var(--border) 90%,transparent);border-radius:16px;background:var(--surface);transition:box-shadow .2s,border-color .2s;position:relative;flex:0 0 calc((100% - 32px)/3);min-width:0}
+.rd-card:hover{border-color:color-mix(in srgb,var(--fg) 15%,var(--border));box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.rd-card-link{display:block;text-decoration:none;color:inherit}
+.rd-card-media{position:relative;aspect-ratio:4/3;background:var(--default);overflow:hidden;touch-action:pan-y}
+.rd-carousel{position:absolute;inset:0;overflow:hidden}
+.rd-carousel-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateX(0);transition:opacity .28s ease,transform .32s cubic-bezier(.22,.61,.36,1)}
+.rd-carousel-layer.active{opacity:1}
+.rd-card:hover .rd-carousel-layer.active{transform:scale(1.012)}
+.rd-card-top{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;align-items:flex-start;z-index:8;pointer-events:none}
+.rd-card-top-left{display:flex;align-items:center;gap:6px;min-width:0}
+.rd-badge{height:26px;display:inline-flex;align-items:center;padding:0 8px;border-radius:8px;background:rgba(255,255,255,.94);color:#111;font-size:11px;font-weight:700}
+.rd-fav{position:relative;width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .2s ease-out,background-color .2s ease-out,border-color .2s ease-out,box-shadow .2s ease-out;pointer-events:auto;cursor:pointer}
+.rd-fav:before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.rd-fav:hover{background:rgba(0,0,0,.5)}
+.rd-fav:active{transform:scale(.9)}
+.rd-fav:focus-visible{outline:none;box-shadow:0 0 0 2px var(--accent),0 0 0 4px rgba(255,255,255,.2)}
+.rd-fav svg{width:16px;height:16px;display:block;transition:color .2s ease,fill .2s ease}
+.rd-fav.active svg{color:var(--accent)}
+.rd-card-country-bottom{position:absolute;left:10px;bottom:20px;z-index:10;display:inline-flex;align-items:center;justify-content:center;height:25px;pointer-events:none}
+.rd-card-country-bottom .rd-flag{display:block;width:auto;height:25px;overflow:hidden;border-radius:3px;line-height:0}
+.rd-card-country-bottom .rd-flag img{display:block;width:auto;height:25px;object-fit:contain;border:0}
+.rd-progress{position:absolute;left:10px;right:10px;bottom:9px;display:flex;gap:3px;z-index:9;pointer-events:none}
+.rd-progress span{height:2px;flex:1;background:rgba(255,255,255,.48);border-radius:999px;transition:background .18s ease}
+.rd-progress span.active{background:#fff}
+.rd-zones{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);z-index:5}
+.rd-zone{height:100%;width:100%;padding:0;border:0;background:transparent;cursor:pointer}
+.rd-card-photos{position:absolute;right:10px;bottom:20px;height:28px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:8px;background:rgba(17,17,17,.72);backdrop-filter:blur(5px);color:#fff;font-size:11px;font-weight:600;z-index:8;pointer-events:none}
+.rd-card-body{padding:14px}
+.rd-card-title{margin:0;font-size:15px;line-height:20px;font-weight:600;letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.rd-price-block{margin-top:8px}
+.rd-price-caption{display:block;font-size:11px;line-height:14px;font-weight:500;color:var(--muted)}
+.rd-price-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:3px}
+.rd-price{font-size:24px;line-height:28px;font-weight:700;letter-spacing:-.02em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rd-dollar{font-size:.58em;color:var(--muted);vertical-align:.15em;margin-right:2px}
+.rd-byn{font-size:12px;color:var(--muted);font-weight:600}
+.rd-condition{margin-top:11px;font-size:12px;line-height:17px;color:var(--muted)}
+.rd-condition strong{color:var(--fg);font-weight:600}
+.rd-condition.superb strong{color:#d4af37}
+.rd-condition.excellent strong{color:#16803a}
+.rd-condition.good strong{color:#2f6fed}
+.rd-condition.average strong{color:#f59e0b}
+.rd-condition.low strong{color:#ef4444}
+.rd-meta{margin:5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;line-height:18px;color:color-mix(in srgb,var(--fg) 68%,transparent);font-variant-numeric:tabular-nums}
+.rd-home-skeleton{overflow:hidden;border:1px solid color-mix(in srgb,var(--border) 90%,transparent);border-radius:16px;background:var(--surface);position:relative;flex:0 0 calc((100% - 32px)/3);min-width:0;pointer-events:none}
+.rd-home-skel{position:relative;overflow:hidden;background:#e3e3e3;border-radius:9px}
+.rd-home-skel:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.34) 35%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.34) 65%,transparent 100%);animation:rd-home-skeleton 2s linear infinite}
+#red-dragon-home-vibe[data-theme="dark"] .rd-home-skel{background:#29292b}
+#red-dragon-home-vibe[data-theme="dark"] .rd-home-skel:after{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.06) 35%,rgba(255,255,255,.16) 50%,rgba(255,255,255,.06) 65%,transparent 100%)}
+@keyframes rd-home-skeleton{100%{transform:translateX(100%)}}
+.rd-home-skeleton-media{aspect-ratio:4/3;border-radius:0}
+.rd-home-skeleton-body{padding:14px}
+.rd-home-skeleton-title{height:40px;width:86%;border-radius:7px}
+.rd-home-skeleton-caption{height:14px;width:72px;margin-top:9px;border-radius:6px}
+.rd-home-skeleton-price{height:28px;width:46%;margin-top:4px;border-radius:7px}
+.rd-home-skeleton-condition{height:17px;width:58%;margin-top:12px;border-radius:6px}
+.rd-home-skeleton-meta{height:18px;width:82%;margin-top:5px;border-radius:6px}
+.cv-brand-skeleton{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden;box-shadow:var(--sx);min-height:78px;padding:17px 20px;position:relative}
+.cv-brand-skeleton:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.34) 35%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.34) 65%,transparent 100%);animation:cv-brand-skeleton 2s linear infinite}
+#red-dragon-home-vibe[data-theme="dark"] .cv-brand-skeleton:after{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.06) 35%,rgba(255,255,255,.16) 50%,rgba(255,255,255,.06) 65%,transparent 100%)}
+.cv-brand-skeleton-line{height:16px;width:42%;border-radius:6px;background:#e3e3e3}
+.cv-brand-skeleton-line.small{height:12px;width:29%;margin-top:9px}
+#red-dragon-home-vibe[data-theme="dark"] .cv-brand-skeleton-line{background:#29292b}
+@keyframes cv-brand-skeleton{100%{transform:translateX(100%)}}
+.cv-brands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cv-brand{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden;box-shadow:var(--sx)}
+.cv-brandbtn{width:100%;min-height:78px;padding:17px 20px;border:0;background:transparent;color:var(--fg);display:flex;align-items:center;justify-content:space-between;text-align:left;cursor:pointer;gap:12px}
+.cv-brandbtn:hover{background:linear-gradient(90deg,var(--soft),transparent)}
+.cv-brandname{flex:1;min-width:0}
+.cv-brandname b{display:block;font-size:16px;font-weight:700}
+.cv-brandname span{display:block;margin-top:5px;font:500 11.5px/1.3 Inter,sans-serif;color:var(--muted)}
+.cv-chev{color:var(--muted);flex:none;transition:transform .18s}
+.cv-brand.open .cv-chev{transform:rotate(180deg);color:var(--accent)}
+.cv-models{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}
+.cv-brand.open .cv-models{grid-template-rows:1fr}
+.cv-models-in{overflow:hidden;border-top:1px solid var(--border);padding:0 8px}
+.cv-models ul{margin:0;padding:8px 0 10px;list-style:none}
+.cv-models li a{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:500}
+.cv-models li a:hover{background:var(--soft);color:var(--accent)}
+.cv-models i{font:500 11px/1.3 Inter,sans-serif;color:var(--muted);font-style:normal}
+.cv-cta{padding:44px 48px;border:1px solid var(--abr);border-radius:22px;background:linear-gradient(135deg,color-mix(in oklab,var(--accent) 6%,var(--surface)),var(--surface) 50%);display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:var(--lg)}
+.cv-cta h2{margin:0;font-size:clamp(26px,3vw,32px);line-height:1.1;font-weight:800;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cv-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent-g);color:#fff!important;border:0;border-radius:var(--rs);font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(150,15,15,.4);padding:13px 22px;font-size:14px}
+.cv-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.cv-step{position:relative;min-height:200px;padding:26px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.cv-stepnum{position:absolute;right:14px;bottom:-14px;font-size:84px;font-weight:900;background:linear-gradient(180deg,color-mix(in oklab,var(--fg) 5%,transparent),transparent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cv-stepico{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--soft),color-mix(in oklab,var(--accent) 4%,transparent));color:var(--accent)}
+.cv-step h3{margin:18px 0 8px;font-size:16px}
+.cv-step p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.cv-faq{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.cv-faqitem{border-bottom:1px solid var(--border)}
+.cv-faqitem:last-child{border-bottom:0}
+.cv-faqbtn{width:100%;padding:19px 24px;border:0;background:transparent;color:var(--fg);display:flex;justify-content:space-between;align-items:center;text-align:left;cursor:pointer;font-size:15px;font-weight:600;gap:16px}
+.cv-faqbtn:hover{color:var(--accent)}
+.cv-faqarr{color:var(--muted);flex:none;transition:transform .18s}
+.cv-faqitem.open .cv-faqarr{transform:rotate(180deg);color:var(--accent)}
+.cv-faqans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.cv-faqitem.open .cv-faqans{grid-template-rows:1fr}
+.cv-faqansin{overflow:hidden;padding:0 24px;color:var(--muted);font-size:14px;line-height:1.6}
+.cv-faqitem.open .cv-faqansin{padding-bottom:20px}
+.cv-swipe-wrap{display:none}
+.cv-swipe-track{position:relative;width:100%;height:70px}
+.cv-swipe-track .cv-sw-slide{position:absolute;top:0;left:0;right:0;height:100%;display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;transform:translateX(100%);pointer-events:none;transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .5s cubic-bezier(.4,0,.2,1)}
+.cv-swipe-track .cv-sw-slide.cv-sw-cur{opacity:1;transform:translateX(0);pointer-events:auto}
+.cv-swipe-track .cv-sw-slide.cv-sw-prev{opacity:0;transform:translateX(-100%)}
+.cv-sw-ico{width:38px;height:38px;border-radius:50%;position:relative;overflow:hidden;flex-shrink:0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 4px rgba(0,0,0,.12)}
+.cv-sw-ico svg,.cv-sw-ico img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+.cv-sw-ico:before{content:"";position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,.5) 0%,transparent 100%);border-radius:50% 50% 0 0;pointer-events:none;z-index:2}
+.cv-sw-info{display:flex;flex-direction:column;gap:1px;min-width:0}
+.cv-sw-title{font:700 15px/1.25 Inter,sans-serif;letter-spacing:-.01em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
+.cv-sw-sub{font:500 12px/1.3 Inter,sans-serif;color:var(--muted);white-space:nowrap}
+@media(max-width:1023px){
+.rd-zones{pointer-events:none}
+.rd-zone{pointer-events:none}
+.rd-home-skeleton{flex:0 0 calc((100% - 16px)/2)}
+}
+@media(max-width:760px){
+.rd-home-skeleton{flex:0 0 calc((100% - 12px)/2)}
+.rd-home-skeleton-body{padding:13px}
+.cv-brand-skeleton{min-height:76px;padding:16px 18px}
+}
+@media(max-width:1200px){
+.rd-emblem{width:560px;height:560px;right:calc((100% - 100vw)/2 - 30px)}
+}
+@media(max-width:1023px){
+.cv-cars-wrap{width:100%;max-width:1152px}
+.rd-card{flex:0 0 calc((100% - 16px)/2)}
+}
+@media(max-width:960px){
+.rd-emblem{display:block;width:420px;height:420px;right:calc((100% - 100vw)/2 - 30px)}
+}
+@media(max-width:760px){
+.cvw{width:calc(100% - 24px)}
+.cv-hero{width:calc(100% - 24px);padding:36px 0 32px}
+.cv-cats{display:none}
+.cv-swipe-wrap{display:block;width:100%;overflow:hidden}
+.cv-h1{font-size:clamp(32px,9.2vw,42px)}
+.cv-lead{font-size:15.5px}
+.cv-pills{gap:6px;justify-content:flex-start}
+.cv-pills a{padding:7px 14px;font-size:12px}
+.cv-search{height:50px}
+.cv-section{padding:32px 0}
+.cv-default{padding:36px 14px}
+.cv-headrow{margin-bottom:20px;flex-direction:column;align-items:flex-start}
+.cv-headrow-right{width:100%;justify-content:space-between}
+.cv-cars-wrap{margin:0 -14px;padding:0 14px}
+.cv-cars{gap:12px}
+.rd-card{flex:0 0 calc((100% - 12px)/2)}
+.rd-card-body{padding:13px}
+.rd-price{font-size:22px}
+.rd-meta,.rd-condition{font-size:11.5px}
+.cv-brands{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cv-cta{padding:28px 24px;flex-direction:column;align-items:flex-start}
+.cv-primary{width:100%;justify-content:center}
+.cv-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cv-step{padding:20px;min-height:170px}
+}
+@media(max-width:639px){
+#red-dragon-home-vibe{overflow-x:clip}
+#red-dragon-home-vibe .cv-cars-wrap{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:0;padding:0;overflow:hidden}
+#red-dragon-home-vibe .cv-cars{gap:12px;padding:0 12px;transform:translate3d(0,0,0)}
+#red-dragon-home-vibe .rd-card,#red-dragon-home-vibe .rd-home-skeleton{flex:0 0 calc(100vw - 24px);width:calc(100vw - 24px);min-width:calc(100vw - 24px)}
+}
+@media(max-width:640px){
+.rd-emblem{width:320px;height:320px;right:auto;left:50%;top:50vh;transform:translate3d(-50%,-38%,0);animation:rdFade 1.4s .4s forwards,rdFloatMobile 6s ease-in-out infinite 1.4s}
+}
+@media(max-width:420px){
+.cvw{width:calc(100% - 20px)}
+.cv-hero{width:calc(100% - 20px)}
+#red-dragon-home-vibe .cv-cars-wrap{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:0;padding:0}
+#red-dragon-home-vibe .cv-cars{gap:12px;padding:0 12px}
+.cv-brands,.cv-steps{grid-template-columns:1fr}
+}
+</style>
+<section class="cvw cv-hero" id="about">
+<div class="rd-emblem" aria-hidden="true">
+<img src="https://static.tildacdn.biz/tild3939-3862-4134-a463-636563343537/Logo-One-01-Shadow.png" alt="">
+</div>
+<div class="cv-hero-inner">
+<div class="cv-cats">
+<a class="cv-cat" href="/catalog#ccm=%2F%3Fcountry%3DCN">
+<span class="cv-cat-ico">
+<svg viewBox="0 0 36 36">
+<defs><clipPath id="flagCN"><circle cx="18" cy="18" r="16"></circle></clipPath></defs>
+<g clip-path="url(#flagCN)">
+<rect fill="#de2910" width="36" height="36"></rect>
+<path fill="#ffde00" d="M9.2 7.1l1 2.9h3l-2.4 1.8.9 2.9-2.5-1.8-2.5 1.8.9-2.9-2.4-1.8h3z"></path>
+<g fill="#ffde00">
+<path d="M15.4 6.5l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path>
+<path d="M17.8 10.5l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path>
+<path d="M17.6 15l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path>
+<path d="M14.7 18.7l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path>
+</g>
+</g>
+</svg>
+</span>
+<span class="cv-cat-body"><span class="cv-cat-title">Б/У авто из Китая</span><span class="cv-cat-sub">600 000+ объявлений</span></span>
+<svg class="cv-cat-arr" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="m9 6 6 6-6 6"></path></svg>
+</a>
+<a class="cv-cat" href="/catalog#ccm=%2F%3Fcountry%3DKR">
+<span class="cv-cat-ico"><img alt="Флаг Южной Кореи" src="https://static.tildacdn.biz/tild3936-6230-4762-b734-616235366132/flag-south-korea-rou.jpg"></span>
+<span class="cv-cat-body"><span class="cv-cat-title">Б/У из Кореи</span><span class="cv-cat-sub">200 000+ объявлений</span></span>
+<svg class="cv-cat-arr" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="m9 6 6 6-6 6"></path></svg>
+</a>
+<a class="cv-cat" href="/catalog/usa/">
+<span class="cv-cat-ico">
+<svg viewBox="0 0 36 36">
+<defs><clipPath id="flagUS"><circle cx="18" cy="18" r="16"></circle></clipPath></defs>
+<g clip-path="url(#flagUS)">
+<rect fill="#bf0a30" width="36" height="36"></rect>
+<g fill="#fff">
+<rect y="3" width="36" height="3"></rect><rect y="9" width="36" height="3"></rect><rect y="15" width="36" height="3"></rect><rect y="21" width="36" height="3"></rect><rect y="27" width="36" height="3"></rect><rect y="33" width="36" height="3"></rect>
+</g>
+<rect fill="#002868" width="16" height="18"></rect>
+<g fill="#fff">
+<circle cx="2" cy="2" r=".7"></circle><circle cx="5" cy="2" r=".7"></circle><circle cx="8" cy="2" r=".7"></circle><circle cx="11" cy="2" r=".7"></circle><circle cx="14" cy="2" r=".7"></circle>
+<circle cx="3.5" cy="4" r=".7"></circle><circle cx="6.5" cy="4" r=".7"></circle><circle cx="9.5" cy="4" r=".7"></circle><circle cx="12.5" cy="4" r=".7"></circle>
+<circle cx="2" cy="6" r=".7"></circle><circle cx="5" cy="6" r=".7"></circle><circle cx="8" cy="6" r=".7"></circle><circle cx="11" cy="6" r=".7"></circle><circle cx="14" cy="6" r=".7"></circle>
+<circle cx="3.5" cy="8" r=".7"></circle><circle cx="6.5" cy="8" r=".7"></circle><circle cx="9.5" cy="8" r=".7"></circle><circle cx="12.5" cy="8" r=".7"></circle>
+<circle cx="2" cy="10" r=".7"></circle><circle cx="5" cy="10" r=".7"></circle><circle cx="8" cy="10" r=".7"></circle><circle cx="11" cy="10" r=".7"></circle><circle cx="14" cy="10" r=".7"></circle>
+<circle cx="3.5" cy="12" r=".7"></circle><circle cx="6.5" cy="12" r=".7"></circle><circle cx="9.5" cy="12" r=".7"></circle><circle cx="12.5" cy="12" r=".7"></circle>
+<circle cx="2" cy="14" r=".7"></circle><circle cx="5" cy="14" r=".7"></circle><circle cx="8" cy="14" r=".7"></circle><circle cx="11" cy="14" r=".7"></circle><circle cx="14" cy="14" r=".7"></circle>
+<circle cx="3.5" cy="16" r=".7"></circle><circle cx="6.5" cy="16" r=".7"></circle><circle cx="9.5" cy="16" r=".7"></circle><circle cx="12.5" cy="16" r=".7"></circle>
+</g>
+</g>
+</svg>
+</span>
+<span class="cv-cat-body"><span class="cv-cat-title">Авто из США</span><span class="cv-cat-sub">700 000+ объявлений</span></span>
+<svg class="cv-cat-arr" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="m9 6 6 6-6 6"></path></svg>
+</a>
+</div>
+<div class="cv-swipe-wrap" id="cvSwipeWrap">
+<div class="cv-swipe-track" id="cvSwipeTrack">
+<div class="cv-sw-slide cv-sw-cur">
+<span class="cv-sw-ico">
+<svg viewBox="0 0 36 36"><defs><clipPath id="sCN"><circle cx="18" cy="18" r="16"></circle></clipPath></defs><g clip-path="url(#sCN)"><rect fill="#de2910" width="36" height="36"></rect><path fill="#ffde00" d="M9.2 7.1l1 2.9h3l-2.4 1.8.9 2.9-2.5-1.8-2.5 1.8.9-2.9-2.4-1.8h3z"></path><g fill="#ffde00"><path d="M15.4 6.5l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path><path d="M17.8 10.5l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path><path d="M17.6 15l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path><path d="M14.7 18.7l.7 1.7 1.8.2-1.4 1.2.4 1.8-1.5-1-1.6 1 .5-1.8-1.4-1.2 1.8-.2z"></path></g></g></svg>
+</span>
+<span class="cv-sw-info"><span class="cv-sw-title">Б/У авто из Китая</span><span class="cv-sw-sub">600 000+ объявлений</span></span>
+</div>
+<div class="cv-sw-slide">
+<span class="cv-sw-ico"><img alt="Флаг Южной Кореи" src="https://static.tildacdn.biz/tild3936-6230-4762-b734-616235366132/flag-south-korea-rou.jpg"></span>
+<span class="cv-sw-info"><span class="cv-sw-title">Б/У из Кореи</span><span class="cv-sw-sub">200 000+ объявлений</span></span>
+</div>
+<div class="cv-sw-slide">
+<span class="cv-sw-ico"><svg viewBox="0 0 36 36"><defs><clipPath id="sUS"><circle cx="18" cy="18" r="16"></circle></clipPath></defs><g clip-path="url(#sUS)"><rect fill="#bf0a30" width="36" height="36"></rect><g fill="#fff"><rect y="3" width="36" height="3"></rect><rect y="9" width="36" height="3"></rect><rect y="15" width="36" height="3"></rect><rect y="21" width="36" height="3"></rect><rect y="27" width="36" height="3"></rect><rect y="33" width="36" height="3"></rect></g><rect fill="#002868" width="16" height="18"></rect><g fill="#fff"><circle cx="2" cy="2" r=".7"></circle><circle cx="5" cy="2" r=".7"></circle><circle cx="8" cy="2" r=".7"></circle><circle cx="11" cy="2" r=".7"></circle><circle cx="14" cy="2" r=".7"></circle><circle cx="3.5" cy="4" r=".7"></circle><circle cx="6.5" cy="4" r=".7"></circle><circle cx="9.5" cy="4" r=".7"></circle><circle cx="12.5" cy="4" r=".7"></circle><circle cx="2" cy="6" r=".7"></circle><circle cx="5" cy="6" r=".7"></circle><circle cx="8" cy="6" r=".7"></circle><circle cx="11" cy="6" r=".7"></circle><circle cx="14" cy="6" r=".7"></circle><circle cx="3.5" cy="8" r=".7"></circle><circle cx="6.5" cy="8" r=".7"></circle><circle cx="9.5" cy="8" r=".7"></circle><circle cx="12.5" cy="8" r=".7"></circle><circle cx="2" cy="10" r=".7"></circle><circle cx="5" cy="10" r=".7"></circle><circle cx="8" cy="10" r=".7"></circle><circle cx="11" cy="10" r=".7"></circle><circle cx="14" cy="10" r=".7"></circle><circle cx="3.5" cy="12" r=".7"></circle><circle cx="6.5" cy="12" r=".7"></circle><circle cx="9.5" cy="12" r=".7"></circle><circle cx="12.5" cy="12" r=".7"></circle><circle cx="2" cy="14" r=".7"></circle><circle cx="5" cy="14" r=".7"></circle><circle cx="8" cy="14" r=".7"></circle><circle cx="11" cy="14" r=".7"></circle><circle cx="14" cy="14" r=".7"></circle><circle cx="3.5" cy="16" r=".7"></circle><circle cx="6.5" cy="16" r=".7"></circle><circle cx="9.5" cy="16" r=".7"></circle><circle cx="12.5" cy="16" r=".7"></circle></g></g></svg></span>
+<span class="cv-sw-info"><span class="cv-sw-title">Авто из США</span><span class="cv-sw-sub">700 000+ объявлений</span></span>
+</div>
+</div>
+</div>
+<h1 class="cv-h1">Весь авторынок<br>в одном каталоге</h1>
+<p class="cv-lead">Более миллиона актуальных объявлений. Цены с доставкой в Беларусь, отчёты по каждому авто, полные характеристики и детальные фото. Выезд на подписание договора в любую точку Беларуси — бесплатно!</p>
+<div class="cv-pills"><a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dhybrid">Гибриды</a><a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Delectric">Электро</a><a href="https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dgasoline%2Cdiesel">ДВС</a><a href="https://red-dragon.by/catalog/#ccm=%2F%3FminYear%3D2021%26maxYear%3D2023">3-5 лет</a></div>
+<form class="cv-search" id="cvSearch"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input autocomplete="off" name="q" placeholder="Марка, модель или запрос"><button type="submit">Найти</button></form>
+</div>
+</section>
+<section class="cvw cv-section"><div class="cv-headrow"><div><div class="cv-eyebrow2">РАСПРОДАЖА</div><h2 class="cv-h2">Горящие предложения</h2><p class="cv-sub">Актуальные автомобили из каталога. Карточки обновляются автоматически.</p></div><div class="cv-headrow-right"><a class="cv-more" href="/catalog/">Все предложения<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="15"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a><div style="display:flex;gap:7px"><button aria-label="Назад" class="cv-nav-arrow" id="cvCarsPrev" type="button"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="m15 6-6 6 6 6"></path></svg></button><button aria-label="Вперёд" class="cv-nav-arrow" id="cvCarsNext" type="button"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="16"><path d="m9 6 6 6-6 6"></path></svg></button></div></div></div><div class="cv-cars-wrap"><div class="cv-cars" id="cvCarsTrack"><div class="rd-home-skeleton" aria-hidden="true"><div class="rd-home-skel rd-home-skeleton-media"></div><div class="rd-home-skeleton-body"><div class="rd-home-skel rd-home-skeleton-title"></div><div class="rd-home-skel rd-home-skeleton-caption"></div><div class="rd-home-skel rd-home-skeleton-price"></div><div class="rd-home-skel rd-home-skeleton-condition"></div><div class="rd-home-skel rd-home-skeleton-meta"></div></div></div><div class="rd-home-skeleton" aria-hidden="true"><div class="rd-home-skel rd-home-skeleton-media"></div><div class="rd-home-skeleton-body"><div class="rd-home-skel rd-home-skeleton-title"></div><div class="rd-home-skel rd-home-skeleton-caption"></div><div class="rd-home-skel rd-home-skeleton-price"></div><div class="rd-home-skel rd-home-skeleton-condition"></div><div class="rd-home-skel rd-home-skeleton-meta"></div></div></div><div class="rd-home-skeleton" aria-hidden="true"><div class="rd-home-skel rd-home-skeleton-media"></div><div class="rd-home-skeleton-body"><div class="rd-home-skel rd-home-skeleton-title"></div><div class="rd-home-skel rd-home-skeleton-caption"></div><div class="rd-home-skel rd-home-skeleton-price"></div><div class="rd-home-skel rd-home-skeleton-condition"></div><div class="rd-home-skel rd-home-skeleton-meta"></div></div></div></div></div></section>
+<section class="cvw cv-section" id="brands"><div class="cv-headrow"><div><div class="cv-eyebrow2">МАРКИ</div><h2 class="cv-h2">Популярные марки автомобилей</h2><p class="cv-sub">Автомобили популярных брендов — нажмите на марку, чтобы увидеть модели.</p></div><a class="cv-more" href="/brands">Все марки<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="15"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div><div class="cv-brands" id="cvPopularBrands"><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div><div class="cv-brand-skeleton"><div class="cv-brand-skeleton-line"></div><div class="cv-brand-skeleton-line small"></div></div></div></section>
+<section class="cvw cv-section"><div class="cv-cta"><h2>Все объявления —<br>в одном каталоге</h2><a class="cv-primary" href="/catalog/">Открыть каталог<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="15"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div></section>
+<section class="cv-default" id="request"><div class="cvw"><div class="cv-headrow"><div><div class="cv-eyebrow2">ПОКУПКА</div><h2 class="cv-h2">Как купить автомобиль в КРАСНОМ ДРАКОНЕ</h2><p class="cv-sub">Четыре шага от выбора автомобиля до получения ключей</p></div></div><div class="cv-steps"><article class="cv-step"><span class="cv-stepnum">1</span><div class="cv-stepico"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></div><h3>Выберите автомобиль</h3><p>Найдите подходящий автомобиль в каталоге.</p></article><article class="cv-step"><span class="cv-stepnum">2</span><div class="cv-stepico"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9Z"></path></svg></div><h3>Оставьте заявку</h3><p>Укажите интересующий автомобиль и контактные данные.</p></article><article class="cv-step"><span class="cv-stepnum">3</span><div class="cv-stepico"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg></div><h3>Получите отчёт</h3><p>Предоставим точную стоимость и детальный отчёт состояния авто.</p></article><article class="cv-step"><span class="cv-stepnum">4</span><div class="cv-stepico"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg></div><h3>Заключите сделку</h3><p>Нет необходимости посещать офис — доставим договор на дом.</p></article></div></div></section>
+<section class="cvw cv-section"><div class="cv-headrow"><div><div class="cv-eyebrow2">FAQ</div><h2 class="cv-h2">Частые вопросы об автомобилях и покупке</h2><p class="cv-sub">Ответы на популярные вопросы о КРАСНОМ ДРАКОНЕ</p></div></div><div class="cv-faq"><article class="cv-faqitem"><button class="cv-faqbtn" type="button"><span>Что такое КРАСНЫЙ ДРАКОН?</span><svg class="cv-faqarr" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-faqans"><div class="cv-faqansin">КРАСНЫЙ ДРАКОН — поставщик автомобилей из Китая, Кореи и США. Мы объединяем подбор, поставку, логистику и сервис в одной автомобильной экосистеме.</div></div></article><article class="cv-faqitem"><button class="cv-faqbtn" type="button"><span>Как формируется цена автомобиля?</span><svg class="cv-faqarr" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-faqans"><div class="cv-faqansin">В опубликованных предложениях указывается ориентировочная стоимость автомобиля с доставкой в Беларусь. Финальная сумма рассчитывается индивидуально.</div></div></article><article class="cv-faqitem"><button class="cv-faqbtn" type="button"><span>Какой срок доставки автомобиля?</span><svg class="cv-faqarr" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-faqans"><div class="cv-faqansin">Срок зависит от страны отправления, расположения автомобиля и выбранной логистической схемы.</div></div></article><article class="cv-faqitem"><button class="cv-faqbtn" type="button"><span>Нужно ли посещать офис?</span><svg class="cv-faqarr" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-faqans"><div class="cv-faqansin">Мы ценим время клиента и стараемся максимально упростить оформление сделки. Для заключения договора не обязательно посещать офис — наши специалисты доставят договор на дом в любую точку Беларуси совершенно бесплатно!</div></div></article><article class="cv-faqitem"><button class="cv-faqbtn" type="button"><span>Не нашли ответ?</span><svg class="cv-faqarr" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-faqans"><div class="cv-faqansin">Оставьте заявку — специалисты КРАСНОГО ДРАКОНА свяжутся с вами.</div></div></article></div></section>
+<script>
+(function(){
+var title='Автомобили из Китая, Кореи и США с доставкой в Беларусь — КРАСНЫЙ ДРАКОН';
+var description='Автомобили из Китая, Кореи и США с доставкой в Беларусь. Новые и б/у авто, актуальные объявления, цены, характеристики и фотографии. Каталог автомобилей КРАСНОГО ДРАКОНА поможет выбрать и купить автомобиль.';
+var keywords=['автомобили из Китая','авто из Китая','автомобили из Кореи','авто из Кореи','автомобили из США','авто из США','купить авто в Беларуси','купить автомобиль в Беларуси','автомобили с доставкой в Беларусь','авто с доставкой в Беларусь','новые автомобили','б/у автомобили','подержанные автомобили','китайские автомобили','корейские автомобили','американские автомобили','каталог автомобилей','каталог авто','марки автомобилей','модели автомобилей','КРАСНЫЙ ДРАКОН'];
+var canonical='https://red-dragon.by/';
+document.title=title;
+function setMeta(name,content){var el=document.head.querySelector('meta[name="'+name.replace(/"/g,'\\"')+'"]');if(!el){el=document.createElement('meta');el.setAttribute('name',name);document.head.appendChild(el)}el.setAttribute('content',content)}
+function setProperty(property,content){var el=document.head.querySelector('meta[property="'+property.replace(/"/g,'\\"')+'"]');if(!el){el=document.createElement('meta');el.setAttribute('property',property);document.head.appendChild(el)}el.setAttribute('content',content)}
+function setCanonical(url){var el=document.head.querySelector('link[rel="canonical"]');if(!el){el=document.createElement('link');el.setAttribute('rel','canonical');document.head.appendChild(el)}el.setAttribute('href',url)}
+setMeta('description',description);setMeta('keywords',keywords.join(', '));setMeta('robots','index,follow,max-image-preview:large');setMeta('author','КРАСНЫЙ ДРАКОН');setMeta('theme-color','#d92f2f');setMeta('content-language','ru');setProperty('og:title',title);setProperty('og:description',description);setProperty('og:type','website');setProperty('og:url',canonical);setProperty('og:site_name','КРАСНЫЙ ДРАКОН');setProperty('og:locale','ru_BY');setMeta('twitter:card','summary_large_image');setMeta('twitter:title',title);setMeta('twitter:description',description);setCanonical(canonical);
+var oldSchema=document.getElementById('rd-home-seo-schema');if(oldSchema){oldSchema.remove()};var schema=document.createElement('script');schema.type='application/ld+json';schema.id='rd-home-seo-schema';schema.textContent=JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'WebSite','@id':'https://red-dragon.by/#website','name':'КРАСНЫЙ ДРАКОН','url':'https://red-dragon.by/','inLanguage':'ru-BY','description':description,'publisher':{'@id':'https://red-dragon.by/#organization'},'potentialAction':{'@type':'SearchAction','target':{'@type':'EntryPoint','urlTemplate':'https://red-dragon.by/catalog/#ccm='+encodeURIComponent('/?q={search_term_string}')},'query-input':'required name=search_term_string'}},{'@type':'Organization','@id':'https://red-dragon.by/#organization','name':'КРАСНЫЙ ДРАКОН','url':'https://red-dragon.by/'},{'@type':'WebPage','@id':'https://red-dragon.by/#webpage','name':title,'url':'https://red-dragon.by/','inLanguage':'ru-BY','description':description,'isPartOf':{'@id':'https://red-dragon.by/#website'},'about':{'@type':'Thing','name':'Автомобили из Китая, Кореи и США'}},{'@type':'ItemList','name':'Категории автомобилей','itemListElement':[{'@type':'ListItem','position':1,'name':'Б/У автомобили из Китая','url':'https://red-dragon.by/catalog#ccm=%2F%3Fcountry%3DCN'},{'@type':'ListItem','position':2,'name':'Б/У автомобили из Кореи','url':'https://red-dragon.by/catalog#ccm=%2F%3Fcountry%3DKR'},{'@type':'ListItem','position':3,'name':'Автомобили из США','url':'https://red-dragon.by/catalog/usa/'},{'@type':'ListItem','position':4,'name':'Гибридные автомобили','url':'https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dhybrid'},{'@type':'ListItem','position':5,'name':'Электромобили','url':'https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Delectric'},{'@type':'ListItem','position':6,'name':'Автомобили с ДВС','url':'https://red-dragon.by/catalog/#ccm=%2F%3Ffuel%3Dgasoline%2Cdiesel'}]}]});document.head.appendChild(schema);
+})();
+(function(){
+var root=document.getElementById('red-dragon-home-vibe');if(!root||root.dataset.ready)return;root.dataset.ready='1';
+function sync(){var d=document.documentElement,t=d.getAttribute('data-theme'),dark=t==='dark'||d.classList.contains('dark')||document.body.classList.contains('dark');root.setAttribute('data-theme',dark?'dark':'light');root.style.colorScheme=dark?'dark':'light'}sync();new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class']});new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['data-theme','class']});
+root.querySelectorAll('.cv-faqbtn').forEach(function(b){b.onclick=function(){var x=b.parentNode;root.querySelectorAll('.cv-faqitem.open').forEach(function(y){if(y!==x)y.classList.remove('open')});x.classList.toggle('open')}});
+var API='https://red-dragon-api.red-dragon-minsk.workers.dev/api',track=root.querySelector('#cvCarsTrack'),cp=root.querySelector('#cvCarsPrev'),cn=root.querySelector('#cvCarsNext'),cars=[];
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+function num(v){if(v==null||v==='')return'—';return Number(v).toLocaleString('ru-RU')}
+function moneyNumber(v){if(v==null||v==='')return'—';return Number(v).toLocaleString('ru-RU')}
+function yearNumber(v){if(v==null||v==='')return null;var n=Number(v);return Number.isFinite(n)?Math.trunc(n):null}
+function loadFavs(){try{var v=JSON.parse(localStorage.getItem('rd-favorites')||'[]');return Array.isArray(v)?v.map(String):[]}catch(e){return[]}}
+var favoriteState=loadFavs();
+function syncFavoriteState(){favoriteState=loadFavs();if(!track)return;track.querySelectorAll('[data-fav]').forEach(function(btn){var active=isFav(btn.getAttribute('data-fav'));btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false');btn.setAttribute('aria-label',active?'Убрать из избранного':'Добавить в избранное');var svg=btn.querySelector('svg');if(svg)svg.setAttribute('fill',active?'currentColor':'none')})}
+window.addEventListener('red-dragon:favorites-changed',syncFavoriteState);function saveFavs(){localStorage.setItem('rd-favorites',JSON.stringify(favoriteState));window.dispatchEvent(new CustomEvent('red-dragon:favorites-changed',{detail:{favorites:favoriteState.slice(),count:favoriteState.length}}))}function isFav(id){return favoriteState.indexOf(String(id))!==-1}function toggleFav(id){id=String(id);var i=favoriteState.indexOf(id);if(i>=0)favoriteState.splice(i,1);else favoriteState.push(id);saveFavs();var btn=track.querySelector('[data-fav="'+CSS.escape(id)+'"]');if(btn){var active=isFav(id);btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false');btn.setAttribute('aria-label',active?'Убрать из избранного':'Добавить в избранное');var svg=btn.querySelector('svg');if(svg)svg.setAttribute('fill',active?'currentColor':'none')}}
+function countryFlag(c){var v=String(c||'').toLowerCase().trim();if(['cn','china','chinese','китай','кнр','中国'].indexOf(v)>=0)return'<span class="rd-flag" aria-label="Китай" title="Китай"><img src="https://static.tildacdn.biz/tild3236-6661-4234-b532-373737636239/250px-Flag_of_the_Pe.jpg" alt="Китай" loading="lazy"></span>';if(['kr','korea','south korea','korean','корея','южная корея','대한민국','한국'].indexOf(v)>=0)return'<span class="rd-flag" aria-label="Корея" title="Корея"><img src="https://static.tildacdn.biz/tild3733-3439-4336-b163-346463356262/Flag_of_South_Korea.jpg" alt="Корея" loading="lazy"></span>';return''}
+function countryName(v){var n=String(v||'').toLowerCase().trim();if(['cn','china','chinese','китай','кнр','中国'].indexOf(n)>=0)return'Китай';if(['kr','korea','south korea','korean','корея','южная корея','대한민국','한국'].indexOf(n)>=0)return'Корея';return String(v||'')}
+function getItemCountry(it){return it?.source?.countryCode||it?.source?.country||it?.source?.country?.code||it?.source?.country?.name||it?.countryCode||it?.country||it?.sourceCountryCode||it?.sourceCountry||it?.originCountryCode||it?.originCountry||it?.shippingCountryCode||it?.shippingCountry||it?.shipment?.countryCode||it?.shipment?.country||''}
+function ownersWord(n){n=Number(n);var m=n%10,p=n%100;return m===1&&p!==11?'владелец':m>=2&&m<=4&&(p<12||p>14)?'владельца':'владельцев'}
+function fuelLabel(v){var s=String(v||'').toLowerCase();if(/electric|электр|^ev$/.test(s))return'Электро';if(/phev|plug/.test(s))return'Гибрид';if(/hybrid|hev|гибрид/.test(s))return'Гибрид';if(/diesel|дизел/.test(s))return'Дизель';if(/gasoline|petrol|бенз/.test(s))return'Бензин';if(/natural_gas|natural gas|lpg|газ/.test(s))return'Газ';return v||''}
+function conditionScoreRaw(it){var v=it?.conditionScore??it?.syncRecord?.conditionScore??it?.data?.conditionScore;if(v===undefined||v===null||v==='')return null;var n=Number(v);return Number.isFinite(n)?Math.max(0,Math.min(100,n)):null}
+function conditionInfo(it){var score=conditionScoreRaw(it);if(score===null)return{label:'Без оценки',cls:'unrated',real:false};if(score>=90)return{label:'Превосходное',cls:'superb',real:true};if(score>=70)return{label:'Отличное',cls:'excellent',real:true};if(score>=50)return{label:'Хорошее',cls:'good',real:true};if(score>=30)return{label:'Среднее',cls:'average',real:true};return{label:'Ниже среднего',cls:'low',real:true}}
+function sourcePriceInfo(it){var sp=it?.sourcePrice;if(!sp)return{value:null,by:null,currency:'',country:countryName(getItemCountry(it))};var value=sp.usd!=null&&sp.usd!==''?Number(sp.usd):null;return{value:Number.isFinite(value)?value:null,by:null,currency:sp.currency||'',country:countryName(getItemCountry(it))}}
+function cardData(it){var specs=it.specs||{},rawCountry=getItemCountry(it),country=countryName(rawCountry),photoUrls=[];if(it.cover?.url)photoUrls.push(it.cover.url);(it.photos||[]).forEach(function(p){var u=p?.url||p;if(u&&!photoUrls.includes(u))photoUrls.push(u)});var pc=Number(it.photoCount??it.photosCount??it.photos_count??photoUrls.length??0),sp=sourcePriceInfo(it),cond=conditionInfo(it);return{title:it.title||(it.brand?.name+' '+(it.model?.name||'')),id:it.id,year:it.year,mileage:it.mileage,fuel:fuelLabel(specs.fuel||it.fuel),price:sp.value,byPrice:sp.by,sourceCurrency:sp.currency,priceCaption:sp.country==='Корея'?'Цена в Корее':sp.country==='Китай'?'Цена в Китае':'Цена у источника',photoUrls:photoUrls,country:country,rawCountry:rawCountry,photoCount:pc,firstLine:Boolean(it.firstLine??it.isFirstLine??it.first_line),conditionInfo:cond,owners:it.owners,gearbox:specs.gearbox||it.gearbox,drive:specs.drive||it.drive,body:specs.body||it.body,color:specs.color||it.color}}
+function renderCardImages(urls){var u=urls.slice(0,5);if(!u.length)return'<div style="display:grid;place-items:center;width:100%;height:100%;color:var(--muted);font-size:12px">Нет фото</div>';var layers='',bars='',zones='';u.forEach(function(url,i){layers+='<img src="'+esc(url)+'" alt="" class="rd-carousel-layer '+(i===0?'active':'')+'" data-photo-layer="'+i+'" loading="'+(i===0?'eager':'lazy')+'" onerror="this.style.opacity=\'0\';">';bars+='<span class="'+(i===0?'active':'')+'"></span>';zones+='<button type="button" class="rd-zone" data-zone="'+i+'" aria-label="Фото '+(i+1)+'"></button>'});return'<div class="rd-carousel">'+layers+'</div><div class="rd-zones">'+zones+'</div><div class="rd-progress">'+bars+'</div>'}
+function cameraSvg(){return'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L8 6H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-3-2l-1.5-2Z"/><circle cx="12" cy="13" r="3.5"/></svg>'}
+function renderHomeCard(raw){var c=cardData(raw),fav=isFav(c.id),condition=c.conditionInfo,meta=[c.year?yearNumber(c.year):null,c.mileage!=null?num(c.mileage)+' км':null,c.fuel||null,c.owners!=null?num(c.owners)+' '+ownersWord(c.owners):null].filter(Boolean).join(' · '),href='/car?id='+encodeURIComponent(c.id),flag=countryFlag(c.rawCountry),priceHtml=c.price!=null?'<div class="rd-price-block"><span class="rd-price-caption">'+esc(c.priceCaption)+'</span><div class="rd-price-row"><div class="rd-price"><span class="rd-dollar">$</span>'+moneyNumber(c.price)+'</div>'+(c.byPrice?'<span class="rd-byn">'+num(c.byPrice)+' BYN</span>':'')+'</div></div>':'<div class="rd-price-block"><span class="rd-price-caption">'+esc(c.priceCaption)+'</span><div class="rd-price-row"><div class="rd-price">—</div></div></div>';return'<article class="rd-card" data-id="'+esc(c.id)+'"><a href="'+href+'" class="rd-card-link"><div class="rd-card-media">'+renderCardImages(c.photoUrls)+'<div class="rd-card-top"><div class="rd-card-top-left">'+(c.firstLine?'<span class="rd-badge">Первая линия</span>':'')+'</div><button type="button" class="rd-fav '+(fav?'active':'')+'" data-fav="'+esc(c.id)+'" aria-label="'+(fav?'Убрать из избранного':'Добавить в избранное')+'" aria-pressed="'+(fav?'true':'false')+'"><svg width="24" height="24" viewBox="0 0 24 24" fill="'+(fav?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5Z"></path></svg></button></div>'+(flag?'<div class="rd-card-country-bottom">'+flag+'</div>':'')+(c.photoCount?'<div class="rd-card-photos">'+cameraSvg()+'<span>'+num(c.photoCount)+'</span></div>':'')+'</div><div class="rd-card-body"><h3 class="rd-card-title">'+esc(c.title)+'</h3>'+priceHtml+'<div class="rd-condition '+condition.cls+'"><span>Состояние · </span><strong>'+esc(condition.label)+'</strong></div><p class="rd-meta">'+esc(meta)+'</p></div></a></article>'}
+function setCardPhoto(target,index){var media=target.classList&&target.classList.contains('rd-card-media')?target:target.closest('.rd-card-media');if(!media)return;var card=media.closest('.rd-card'),id=card&&card.getAttribute('data-id');if(!id)return;var raw=cars.find(function(x){return String(x.id)===String(id)});if(!raw)return;var urls=cardData(raw).photoUrls.slice(0,5);if(!urls.length)return;index=Math.max(0,Math.min(index,urls.length-1));media.querySelectorAll('[data-photo-layer]').forEach(function(img,i){img.classList.toggle('active',i===index)});media.querySelectorAll('.rd-progress span').forEach(function(s,i){s.classList.toggle('active',i===index)})}
+function bindCardEvents(){track.querySelectorAll('[data-zone]').forEach(function(btn){btn.addEventListener('mouseenter',function(){setCardPhoto(btn,Number(btn.getAttribute('data-zone')||0))});btn.addEventListener('mousemove',function(){setCardPhoto(btn,Number(btn.getAttribute('data-zone')||0))});btn.addEventListener('click',function(e){if(innerWidth<=1023)return;e.preventDefault()})});track.querySelectorAll('.rd-card-media').forEach(function(m){m.addEventListener('mouseleave',function(){if(innerWidth>1023)setCardPhoto(m,0)})});bindMobilePhotoSwipe(track);track.querySelectorAll('[data-fav]').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();toggleFav(btn.getAttribute('data-fav'))})})}
+function bindMobilePhotoSwipe(g){if(!window.matchMedia('(max-width:639px)').matches||!g)return;g.querySelectorAll('.rd-card-media').forEach(function(media){var startX=0,startY=0,currentX=0,currentIndex=0,swiping=false,dragging=false,hasMoved=false,layers=media.querySelectorAll('[data-photo-layer]');if(!layers.length)return;function getIndex(){var active=media.querySelector('[data-photo-layer].active');return active?Number(active.getAttribute('data-photo-layer')||0):0}function resetDrag(){if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}var active=getIndex();layers.forEach(function(img,i){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.opacity='1';img.style.visibility=i===active?'visible':'hidden';img.classList.toggle('active',i===active)})}resetDrag();media.addEventListener('touchstart',function(e){if(!e.touches||!e.touches.length)return;if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}startX=currentX=e.touches[0].clientX;startY=e.touches[0].clientY;currentIndex=getIndex();swiping=false;dragging=false;hasMoved=false;resetDrag()},{passive:true});media.addEventListener('touchmove',function(e){if(!e.touches||!e.touches.length)return;currentX=e.touches[0].clientX;var currentY=e.touches[0].clientY,dx=currentX-startX,dy=currentY-startY;if(!hasMoved){if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)){swiping=true;dragging=true;hasMoved=true}else if(Math.abs(dy)>8&&Math.abs(dy)>Math.abs(dx)){hasMoved=true;return}}if(!dragging)return;e.preventDefault();var width=media.clientWidth||1,offset=Math.max(-width,Math.min(width,dx)),nextIndex=currentIndex;if(offset<0&&currentIndex<layers.length-1)nextIndex=currentIndex+1;if(offset>0&&currentIndex>0)nextIndex=currentIndex-1;var current=layers[currentIndex];current.style.transition='none';current.style.visibility='visible';current.style.opacity='1';current.style.transform='translate3d('+offset+'px,0,0)';if(nextIndex!==currentIndex){var next=layers[nextIndex],enter=offset<0?width:-width;next.style.transition='none';next.style.visibility='visible';next.style.opacity='1';next.style.transform='translate3d('+(enter+offset)+'px,0,0)'}},{passive:false});media.addEventListener('touchend',function(e){if(!swiping||!dragging){resetDrag();swiping=false;dragging=false;return}var dx=(e.changedTouches&&e.changedTouches.length?e.changedTouches[0].clientX:currentX)-startX,threshold=Math.max(42,(media.clientWidth||320)*.16),nextIndex=currentIndex,direction=dx<0?'next':'prev';if(Math.abs(dx)>=threshold){if(dx<0&&currentIndex<layers.length-1)nextIndex=currentIndex+1;if(dx>0&&currentIndex>0)nextIndex=currentIndex-1}if(nextIndex!==currentIndex){if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}var width=media.clientWidth||1,current=layers[currentIndex],next=layers[nextIndex];next.style.visibility='visible';next.style.opacity='1';next.style.transition='none';next.style.transform='translate3d('+(direction==='next'?width:-width)+'px,0,0)';next.classList.add('active');current.classList.remove('active');void next.offsetWidth;current.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';next.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';current.style.transform='translate3d('+(direction==='next'?-width:width)+'px,0,0)';next.style.transform='translate3d(0,0,0)';media._rdSwipeTimer=setTimeout(function(){media._rdSwipeTimer=0;layers.forEach(function(img,i){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.visibility=i===nextIndex?'visible':'hidden';img.style.opacity='1';img.classList.toggle('active',i===nextIndex)})},320);media.querySelectorAll('.rd-progress span').forEach(function(s,i){s.classList.toggle('active',i===nextIndex)})}else{var current=layers[currentIndex],duration=260;if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}current.style.transition='transform '+duration+'ms cubic-bezier(.22,.61,.36,1)';current.style.transform='translate3d(0,0,0)';media._rdSwipeTimer=setTimeout(function(){media._rdSwipeTimer=0;resetDrag()},duration+20)}media.setAttribute('data-rd-swipe-ignore-click',Math.abs(dx)>=threshold?'1':'0');setTimeout(function(){media.removeAttribute('data-rd-swipe-ignore-click')},350);swiping=false;dragging=false},{passive:true});media.addEventListener('touchcancel',function(){resetDrag();swiping=false;dragging=false},{passive:true});media.addEventListener('click',function(e){if(media.getAttribute('data-rd-swipe-ignore-click')==='1'){e.preventDefault();e.stopPropagation()}})})}
+function initSlider(){var ci=0;function vw(){return innerWidth<=639?1:innerWidth<=1023?2:3}function mx(){return Math.max(0,track.children.length-vw())}function up(){var c=track.children[ci]||track.children[0];if(!c)return;var wrap=track.parentElement,x;if(innerWidth>1023){x=c.offsetLeft}else{var center=(wrap.clientWidth-c.getBoundingClientRect().width)/2;x=c.offsetLeft-center}track.style.transform='translate3d('+(-x)+'px,0,0)';if(cp)cp.disabled=ci<=0;if(cn)cn.disabled=ci>=mx()}function go(d){var n=Math.max(0,Math.min(ci+d,mx()));if(n!==ci){ci=n;up()}}if(cp)cp.onclick=function(){go(-1)};if(cn)cn.onclick=function(){go(1)};var sx=0,sy=0,drag=0;track.addEventListener('touchstart',function(e){if(innerWidth>1023||!e.touches.length)return;var target=e.target.closest('.rd-card-media');if(target)return;sx=e.touches[0].clientX;sy=e.touches[0].clientY;drag=0},{passive:true});track.addEventListener('touchmove',function(e){if(innerWidth>1023||!e.touches.length||!sx)return;var dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>10)drag=1},{passive:true});track.addEventListener('touchend',function(e){if(!drag||!sx)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)go(dx<0?1:-1);sx=0;sy=0;drag=0},{passive:true});addEventListener('resize',up);up()}
+fetch(API+'/listings?page=1&pageSize=60&sort=added&order=desc',{cache:'no-store',headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(function(data){cars=Array.isArray(data)?data:(data.items||data.listings||data.results||data.data?.items||data.data?.listings||data.data?.results||data.data?.cars||data.cars||[]);if(!cars.length)throw Error('EMPTY');for(var i=cars.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),tmp=cars[i];cars[i]=cars[j];cars[j]=tmp}cars=cars.slice(0,12);track.innerHTML=cars.map(renderHomeCard).join('');bindCardEvents();initSlider()}).catch(function(e){console.error('[Red Dragon home]',e);track.innerHTML='<div style="width:100%;padding:40px 10px;text-align:center;color:var(--muted);font-size:13px">Не удалось загрузить актуальные автомобили.</div>'});
+var f=root.querySelector('#cvSearch');if(f){f.onsubmit=function(e){e.preventDefault();var q=(f.q.value||'').trim();location.href=q?'/catalog/#ccm='+encodeURIComponent('/?q='+encodeURIComponent(q)):'/catalog/'}}
+var box=root.querySelector('#cvPopularBrands');if(box){fetch(API+'/brands',{cache:'no-store',headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(function(data){var brands=Array.isArray(data)?data:(data.brands||data.data?.brands||[]);if(!Array.isArray(brands)||!brands.length)throw Error('EMPTY_BRANDS');var wanted=['geely','byd','dongfeng-aeolus','voyah','deepal','li-auto','nissan','bmw','chevrolet','haval','mazda','zeekr'],selected=[];wanted.forEach(function(code){var b=brands.find(function(x){return String(x.code||'').toLowerCase()===code});if(b)selected.push(b)});box.innerHTML=selected.map(function(b){var models=(Array.isArray(b.models)?b.models:[]).filter(function(m){return Number(m.count||0)>0}).slice(0,8);return'<article class="cv-brand"><button class="cv-brandbtn" type="button"><span class="cv-brandname"><b>'+esc(b.name)+'</b><span>'+Number(b.count||0).toLocaleString('ru-RU')+' авто · '+models.length+' моделей</span></span><svg class="cv-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"></path></svg></button><div class="cv-models"><div class="cv-models-in"><ul>'+models.map(function(x){var href='/catalog#ccm='+encodeURIComponent('/?brand='+String(b.code||'')+'&model='+String(x.code||''));return'<li><a href="'+esc(href)+'"><span>'+esc(x.name)+'</span><i>'+Number(x.count||0).toLocaleString('ru-RU')+' авто</i></a></li>'}).join('')+'</ul></div></div></article>'}).join('');box.querySelectorAll('.cv-brandbtn').forEach(function(b){b.onclick=function(){var x=b.parentNode;box.querySelectorAll('.cv-brand.open').forEach(function(y){if(y!==x)y.classList.remove('open')});x.classList.toggle('open')}})}).catch(function(e){console.error('[Red Dragon brands]',e);box.innerHTML='<div style="grid-column:1/-1;padding:30px;text-align:center;color:var(--muted);font-size:13px">Не удалось загрузить марки.</div>'})}
+})();
+(function(){var root=document.getElementById('red-dragon-home-vibe'),w=root&&root.querySelector('#cvSwipeWrap'),tr=root&&root.querySelector('#cvSwipeTrack');if(!w||!tr)return;var s=Array.prototype.slice.call(tr.querySelectorAll('.cv-sw-slide')),cur=0,busy=0;function to(i){if(busy||i===cur||i<0||i>=s.length)return;busy=1;var p=s[cur],x=s[i];x.style.transition='none';x.className='cv-sw-slide';void x.offsetWidth;x.style.transition='';p.className='cv-sw-slide cv-sw-prev';x.className='cv-sw-slide cv-sw-cur';cur=i;setTimeout(function(){busy=0},680)}if(s.length>1){setInterval(function(){to((cur+1)%s.length)},2500)}})();
+</script>
+</div>
