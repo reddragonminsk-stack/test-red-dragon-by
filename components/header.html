@@ -1,0 +1,675 @@
+<script>
+(function(){try{var s=localStorage.getItem('theme-storage'),o=s&&JSON.parse(s),t=o&&o.state&&o.state.theme==='dark'?'dark':'light',r=document.documentElement;r.setAttribute('data-theme',t);r.classList.remove('light','dark','rd-dark');r.classList.add(t);if(t==='dark')r.classList.add('rd-dark');r.style.colorScheme=t}catch(e){}})();
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+:root{--accent:#d92f2f;--accent-g:linear-gradient(135deg,color-mix(in oklch,var(--accent),white 10%) 0%,var(--accent) 50%,color-mix(in oklch,var(--accent),black 10%) 100%);--accent-soft:rgba(217,47,47,.08);--accent-border:rgba(217,47,47,.22);--surface:#fff;--surface2:#eff0f2;--fg:#08080a;--muted:#6f6f76;--border:#e2e2e7;--default:#e9e9ed;--ease:cubic-bezier(.4,0,.2,1);--ease-out:cubic-bezier(.16,1,.3,1);--header-h:72px;color-scheme:light}
+html.light{--accent:#d92f2f;--accent-g:linear-gradient(135deg,color-mix(in oklch,var(--accent),white 10%) 0%,var(--accent) 50%,color-mix(in oklch,var(--accent),black 10%) 100%);--accent-soft:rgba(217,47,47,.08);--accent-border:rgba(217,47,47,.22);--surface:#fff;--surface2:#eff0f2;--fg:#08080a;--muted:#6f6f76;--border:#e2e2e7;--default:#e9e9ed;color-scheme:light}
+html.dark,html.rd-dark{--accent:#d92f2f;--accent-g:linear-gradient(135deg,color-mix(in oklch,var(--accent),white 10%) 0%,var(--accent) 50%,color-mix(in oklch,var(--accent),black 10%) 100%);--accent-soft:rgba(217,47,47,.16);--accent-border:rgba(217,47,47,.34);--surface:#08080b;--surface2:#0e0e11;--fg:#ededf0;--muted:#8a8a92;--border:#1a1a20;--default:#0c0c0f;color-scheme:dark}
+body{padding-top:var(--header-h);background:var(--surface);color:var(--fg);transition:background-color .3s var(--ease),color .3s var(--ease)}
+#red-dragon-header{font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--fg);-webkit-font-smoothing:antialiased}
+#red-dragon-header *,#red-dragon-header *::before,#red-dragon-header *::after{box-sizing:border-box}
+#red-dragon-header a{text-decoration:none;color:inherit}
+#red-dragon-header button{font:inherit}
+#red-dragon-header svg{display:block}
+.cvw{width:min(1200px,calc(100% - 32px));margin:auto}
+.cv-header{position:fixed;inset:0 0 auto;width:100%;z-index:99999;background:color-mix(in oklab,var(--surface) 82%,transparent);backdrop-filter:blur(24px) saturate(1.7);-webkit-backdrop-filter:blur(24px) saturate(1.7);border-bottom:1px solid var(--border);transform:translateZ(0)}
+.cv-head{height:72px;display:flex;align-items:center;gap:12px;white-space:nowrap}
+.cv-logo{display:inline-flex;align-items:center;color:var(--accent)!important;transition:transform .3s var(--ease-out);flex:0 0 auto}
+.cv-logo:hover{transform:scale(1.04)}
+.cv-logo img{display:block;width:324px;height:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,.1))}
+.cv-nav{display:flex;align-items:center;gap:4px;margin-left:auto;flex:1 1 auto;min-width:max-content;white-space:nowrap}
+.cv-nav a{padding:9px 15px;border-radius:10px;font-weight:500;font-size:13.5px;color:var(--muted);transition:color .25s var(--ease),background .25s var(--ease);position:relative;white-space:nowrap}
+.cv-nav a::after{content:"";position:absolute;bottom:5px;left:50%;width:0;height:1.5px;background:var(--accent);border-radius:1px;transition:width .25s var(--ease-out),left .25s var(--ease-out)}
+.cv-nav a:hover{color:var(--accent)!important;background:var(--default)}
+.cv-nav a:hover::after,.cv-nav a.active::after{width:18px;left:calc(50% - 9px)}
+.cv-nav a.active{color:var(--accent)!important;font-weight:600}
+.cv-actions{display:flex;align-items:center;gap:6px;margin-left:4px;flex:0 0 auto;white-space:nowrap}
+.cv-theme{display:flex;gap:3px;padding:4px;border-radius:22px;background:var(--surface2);border:1px solid var(--border);flex:0 0 auto}
+.cv-theme button{width:30px;height:30px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s var(--ease)}
+.cv-theme button.sel{background:var(--surface);color:var(--fg);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cv-theme button:hover:not(.sel){color:var(--fg)}
+.cv-mobiletheme{display:none}
+.cv-favorites{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:5px;width:38px;height:38px;padding:0;margin:0;border:0;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;transition:color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease);flex:0 0 38px}
+.cv-favorites:hover{color:var(--accent);background:var(--default)}
+.cv-favorites:active{transform:scale(.92)}
+.cv-favorites svg{width:19px;height:19px;transition:color .2s var(--ease),fill .2s var(--ease)}
+.cv-favorites.active{color:var(--accent)}
+.cv-favorites.active svg{fill:none}
+.cv-favorites-count{position:absolute;right:-2px;top:-2px;min-width:16px;height:16px;padding:0 4px;display:none;align-items:center;justify-content:center;border-radius:999px;background:var(--accent);color:#fff;font-size:9px;line-height:16px;font-weight:700;border:1px solid var(--surface)}
+.cv-favorites-count.show{display:inline-flex}
+.cv-headcta{position:relative;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 17px;margin-left:4px;background:var(--accent-g);color:#fff!important;border:0;border-radius:12px;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;flex:0 0 auto;transition:transform .25s var(--ease-out),box-shadow .3s var(--ease);box-shadow:0 4px 16px rgba(150,15,15,.4),inset 0 1px 0 rgba(255,255,255,.2);overflow:hidden}
+.cv-headcta:hover{box-shadow:0 10px 32px rgba(150,15,15,.55);transform:translateY(-1.5px)}@media(min-width:761px){.cv-headcta{background:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%)}.cv-headcta:hover{background:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%)}}
+.cv-burger{display:none;width:26px;height:26px;border:0;background:transparent;cursor:pointer;position:relative;z-index:10001;flex-direction:column;justify-content:center;align-items:stretch;padding:0;gap:5px}
+.cv-burger-line{display:block;width:100%;height:3px;border-radius:2px;background:var(--accent-g);transition:transform .35s var(--ease-out),opacity .25s var(--ease-out)}
+.cv-burger.open .cv-burger-line:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.cv-burger.open .cv-burger-line:nth-child(2){opacity:0}
+.cv-burger.open .cv-burger-line:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.cv-menu{position:fixed;top:0;right:0;width:100%;height:100%;background:var(--surface);z-index:100000;transform:translateX(100%);transition:transform .4s var(--ease-out);overflow-y:auto;display:flex;flex-direction:column}
+.cv-menu.open{transform:translateX(0)}
+.cv-menu-head{display:flex;align-items:center;justify-content:center;padding:24px 56px 20px 20px;border-bottom:1px solid var(--border);position:relative}
+.cv-menu-head img{width:240px;height:auto;max-width:100%}
+.cv-menu-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.cv-menu-close::before,.cv-menu-close::after{content:"";position:absolute;left:50%;top:50%;width:22px;height:3px;border-radius:2px;background:var(--accent-g);transform-origin:center}
+.cv-menu-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.cv-menu-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.cv-menu-body{flex:1;display:flex;flex-direction:column;padding:28px 24px 32px}
+.cv-menu-link{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);font:600 18px/1.3 Inter,sans-serif;color:var(--fg);transition:color .2s var(--ease)}
+.cv-menu-link:hover{color:var(--accent)}
+.cv-menu-link svg{flex-shrink:0;color:var(--muted);transition:color .2s var(--ease)}
+.cv-menu-link:hover svg,.cv-menu-link.active svg{color:var(--accent)}
+.cv-menu-link.active{color:var(--accent)!important}
+.cv-menu-phone{padding:20px 0;border-bottom:1px solid var(--border);text-align:center}
+.cv-menu-phone a{display:inline-block;font:700 22px/1.3 "Roboto Mono",monospace;letter-spacing:-.01em;background:var(--accent-g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:opacity .2s var(--ease)}
+.cv-menu-phone a:hover{opacity:.75}
+.cv-menu-social{display:flex;justify-content:center;align-items:center;gap:14px;padding-top:28px;margin-top:auto}
+.cv-menu-social a,.cv-menu-social span{width:44px;height:44px;display:grid;place-items:center;padding:0;transition:transform .25s var(--ease),filter .25s var(--ease);cursor:pointer}
+.cv-menu-social a:hover,.cv-menu-social span:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.cv-menu-social img{display:block;width:44px;height:44px;object-fit:contain}
+.rd-fav-popup-backdrop{position:fixed;inset:0;z-index:100001;display:none;align-items:flex-start;justify-content:center;padding:90px 20px 30px;background:rgba(0,0,0,.42);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.rd-fav-popup-backdrop.open{display:flex}
+.rd-fav-popup{width:min(560px,100%);max-height:min(920px,calc(100vh - 120px));display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:var(--surface);color:var(--fg);box-shadow:0 24px 80px rgba(0,0,0,.28);animation:rdFavPopupIn .25s var(--ease-out)}
+@keyframes rdFavPopupIn{from{opacity:0;transform:translateY(-10px) scale(.985)}to{opacity:1;transform:none}}
+.rd-fav-popup-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 18px;border-bottom:1px solid var(--border);flex:none}
+.rd-fav-popup-title{display:flex;align-items:center;gap:9px;min-width:0;font-size:17px;font-weight:700;color:var(--fg)}
+.rd-fav-popup-title svg{width:19px;height:19px;color:var(--accent);fill:currentColor}
+.rd-fav-popup-title-count{color:var(--muted);font-size:12px;font-weight:500}
+.rd-fav-popup-close{width:34px;height:34px;flex:none;display:grid;place-items:center;padding:0;border:0;border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
+.rd-fav-popup-close:hover{background:var(--default);color:var(--fg)}
+.rd-fav-popup-close svg{width:18px;height:18px}
+.rd-fav-popup-body{min-height:0;max-height:860px;overflow-y:auto;overflow-x:hidden;padding:10px}
+.rd-fav-popup-loading,.rd-fav-popup-empty,.rd-fav-popup-error{padding:34px 18px;text-align:center;color:var(--muted);font-size:13px;line-height:19px}
+.rd-fav-item{display:flex;align-items:center;gap:12px;padding:9px;border-radius:13px;transition:background .2s var(--ease)}
+.rd-fav-item:hover{background:var(--default)}
+.rd-fav-item-link{display:flex;align-items:center;gap:12px;min-width:0;flex:1;color:inherit;text-decoration:none}
+.rd-fav-item-image{width:92px;height:68px;flex:0 0 92px;overflow:hidden;border-radius:10px;background:var(--surface2)}
+.rd-fav-item-image img{display:block;width:100%;height:100%;object-fit:cover}
+.rd-fav-item-copy{min-width:0;flex:1}
+.rd-fav-item-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;line-height:18px;font-weight:700;color:var(--fg)}
+.rd-fav-item-meta{margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;line-height:16px;color:var(--muted)}
+.rd-fav-item-price{margin-top:4px;font-size:13px;line-height:17px;font-weight:700;color:var(--accent)}
+.rd-fav-item-remove{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease)}
+.rd-fav-item-remove:hover{color:var(--accent);background:var(--accent-soft)}
+.rd-fav-item-remove:active{transform:scale(.9)}
+.rd-fav-item-remove svg{width:17px;height:17px}
+@media(max-width:760px){
+:root{--header-h:62px}
+.cvw{width:calc(100% - 24px)}
+.cv-nav,.cv-theme,.cv-headcta{display:none}
+.cv-burger{display:flex}
+.cv-head{height:62px;gap:8px;padding-right:22px}
+.cv-logo img{width:280px}
+.cv-actions{margin-left:auto;gap:5px;min-width:0}
+.cv-mobiletheme{display:grid;order:1;width:32px;height:32px;padding:0;border:1px solid var(--border);border-radius:50%;background:var(--surface2);position:relative;overflow:hidden;cursor:pointer;transition:all .2s var(--ease);color:var(--muted)}
+.cv-favorites{order:2;width:32px;height:32px;padding:0;margin:0;border-radius:50%;background:transparent}
+.cv-favorites:hover{background:var(--default)}
+.cv-favorites svg{width:19px;height:19px}
+.cv-favorites.active svg{fill:none}
+.cv-favorites-count{right:-2px;top:-2px;min-width:15px;height:15px;padding:0 3px;font-size:9px;line-height:15px;border:1px solid var(--surface)}
+.cv-burger{order:3;width:30px;height:30px;gap:5px;margin-left:2px;flex:0 0 30px}
+#red-dragon-header:not(.dark) .cv-mobiletheme{color:#3f3f46}
+#red-dragon-header.dark .cv-mobiletheme{color:#a1a1aa}
+.cv-mobiletheme:hover{background:var(--surface);border-color:var(--accent-border)}
+.cv-mobiletheme svg{position:absolute;top:0;left:0;width:100%;height:100%;padding:9px;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.cv-mobiletheme .cv-icon-sun{opacity:0;transform:rotate(-45deg) scale(.7)}
+.cv-mobiletheme .cv-icon-moon{opacity:1;transform:rotate(0) scale(1)}
+.cv-mobiletheme.dark .cv-icon-sun{opacity:1;transform:rotate(0) scale(1)}
+.cv-mobiletheme.dark .cv-icon-moon{opacity:0;transform:rotate(45deg) scale(.7)}
+.rd-fav-popup-backdrop{padding:70px 10px 16px;align-items:flex-start}
+.rd-fav-popup{max-height:calc(100vh - 86px);border-radius:16px}
+.rd-fav-popup-head{padding:15px 14px}
+.rd-fav-popup-body{padding:8px}
+.rd-fav-item{gap:8px;padding:8px}
+.rd-fav-item-image{width:78px;height:60px;flex-basis:78px}
+.rd-fav-item-copy{min-width:0}
+.rd-fav-item-title{font-size:12px}
+.rd-fav-item-meta{font-size:10px}
+.rd-fav-item-price{font-size:12px}
+}
+@media(max-width:420px){
+:root{--header-h:60px}
+.cvw{width:calc(100% - 20px)}
+.cv-head{height:60px;padding-right:18px}
+.cv-logo img{width:230px}
+.rd-fav-popup-backdrop{padding-left:6px;padding-right:6px;padding-top:64px}
+.rd-fav-popup{max-height:min(840px,calc(100vh - 76px))}
+.rd-fav-item-image{width:72px;height:56px;flex-basis:72px}
+}
+</style>
+<div id="red-dragon-header">
+<div class="cv-header">
+<header class="cvw cv-head">
+<a aria-label="КРАСНЫЙ ДРАКОН" class="cv-logo" href="https://red-dragon.by/">
+<img alt="КРАСНЫЙ ДРАКОН" src="https://static.tildacdn.biz/tild3166-6137-4336-b933-353734616162/RD-002_1.png">
+</a>
+<nav class="cv-nav">
+<a href="https://red-dragon.by/">Главная</a>
+<a href="https://red-dragon.by/catalog/">Каталог</a>
+<a href="https://red-dragon.by/brands/">Марки</a>
+<a href="https://red-dragon.by/podbor-auto/">Подбор авто</a>
+<a href="https://red-dragon.by/credit/">Кредит</a>
+<a href="https://red-dragon.by/about-us/">О нас</a>
+</nav>
+<div class="cv-actions">
+<button aria-label="Избранное" aria-haspopup="dialog" aria-expanded="false" class="cv-favorites" id="cvFavorites" type="button">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M20.8 8.9c0 5.3-8.8 10-8.8 10S3.2 14.2 3.2 8.9A4.9 4.9 0 0 1 8.1 4a5.2 5.2 0 0 1 3.9 2 5.2 5.2 0 0 1 3.9-2 4.9 4.9 0 0 1 4.9 4.9Z"></path>
+</svg>
+<span class="cv-favorites-count" id="cvFavoritesCount">0</span>
+</button>
+<div class="cv-theme" role="group">
+<button aria-label="Светлая тема" id="cvLight" type="button">
+<svg height="14" viewBox="0 0 24 24" width="14">
+<circle cx="12" cy="12" fill="currentColor" r="4"></circle>
+<path d="M12 3v3M12 18v3M3 12h3M18 12h3M7.76 7.76l-2.12-2.12M16.24 7.76l2.12-2.12M16.24 16.24l2.12 2.12M7.76 16.24L5.64 18.36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+<button aria-label="Тёмная тема" id="cvDark" type="button">
+<svg height="14" viewBox="0 0 24 24" width="14">
+<path d="M20.99 12.49a9 9 0 1 1-9.48-9.48c.4-.02.62.46.4.8a6 6 0 0 0 8.27 8.27c.34-.21.82 0 .8.41Z" fill="currentColor"></path>
+</svg>
+</button>
+</div>
+<button aria-label="Тема" class="cv-mobiletheme" id="cvMobileTheme" type="button">
+<svg class="cv-icon-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 24 24">
+<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path>
+</svg>
+<svg class="cv-icon-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="4"></circle>
+<path d="M12 3v3M12 18v3M3 12h3M18 12h3M7.76 7.76L5.64 5.64M16.24 7.76L18.36 5.64M16.24 16.24L18.36 18.36M5.64 18.36L7.76 16.24"></path>
+</svg>
+</button>
+<button aria-label="Меню" class="cv-burger" id="cvBurger" type="button">
+<span class="cv-burger-line"></span>
+<span class="cv-burger-line"></span>
+<span class="cv-burger-line"></span>
+</button>
+<a class="cv-headcta" href="tel:+375445552929">
+<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="15">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 0 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"></path>
+</svg>
++375 (44) 555 29 29
+</a>
+</div>
+</header>
+</div>
+<div class="cv-menu" id="cvMenu">
+<div class="cv-menu-head">
+<a href="https://red-dragon.by/">
+<img alt="КРАСНЫЙ ДРАКОН" src="https://static.tildacdn.biz/tild6634-3335-4537-b635-346635653138/RD-002.png">
+</a>
+<button aria-label="Закрыть" class="cv-menu-close" type="button"></button>
+</div>
+<div class="cv-menu-body">
+<a class="cv-menu-link" href="https://red-dragon.by/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 11.5 12 4l9 7.5"></path>
+<path d="M5 10v10h14V10"></path>
+<path d="M10 20v-6h4v6"></path>
+</svg>
+Главная
+</a>
+<a class="cv-menu-link" href="https://red-dragon.by/catalog/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<rect height="14" rx="2" width="20" x="2" y="3"></rect>
+<path d="M8 21h8M12 17v4"></path>
+</svg>
+Каталог
+</a>
+<a class="cv-menu-link" href="https://red-dragon.by/brands/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M20 7H4M20 12H4M20 17H4"></path>
+</svg>
+Марки
+</a>
+<a class="cv-menu-link" href="https://red-dragon.by/podbor-auto/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<circle cx="11" cy="11" r="8"></circle>
+<path d="m21 21-4.35-4.35"></path>
+</svg>
+Подбор авто
+</a>
+<a class="cv-menu-link" href="https://red-dragon.by/credit/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<rect height="14" rx="2" width="20" x="2" y="3"></rect>
+<path d="M2 10h20"></path>
+<path d="M6 16h4"></path>
+</svg>
+Кредит
+</a>
+<a class="cv-menu-link" href="https://red-dragon.by/about-us/">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M12 16v-4M12 8h.01"></path>
+</svg>
+О нас
+</a>
+<div class="cv-menu-phone">
+<a href="tel:+375445552929">+375 44 555 29 29</a>
+</div>
+<div class="cv-menu-social">
+<span aria-label="Telegram"><img alt="Telegram" src="https://static.tildacdn.biz/tild3931-6331-4031-b462-323538393537/telegram_cvet-d23c11.png" width="44" height="44"></span>
+<span aria-label="WhatsApp"><img alt="WhatsApp" src="https://static.tildacdn.biz/tild6231-3636-4639-a339-663739326431/whatsapp733.png" width="44" height="44"></span>
+<span aria-label="TikTok"><img alt="TikTok" src="https://static.tildacdn.biz/tild3964-3865-4666-a439-643161623139/tiktok492.png" width="44" height="44"></span>
+<span aria-label="Instagram"><img alt="Instagram" src="https://static.tildacdn.biz/tild3831-3365-4564-b131-336161623933/instagram49.png" width="44" height="44"></span>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="rd-fav-popup-backdrop" id="rdFavoritesPopup">
+<div aria-labelledby="rdFavoritesPopupTitle" aria-modal="true" class="rd-fav-popup" role="dialog">
+<div class="rd-fav-popup-head">
+<div class="rd-fav-popup-title" id="rdFavoritesPopupTitle">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M20.8 8.9c0 5.3-8.8 10-8.8 10S3.2 14.2 3.2 8.9A4.9 4.9 0 0 1 8.1 4a5.2 5.2 0 0 1 3.9 2 4.9 4.9 0 0 1 4.9-2 4.9 4.9 0 0 1 4.9 4.9Z"></path>
+</svg>
+<span>Избранное</span>
+<span class="rd-fav-popup-title-count" id="rdFavoritesPopupCount">0</span>
+</div>
+<button aria-label="Закрыть избранное" class="rd-fav-popup-close" id="rdFavoritesPopupClose" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="m6 6 12 12M18 6 6 18"></path>
+</svg>
+</button>
+</div>
+<div class="rd-fav-popup-body" id="rdFavoritesPopupBody">
+<div class="rd-fav-popup-empty">В избранном пока ничего нет.</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+function init(){
+var root=document.getElementById('red-dragon-header');
+if(!root||root.dataset.ready==='1')return;
+root.dataset.ready='1';
+var API_BASE='https://red-dragon-api.red-dragon-minsk.workers.dev/api',
+favoriteKey='rd-favorites',
+favoriteCache={},
+favoriteLoadSeq=0;
+function readTheme(){
+try{
+var s=localStorage.getItem('theme-storage'),
+o=s&&JSON.parse(s);
+return o&&o.state&&o.state.theme==='dark'?'dark':'light'
+}catch(e){return'light'}
+}
+function saveTheme(t){
+try{
+localStorage.setItem('theme-storage',JSON.stringify({state:{theme:t},version:0}))
+}catch(e){}
+}
+function applyTheme(t){
+t=t==='dark'?'dark':'light';
+var h=document.documentElement;
+h.setAttribute('data-theme',t);
+h.classList.remove('light','dark','rd-dark');
+h.classList.add(t);
+if(t==='dark')h.classList.add('rd-dark');
+h.style.colorScheme=t;
+root.classList.toggle('dark',t==='dark');
+var l=root.querySelector('#cvLight'),
+d=root.querySelector('#cvDark'),
+m=root.querySelector('#cvMobileTheme');
+if(l)l.classList.toggle('sel',t==='light');
+if(d)d.classList.toggle('sel',t==='dark');
+if(m)m.classList.toggle('dark',t==='dark')
+}
+applyTheme(readTheme());
+var light=root.querySelector('#cvLight'),
+dark=root.querySelector('#cvDark'),
+mt=root.querySelector('#cvMobileTheme');
+if(light)light.addEventListener('click',function(){
+applyTheme('light');
+saveTheme('light')
+});
+if(dark)dark.addEventListener('click',function(){
+applyTheme('dark');
+saveTheme('dark')
+});
+if(mt)mt.addEventListener('click',function(){
+var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+applyTheme(t);
+saveTheme(t)
+});
+function normalize(u){
+try{
+var x=new URL(u,window.location.origin);
+return x.origin+x.pathname.replace(/\/+$/,'')
+}catch(e){
+return u.replace(/\/+$/,'')
+}
+}
+function markActive(){
+var here=normalize(location.href);
+root.querySelectorAll('.cv-nav a,.cv-menu-link').forEach(function(a){
+a.classList.remove('active');
+a.removeAttribute('aria-current');
+var h=a.getAttribute('href');
+if(!h||h.charAt(0)==='#')return;
+try{
+if(normalize(h)===here){
+a.classList.add('active');
+a.setAttribute('aria-current','page')
+}
+}catch(e){}
+})
+}
+markActive();
+var burger=root.querySelector('#cvBurger'),
+menu=root.querySelector('#cvMenu'),
+closeBtn=menu&&menu.querySelector('.cv-menu-close');
+function closeMenu(){
+if(burger)burger.classList.remove('open');
+if(menu)menu.classList.remove('open');
+if(!document.getElementById('rdFavoritesPopup')?.classList.contains('open'))
+document.documentElement.style.overflow=''
+}
+function openMenu(){
+if(burger)burger.classList.add('open');
+if(menu)menu.classList.add('open');
+document.documentElement.style.overflow='hidden'
+}
+if(burger&&menu)
+burger.addEventListener('click',function(){
+menu.classList.contains('open')?closeMenu():openMenu()
+});
+if(closeBtn)closeBtn.addEventListener('click',closeMenu);
+if(menu)
+menu.querySelectorAll('.cv-menu-link,.cv-menu-phone a').forEach(function(a){
+a.addEventListener('click',function(){
+closeMenu();
+markActive()
+})
+});
+function esc(v){
+return String(v==null?'':v).replace(/[&<>"']/g,function(c){
+return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+})
+}
+function num(v){
+if(v==null||v==='')return'';
+var n=Number(v);
+return Number.isFinite(n)?n.toLocaleString('ru-RU'):String(v)
+}
+function money(v){
+if(v==null||v==='')return'—';
+var n=Number(v);
+return Number.isFinite(n)?'$ '+n.toLocaleString('ru-RU'):String(v)
+}
+function getFavs(){
+try{
+var a=JSON.parse(localStorage.getItem(favoriteKey)||'[]');
+return Array.isArray(a)?a.map(String):[]
+}catch(e){
+return[]
+}
+}
+function setFavs(a){
+a=(Array.isArray(a)?a:[]).map(String);
+var u=[];
+a.forEach(function(id){
+if(u.indexOf(id)<0)u.push(id)
+});
+try{
+localStorage.setItem(favoriteKey,JSON.stringify(u))
+}catch(e){}
+window.dispatchEvent(new CustomEvent('red-dragon:favorites-changed',{
+detail:{favorites:u.slice(),count:u.length}
+}));
+return u
+}
+function isFav(id){
+return getFavs().indexOf(String(id))>=0
+}
+function removeFav(id){
+id=String(id);
+var a=getFavs(),
+i=a.indexOf(id);
+if(i>=0)a.splice(i,1);
+setFavs(a);
+return i>=0
+}
+function syncFavoriteButton(){
+var b=root.querySelector('#cvFavorites'),
+c=root.querySelector('#cvFavoritesCount'),
+n=getFavs().length,
+o=document.getElementById('rdFavoritesPopup')?.classList.contains('open');
+if(!b)return;
+b.classList.toggle('active',n>0);
+b.setAttribute('aria-label',n?'Избранное: '+n:'Избранное');
+b.setAttribute('aria-expanded',o?'true':'false');
+if(c){
+c.textContent=n>99?'99+':String(n);
+c.classList.toggle('show',n>0)
+}
+}
+function api(path){
+return API_BASE.replace(/\/$/,'')+path
+}
+async function getListing(id){
+id=String(id);
+if(favoriteCache[id])
+return favoriteCache[id];
+var r=await fetch(
+api('/listings/'+encodeURIComponent(id)),
+{
+headers:{
+Accept:'application/json'
+}
+}
+);
+var d=await r.json().catch(function(){
+return{}
+});
+if(!r.ok){
+throw new Error(
+(d.code?d.code+' — ':'')+
+(d.detail||d.message||d.title||('HTTP '+r.status))
+)
+}
+var c=d.listing||d.item||d.data||d;
+if(c&&typeof c==='object'){
+favoriteCache[id]=c
+}
+return c
+}
+function title(c){
+return c&&(
+c.title||
+c.name||
+[
+c.brand&&c.brand.name,
+c.model&&c.model.name,
+c.year
+].filter(Boolean).join(' ')||
+'Автомобиль'
+)
+}
+function image(c){
+if(!c)return'';
+if(c.cover&&c.cover.url)
+return c.cover.url;
+if(Array.isArray(c.photos))
+for(var i=0;i<c.photos.length;i++)
+if(c.photos[i]&&c.photos[i].url)
+return c.photos[i].url;
+return''
+}
+function meta(c){
+var a=[];
+if(c&&c.year)
+a.push(c.year+' г.');
+if(c&&c.mileage!=null)
+a.push(num(c.mileage)+' км.');
+if(c&&c.city)
+a.push(c.city);
+return a.join(' · ')
+}
+function price(c){
+if(!c)return'';
+var p=c.sourcePrice;
+if(p&&p.usd!=null)
+return money(p.usd);
+if(c.price&&typeof c.price==='object'&&c.price.usd!=null)
+return money(c.price.usd);
+if(c.price!=null&&c.price!=='')
+return money(c.price);
+return''
+}
+function item(c){
+var id=String(c&&c.id||''),
+im=image(c),
+t=title(c),
+m=meta(c),
+p=price(c);
+return'<div class="rd-fav-item" data-favorite-id="'+esc(id)+'">'+
+'<a class="rd-fav-item-link" href="/car?id='+encodeURIComponent(id)+'">'+
+'<div class="rd-fav-item-image">'+
+(im?'<img src="'+esc(im)+'" alt="'+esc(t)+'" loading="lazy">':'')+
+'</div>'+
+'<div class="rd-fav-item-copy">'+
+'<div class="rd-fav-item-title">'+esc(t)+'</div>'+
+(m?'<div class="rd-fav-item-meta">'+esc(m)+'</div>':'')+
+(p?'<div class="rd-fav-item-price">'+esc(p)+'</div>':'')+
+'</div>'+
+'</a>'+
+'<button aria-label="Удалить из избранного" class="rd-fav-item-remove" data-remove-favorite="'+esc(id)+'" type="button">'+
+'<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">'+
+'<path d="m6 6 12 12M18 6 6 18"></path>'+
+'</svg>'+
+'</button>'+
+'</div>'
+}
+var favPopup=document.getElementById('rdFavoritesPopup'),
+favBody=favPopup&&favPopup.querySelector('#rdFavoritesPopupBody'),
+favCount=favPopup&&favPopup.querySelector('#rdFavoritesPopupCount');
+function openFavorites(){
+if(!favPopup)return;
+favPopup.classList.add('open');
+favPopup.setAttribute('aria-hidden','false');
+document.documentElement.style.overflow='hidden';
+syncFavoriteButton();
+renderFavoritesPopup()
+}
+function closeFavorites(){
+if(!favPopup)return;
+favPopup.classList.remove('open');
+favPopup.setAttribute('aria-hidden','true');
+document.documentElement.style.overflow=
+menu&&menu.classList.contains('open')?'hidden':'';
+syncFavoriteButton()
+}
+async function renderFavoritesPopup(){
+if(!favPopup||!favBody)return;
+var ids=getFavs();
+if(favCount)
+favCount.textContent=String(ids.length);
+if(!ids.length){
+favBody.innerHTML=
+'<div class="rd-fav-popup-empty">В избранном пока ничего нет.</div>';
+return
+}
+favBody.innerHTML=
+'<div class="rd-fav-popup-loading">Загрузка избранных автомобилей…</div>';
+var seq=++favoriteLoadSeq,
+items=[];
+for(var i=0;i<ids.length;i++){
+if(!isFav(ids[i]))
+continue;
+try{
+var c=await getListing(ids[i]);
+if(seq!==favoriteLoadSeq)
+return;
+if(c&&typeof c==='object')
+items.push(c);
+}catch(e){
+if(seq!==favoriteLoadSeq)
+return;
+}
+}
+var now=getFavs();
+if(seq!==favoriteLoadSeq)
+return;
+items=items.filter(function(c){
+return c&&c.id!=null&&now.indexOf(String(c.id))>=0
+});
+favBody.innerHTML=items.length
+?items.map(item).join('')
+:'<div class="rd-fav-popup-empty">Не удалось загрузить избранные автомобили.</div>'
+}
+if(favBody)
+favBody.addEventListener('click',function(e){
+var b=e.target.closest('[data-remove-favorite]');
+if(!b)return;
+e.preventDefault();
+e.stopPropagation();
+removeFav(b.getAttribute('data-remove-favorite'));
+favoriteLoadSeq++;
+syncFavoriteButton();
+renderFavoritesPopup()
+});
+if(favPopup){
+favPopup.addEventListener('click',function(e){
+if(e.target===favPopup)
+closeFavorites()
+});
+var fc=favPopup.querySelector('#rdFavoritesPopupClose');
+if(fc)
+fc.addEventListener('click',closeFavorites)
+}
+var fb=root.querySelector('#cvFavorites');
+if(fb)
+fb.addEventListener('click',function(e){
+e.preventDefault();
+e.stopPropagation();
+favPopup&&favPopup.classList.contains('open')
+?closeFavorites()
+:openFavorites()
+});
+syncFavoriteButton();
+window.addEventListener('storage',function(e){
+if(e.key===favoriteKey){
+syncFavoriteButton();
+if(favPopup&&favPopup.classList.contains('open'))
+renderFavoritesPopup()
+}
+});
+window.addEventListener('red-dragon:favorites-changed',function(){
+syncFavoriteButton();
+if(favPopup&&favPopup.classList.contains('open'))
+renderFavoritesPopup()
+});
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape'){
+if(favPopup&&favPopup.classList.contains('open'))
+closeFavorites();
+else if(menu&&menu.classList.contains('open'))
+closeMenu();
+}
+});
+window.RDRedDragonHeader=window.RDRedDragonHeader||{};
+window.RDRedDragonHeader.getFavorites=getFavs;
+window.RDRedDragonHeader.getFavoriteCount=function(){
+return getFavs().length
+};
+window.RDRedDragonHeader.isFavorite=isFav;
+window.RDRedDragonHeader.toggleFavorite=function(id){
+id=String(id);
+var a=getFavs(),
+i=a.indexOf(id);
+if(i>=0)
+a.splice(i,1);
+else
+a.push(id);
+setFavs(a);
+return a.indexOf(id)>=0
+};
+window.RDRedDragonHeader.openFavorites=openFavorites;
+window.RDRedDragonHeader.closeFavorites=closeFavorites;
+}
+if(document.readyState==='loading')
+document.addEventListener('DOMContentLoaded',init,{once:true});
+else
+init();
+})();
+</script>
