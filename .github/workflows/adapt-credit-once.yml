@@ -29,8 +29,8 @@ jobs:
           if start<0 or end<0: raise SystemExit('Expected submit handler boundaries not found')
           new="if(form&&submitButton){form.addEventListener('submit',function(event){if(!validPhone()){event.preventDefault();showPhoneError();if(phoneInput)phoneInput.focus();return}event.preventDefault();var formData=new FormData(form);fetch('/api/lead',{method:'POST',body:formData,headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);var box=form.querySelector('.rdc-successbox');if(box){box.textContent='Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.';box.style.display='block'}form.reset();initPhone()}).catch(function(){var box=form.querySelector('.rdc-successbox');if(box){box.textContent='Не удалось отправить заявку. Попробуйте ещё раз.';box.style.display='block'}})})}"
           s=s[:start]+new+s[end:]
-          s=s.replace('t-input-error','rdc-unused-error').replace('t-submit','rdc-submit').replace('t-btnflex__text','rdc-submit-text').replace('t-btnflex__icon','rdc-submit-icon').replace('t-btnflex','rdc-btnflex').replace('t-form__successbox','rdc-successbox').replace('js-form-proccess','rdc-form-process').replace('formservices[]','services[]').replace('data-tilda','data-rd')
-          s=s.replace('forms.tildacdn.com/procces/','/api/lead').replace('https://static.tildacdn.biz/tild3636-3539-4462-b938-643262366435/photo-1565043666747-.jpg','/assets/images/photo-1565043666747-.jpg')
+          for old,new in [('t-input-error','rdc-unused-error'),('t-submit','rdc-submit'),('t-btnflex__text','rdc-submit-text'),('t-btnflex__icon','rdc-submit-icon'),('t-btnflex','rdc-btnflex'),('t-form__successbox','rdc-successbox'),('js-form-proccess','rdc-form-process')]:
+            s=s.replace(old,new)
           p.write_text(s,encoding='utf-8')
           PY
           git config user.name 'github-actions[bot]'
