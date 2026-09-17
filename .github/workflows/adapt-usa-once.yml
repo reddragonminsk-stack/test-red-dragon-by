@@ -47,3 +47,4 @@ jobs:
           git rm .github/workflows/adapt-usa-once.yml
           git commit -m 'Remove temporary USA adaptation workflow'
           git push
+# retrigger
