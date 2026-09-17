@@ -24,15 +24,18 @@ jobs:
           s=re.sub(r'<div class="js-errorbox-all" style="display:none"><div class="js-rule-error-all"></div></div>','',s)
           s=s.replace('<div class="t-input-error"></div>','')
           s=re.sub(r'<input type="hidden" name="formservices\[\]"[^>]*>\s*','',s)
-          old="if(form&&submitButton){form.addEventListener('submit',function(event){if(!validPhone()){event.preventDefault();showPhoneError();if(phoneInput)phoneInput.focus();return}event.preventDefault();if(typeof window.t_forms__initBtnClick==='function'){window.t_forms__initBtnClick({target:submitButton,srcElement:submitButton,preventDefault:function(){}})}})}"
+          start=s.find("if(form&&submitButton){form.addEventListener('submit'")
+          end=s.find('phoneInput=byId(\'creditPhone\')',start)
+          if start<0 or end<0: raise SystemExit('Expected submit handler boundaries not found')
           new="if(form&&submitButton){form.addEventListener('submit',function(event){if(!validPhone()){event.preventDefault();showPhoneError();if(phoneInput)phoneInput.focus();return}event.preventDefault();var formData=new FormData(form);fetch('/api/lead',{method:'POST',body:formData,headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);var box=form.querySelector('.rdc-successbox');if(box){box.textContent='Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.';box.style.display='block'}form.reset();initPhone()}).catch(function(){var box=form.querySelector('.rdc-successbox');if(box){box.textContent='Не удалось отправить заявку. Попробуйте ещё раз.';box.style.display='block'}})})}"
-          if old not in s: raise SystemExit('Expected submit handler not found')
-          s=s.replace(old,new)
+          s=s[:start]+new+s[end:]
           for pat in [r'#red-dragon-credit \.rdc-native-form \.js-successbox\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.js-errorbox-all\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.js-rule-error-all\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.t-input-error\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit:hover\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit:active\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit \.t-btnflex__text\{[^}]*\}',r'#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit::before,#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit::after,#red-dragon-credit \.rdc-native-form \.rdc-submit\.t-submit \.t-btnflex__icon\{[^}]*\}']:
             s=re.sub(pat,'',s)
+          s=s.replace('rdc-successbox','rdc-successbox')
+          if re.search(r'tildacdn|forms\.tilda|data-tilda|js-tilda-rule|t-submit|t-btnflex|t-input-error|formservices\[\]|js-form-proccess|\bt-form\b|t_forms__initBtnClick|t-form__successbox',s,re.I):
+            raise SystemExit('Tilda remnants found')
           p.write_text(s,encoding='utf-8')
           PY
-          if grep -qiE 'tildacdn|forms\.tilda|data-tilda|js-tilda-rule|t-submit|t-btnflex|t-input-error|formservices\[\]|js-form-proccess|\bt-form\b|t_forms__initBtnClick|t-form__successbox' pages/credit.html; then exit 1; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pages/credit.html
