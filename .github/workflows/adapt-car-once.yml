@@ -1,7 +1,7 @@
-name: placeholder
-on: push
+name: none
+on: workflow_dispatch
 jobs:
   none:
     runs-on: ubuntu-latest
     steps:
-      - run: echo cleanup
+      - run: exit 0
