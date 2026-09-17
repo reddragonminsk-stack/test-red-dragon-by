@@ -1,7 +1,0 @@
-name: none
-on: workflow_dispatch
-jobs:
-  none:
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 0
