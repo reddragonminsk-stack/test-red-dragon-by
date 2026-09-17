@@ -1,0 +1,775 @@
+<div id="rd-red-dragon-catalog"></div>
+<style>
+#rd-red-dragon-catalog{--rd-bg:#f5f5f5;--rd-surface:#fff;--rd-default:#ebebec;--rd-foreground:#18181b;--rd-muted:#71717a;--rd-border:#dedee0;--rd-accent:#d92f2f;--rd-accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);--rd-accent-g-text:linear-gradient(135deg,#b81f23 0%,#8b1316 40%,#5e0808 75%,#2d0303 100%);--rd-accent-fg:#fff;--rd-soft:rgba(217,47,47,.08);--rd-accent-border:rgba(217,47,47,.22);font-family:Inter,Arial,sans-serif;color:var(--rd-foreground);background:var(--rd-bg);-webkit-font-smoothing:antialiased}
+#rd-red-dragon-catalog[data-theme=dark]{--rd-bg:#0f0f10;--rd-surface:#18181b;--rd-default:#27272a;--rd-foreground:#e7e7e7;--rd-muted:#a1a1aa;--rd-border:#2d2d30;--rd-accent:#d92f2f;--rd-accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);--rd-accent-g-text:linear-gradient(135deg,#d83b40 0%,#b52226 40%,#8c1518 75%,#5a0808 100%);--rd-accent-fg:#fff;--rd-soft:rgba(217,47,47,.12);--rd-accent-border:rgba(217,47,47,.26)}
+#rd-red-dragon-catalog *{box-sizing:border-box}
+#rd-red-dragon-catalog{overflow-x:hidden}
+#rd-red-dragon-catalog button,#rd-red-dragon-catalog input,#rd-red-dragon-catalog select{font:inherit}
+#rd-red-dragon-catalog button{cursor:pointer}
+#rd-red-dragon-catalog img{display:block;max-width:100%}
+#rd-red-dragon-catalog a{color:inherit}
+.rd-main{max-width:1152px;margin:0 auto;padding:24px 16px 48px}
+.rd-breadcrumb{display:flex;align-items:center;gap:7px;margin:0 0 16px;font-size:13px;line-height:18px;color:var(--rd-muted)}
+.rd-breadcrumb a{text-decoration:none;color:var(--rd-muted);transition:color .15s}
+.rd-breadcrumb a:hover{color:var(--rd-foreground)}
+.rd-breadcrumb-sep{color:var(--rd-muted);opacity:.7}
+.rd-breadcrumb-current{color:var(--rd-foreground)}
+.rd-heading{margin-bottom:24px}
+.rd-heading h1{margin:0;font-size:30px;line-height:36px;font-weight:700;letter-spacing:-.025em;background:var(--rd-accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 4px 18px rgba(120,10,10,.12))}
+.rd-heading p{max-width:720px;margin:8px 0 0;color:var(--rd-muted);font-size:16px;line-height:24px}
+.rd-mobile-delivery-note{display:inline}
+.rd-layout{display:flex;gap:16px;align-items:flex-start}
+.rd-sidebar-wrap{width:288px;flex:0 0 288px}
+.rd-sidebar{position:sticky;top:16px;max-height:none;overflow:visible;min-width:0;width:100%}
+.rd-source-sidebar{border:1px solid var(--rd-border);border-radius:16px;background:var(--rd-surface);padding:20px 20px 12px;overflow:visible;min-width:0;max-width:100%;width:100%}
+.rd-filter-stack{display:flex;flex-direction:column;gap:12px;min-width:0;width:100%}
+.rd-autocomplete,.rd-selectbox{position:relative;min-width:0;width:100%}
+.rd-source-label{display:flex;align-items:center;gap:8px;font-size:14px;line-height:20px;font-weight:500;color:var(--rd-foreground);margin:0 0 2px}
+.rd-autotrigger,.rd-seltrigger{isolation:isolate;min-height:36px;width:100%;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-default);color:var(--rd-foreground);padding:8px 12px;font-size:14px;line-height:20px;display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;user-select:none;transition:background .15s,border-color .15s,box-shadow .15s}
+.rd-autotrigger:hover,.rd-seltrigger:hover{background:#e5e5e6}
+.rd-autotrigger:disabled{opacity:.5;cursor:not-allowed}
+.rd-autotrigger:focus-visible,.rd-seltrigger:focus-visible,.rd-filter-input:focus{outline:none;border-color:var(--rd-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--rd-accent) 20%,transparent);background:var(--rd-surface)}
+.rd-field-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.rd-field-placeholder{color:var(--rd-muted)}
+.rd-indicator{width:16px;height:16px;flex:0 0 16px;color:var(--rd-muted);transition:transform .18s}
+.rd-autocomplete.open .rd-indicator,.rd-selectbox.open .rd-indicator,.rd-sortbox.open .rd-sort-indicator{transform:rotate(180deg)}
+.rd-autopop,.rd-options-pop,.rd-sort-pop{display:none;position:absolute;z-index:1000;background:var(--rd-surface);border:1px solid var(--rd-border);border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.14);overflow:hidden;padding:6px}
+.rd-autopop{left:0;right:0;top:61px;max-height:320px;overflow:hidden}
+.rd-options-pop{left:0;right:0;top:44px;max-height:320px;overflow-y:auto;overflow-x:hidden}
+.rd-sort-pop{right:0;top:42px;min-width:230px}
+.rd-autocomplete.open .rd-autopop,.rd-selectbox.open .rd-options-pop,.rd-sortbox.open .rd-sort-pop{display:block}
+.rd-auto-search{height:36px;flex:0 0 36px;width:100%;border:1px solid var(--rd-border);border-radius:10px;background:var(--rd-default);color:var(--rd-foreground);padding:0 10px;outline:0;font-size:13px;margin-bottom:6px}
+.rd-autolist{min-height:0;overflow-y:auto;overflow-x:hidden;max-height:255px;padding-right:2px}
+.rd-autolist::-webkit-scrollbar,.rd-options-pop::-webkit-scrollbar{width:6px}
+.rd-autolist::-webkit-scrollbar-thumb,.rd-options-pop::-webkit-scrollbar-thumb{background:rgba(120,120,120,.35);border-radius:999px}
+.rd-autolist{scrollbar-width:thin}
+.rd-auto-search:focus{border-color:var(--rd-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--rd-accent) 18%,transparent)}
+.rd-pop-caption{padding:7px 8px 5px;color:var(--rd-muted);font-size:12px;line-height:16px}
+.rd-option{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px;min-height:34px;border:0;border-radius:8px;padding:7px 9px;background:transparent;color:var(--rd-foreground);font-size:14px;line-height:20px;text-align:left}
+.rd-option:hover{background:var(--rd-default)}
+.rd-option:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
+.rd-option[aria-selected=true],.rd-option[aria-checked=true]{background:var(--rd-soft);font-weight:500}
+.rd-option-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rd-option-right{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto}
+.rd-option-count{color:var(--rd-muted);font-size:12px;font-variant-numeric:tabular-nums}
+.rd-option-check{color:var(--rd-accent);font-weight:700;flex:0 0 auto}
+.rd-seltrigger:disabled{opacity:.5;cursor:not-allowed}
+.rd-selectbox.is-disabled .rd-indicator{opacity:.5}
+.rd-country-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-width:0;width:100%}
+.rd-country-group{display:inline-flex;width:fit-content;border-radius:12px;overflow:hidden;background:var(--rd-default);height:36px;border:1px solid var(--rd-border)}
+.rd-country-btn{position:relative;height:35px;border:0;border-radius:0;background:var(--rd-default);color:var(--rd-foreground);padding:0 14px;min-width:54px;font-size:14px;font-weight:500;transition:transform .25s ease,background-color .1s ease,box-shadow .1s ease}
+.rd-country-btn+.rd-country-btn:before{content:"";position:absolute;left:0;top:25%;bottom:25%;width:1px;background:currentcolor;opacity:.15}
+.rd-country-btn:hover{background:var(--rd-default)}
+.rd-country-btn.active{background:var(--rd-accent-g);color:#fff;box-shadow:0 4px 14px rgba(150,15,15,.2)}
+.rd-country-btn:active{transform:scale(.97)}
+.rd-source-tools{display:flex;align-items:center;gap:4px;padding-bottom:0;min-width:0;max-width:100%;flex-wrap:wrap}
+.rd-source-separator{height:24px;width:1px;background:var(--rd-border);margin:0 4px}
+.rd-source-ghost{height:36px;display:inline-flex;max-width:100%;align-items:center;justify-content:center;gap:7px;border:1px solid var(--rd-border);background:transparent;color:var(--rd-foreground);border-radius:10px;padding:0 10px;font-size:14px;font-weight:500}
+.rd-source-ghost:hover,.rd-icon-info:hover{background:var(--rd-default)}
+.rd-source-ghost.active{background:var(--rd-accent-g);border-color:transparent;color:#fff;box-shadow:0 4px 16px rgba(150,15,15,.24)}
+.rd-icon-info{width:28px;height:28px;position:relative;border:0;background:transparent;border-radius:8px;color:var(--rd-muted);display:grid;place-items:center;padding:0}
+.rd-source-tools [data-action="first-line"],.rd-source-tools [data-info="report"]{display:none!important}
+.rd-block{display:flex;flex-direction:column;min-width:0;width:100%}
+.rd-block-label{display:flex;align-items:center;gap:8px;font-size:14px;line-height:20px;font-weight:500;margin-bottom:6px;color:var(--rd-foreground)}
+.rd-icon-badge{display:grid;place-items:center;width:20px;height:20px;border-radius:6px;background:rgba(120,120,120,.08);color:var(--rd-muted)}
+.rd-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;min-width:0;width:100%}
+.rd-numberbox{display:flex;align-items:center;width:100%;min-width:0;min-height:36px;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-default);padding:0 4px 0 12px;transition:.15s}
+.rd-numberbox:focus-within{border-color:var(--rd-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--rd-accent) 18%,transparent);background:var(--rd-surface)}
+.rd-filter-input{min-width:0;flex:1;height:34px;border:0;background:transparent;color:var(--rd-foreground);outline:0;font-size:14px;padding:0}
+.rd-filter-input::placeholder{color:var(--rd-muted)}
+.rd-clear-input{width:24px;height:24px;border:0;background:transparent;color:var(--rd-muted);border-radius:7px;display:grid;place-items:center;padding:0;opacity:0}
+.rd-numberbox.filled .rd-clear-input{opacity:1}
+.rd-clear-input:hover{background:rgba(120,120,120,.12);color:var(--rd-foreground)}
+.rd-option-checkbox{width:16px;height:16px;border:1px solid var(--rd-border);border-radius:4px;display:inline-grid;place-items:center;color:transparent;margin-right:8px;flex:0 0 16px;font-size:11px}
+.rd-option[aria-checked=true] .rd-option-checkbox{background:var(--rd-accent);border-color:var(--rd-accent);color:var(--rd-accent-fg)}
+.rd-mileage-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rd-switch-line{display:flex;align-items:center;gap:5px}
+.rd-switch{position:relative;width:34px;height:20px;border-radius:999px;border:1px solid var(--rd-border);background:var(--rd-default);padding:0}
+.rd-switch i{position:absolute;top:3px;left:3px;width:12px;height:12px;background:var(--rd-muted);border-radius:50%;transition:.18s}
+.rd-switch.on{background:var(--rd-accent-g);border-color:transparent;box-shadow:0 3px 10px rgba(150,15,15,.22)}
+.rd-switch.on i{left:17px;background:#fff}
+.rd-switch-label{font-size:12px;color:var(--rd-muted)}
+.rd-disclosure-source{border:1px solid var(--rd-border);border-radius:10px;overflow:hidden}
+.rd-disclosure-source>button{width:100%;height:40px;border:0;background:transparent;color:var(--rd-foreground);padding:0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;font-size:14px;font-weight:500}
+.rd-disclosure-source>button:hover{background:var(--rd-default)}
+.rd-disclosure-source .rd-disclosure-body{display:none;padding:0 12px 12px}
+.rd-disclosure-source.open .rd-disclosure-body{display:block}
+.rd-chip-source{height:32px;border:1px solid var(--rd-border);border-radius:999px;background:var(--rd-surface);color:var(--rd-foreground);padding:0 11px;font-size:13px;font-weight:500}
+.rd-chip-source:hover{background:var(--rd-default)}
+.rd-chip-source.active{background:var(--rd-accent-g);border-color:transparent;color:#fff;box-shadow:0 3px 12px rgba(150,15,15,.18)}
+.rd-reset-source{height:36px;width:100%;border:0;background:transparent;color:var(--rd-muted);border-radius:9px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px}
+.rd-reset-source:hover:not(:disabled){background:var(--rd-default);color:var(--rd-foreground)}
+.rd-reset-source:disabled{opacity:.5;cursor:not-allowed}
+.rd-tooltip{position:fixed;display:none;z-index:100001;max-width:280px;padding:9px 11px;border:1px solid var(--rd-border);border-radius:9px;background:var(--rd-surface);color:var(--rd-foreground);box-shadow:0 10px 24px rgba(0,0,0,.14);font-size:12px;line-height:17px}
+.rd-popular-side{padding-top:2px}
+.rd-popular-side p{margin:0 0 6px;font-size:12px;line-height:16px;color:var(--rd-muted)}
+.rd-popular-side-row{display:flex;flex-direction:column;gap:2px}
+.rd-popular-side-row .rd-option{min-height:30px;padding:5px 7px;font-size:13px}
+.rd-results{min-width:0;flex:1}
+.rd-popular-top{display:flex;align-items:center;flex-wrap:wrap;gap:4px 7px;margin:0 0 12px;padding:0}
+.rd-popular-top-label{flex:0 0 auto;font-size:12px;color:var(--rd-muted);font-weight:500;margin-right:2px}
+.rd-popular-top .rd-chip-source{height:27px;padding:0 7px;font-size:10px;line-height:27px;white-space:nowrap}
+.rd-search-wrap{position:relative;margin-bottom:12px}
+.rd-search{height:44px;width:100%;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-surface);color:var(--rd-foreground);padding:0 44px 0 40px;font-size:14px;outline:0}
+.rd-search::placeholder{color:var(--rd-muted)}
+.rd-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--rd-muted);pointer-events:none}
+.rd-search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;background:transparent;color:var(--rd-muted);border-radius:8px;display:none;place-items:center}
+.rd-search-wrap.filled .rd-search-clear{display:grid}
+.rd-search-clear:hover{background:var(--rd-default);color:var(--rd-foreground)}
+.rd-active-source{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.rd-active-source:empty{display:none}
+.rd-active-source button{height:30px;border:1px solid var(--rd-border);border-radius:999px;background:var(--rd-surface);color:var(--rd-foreground);padding:0 9px;font-size:12px;display:inline-flex;align-items:center;gap:5px}
+.rd-active-source button svg{width:12px;height:12px;color:var(--rd-muted)}
+.rd-toolbar{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px;padding:6px 0;background:linear-gradient(var(--rd-bg) 0%,var(--rd-bg) 82%,transparent 100%)}
+.rd-toolbar-left{display:flex;align-items:center;gap:8px;min-width:0}
+.rd-count{display:inline-flex;align-items:center;gap:7px;font-size:16px;font-weight:700;white-space:nowrap}
+.rd-count svg{width:17px;height:17px;color:var(--rd-accent)}
+.rd-count-mobile{display:none}
+.rd-subscribe{height:36px;display:inline-flex;align-items:center;gap:7px;padding:0 10px;text-decoration:none;cursor:pointer;border:1px solid var(--rd-border);background:var(--rd-surface);border-radius:9px;color:var(--rd-muted);font-size:13px;font-weight:500}
+.rd-subscribe:hover{background:var(--rd-default);color:var(--rd-foreground)}
+.rd-toolbar-right{display:flex;align-items:center;gap:8px}
+.rd-sortbox{position:relative;display:block}
+.rd-sorttrigger{height:36px;border:1px solid var(--rd-border);background:var(--rd-surface);color:var(--rd-foreground);border-radius:9px;padding:0 10px;display:inline-flex;align-items:center;gap:7px;font-size:13px}
+.rd-sorttrigger:hover{background:var(--rd-default)}
+.rd-sort-indicator{width:15px;height:15px;color:var(--rd-muted);transition:transform .18s}
+.rd-sort-option{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:36px;border:0;border-radius:8px;background:transparent;color:var(--rd-foreground);padding:0 10px;font-size:13px;text-align:left}
+.rd-sort-option:hover{background:var(--rd-default)}
+.rd-sort-option.active{background:var(--rd-accent-g);color:#fff;font-weight:600}
+.rd-sort-check{color:#fff}
+.rd-view-group{display:flex;align-items:center;border:1px solid var(--rd-border);border-radius:10px;overflow:hidden;background:var(--rd-surface)}
+.rd-view{width:36px;height:34px;border:0;background:var(--rd-surface);color:var(--rd-muted);display:grid;place-items:center}
+.rd-view+.rd-view{border-left:1px solid var(--rd-border)}
+.rd-view:hover{background:var(--rd-default);color:var(--rd-foreground)}
+.rd-view.active{background:var(--rd-accent-g);color:#fff}
+.rd-mobile-filter-button{display:none;height:36px;border:1px solid var(--rd-border);background:var(--rd-surface);color:var(--rd-foreground);border-radius:9px;padding:0 11px;font-size:13px;font-weight:500;align-items:center;gap:7px}
+.rd-mobile-reset-filter{display:none}
+.rd-mobile-filters{display:none}
+.rd-mobile-quick-filters{display:none}
+.rd-mobile-source-head,.rd-mobile-source-footer{display:none}
+.rd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rd-grid.list{grid-template-columns:1fr}
+.rd-card{overflow:hidden;border:1px solid color-mix(in srgb,var(--rd-border) 90%,transparent);border-radius:16px;background:var(--rd-surface);transition:box-shadow .2s,border-color .2s}
+.rd-card:hover{border-color:color-mix(in srgb,var(--rd-foreground) 15%,var(--rd-border));box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.rd-card-link{display:block;text-decoration:none}
+.rd-grid.list .rd-card-link{display:grid;grid-template-columns:280px minmax(0,1fr)}
+.rd-card-media{position:relative;aspect-ratio:4/3;background:var(--rd-default);overflow:hidden}
+.rd-grid.list .rd-card-media{height:100%;min-height:190px;aspect-ratio:auto}
+.rd-carousel{position:absolute;inset:0;overflow:hidden}
+.rd-carousel-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateX(0);transition:opacity .28s ease,transform .32s cubic-bezier(.22,.61,.36,1)}
+.rd-carousel-layer.active{opacity:1;transform:translateX(0)}
+.rd-card:hover .rd-carousel-layer.active{transform:scale(1.012)}
+.rd-card-top{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;align-items:flex-start;z-index:8;pointer-events:none}
+.rd-card-top-left{display:flex;align-items:center;gap:6px;min-width:0}
+.rd-badge{height:26px;display:inline-flex;align-items:center;padding:0 8px;border-radius:8px;background:rgba(255,255,255,.94);color:#111;font-size:11px;font-weight:700}
+.rd-fav{position:relative;width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .2s ease-out,background-color .2s ease-out,border-color .2s ease-out,box-shadow .2s ease-out;pointer-events:auto;cursor:pointer}
+.rd-fav:before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.rd-fav:hover{background:rgba(0,0,0,.5)}
+.rd-fav:active{transform:scale(.9)}
+.rd-fav:focus-visible{outline:none;box-shadow:0 0 0 2px var(--rd-accent),0 0 0 4px rgba(255,255,255,.2)}
+.rd-fav svg{width:16px;height:16px;display:block;transition:color .2s ease,fill .2s ease}
+.rd-fav.active svg{color:var(--rd-accent)}
+.rd-card-country-bottom{position:absolute;left:10px;bottom:20px;z-index:10;display:inline-flex;align-items:center;justify-content:center;height:25px;pointer-events:none}
+.rd-card-country-bottom .rd-flag{display:block;width:auto;height:25px;overflow:hidden;border-radius:3px;line-height:0}
+.rd-card-country-bottom .rd-flag img{display:block;width:auto;height:25px;object-fit:contain;border:0}
+.rd-progress{position:absolute;left:10px;right:10px;bottom:9px;display:flex;gap:3px;z-index:9;pointer-events:none}
+.rd-progress span{height:2px;flex:1;background:rgba(255,255,255,.48);border-radius:999px;transition:background .18s ease}
+.rd-progress span.active{background:#fff}
+.rd-zones{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);z-index:5}
+.rd-zone{height:100%;width:100%;padding:0;border:0;background:transparent}
+.rd-card-photos{position:absolute;right:10px;bottom:20px;height:28px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:8px;background:rgba(17,17,17,.72);backdrop-filter:blur(5px);color:#fff;font-size:11px;font-weight:600;z-index:8;pointer-events:none}
+.rd-card-body{padding:14px}
+.rd-card-title{margin:0;font-size:15px;line-height:20px;font-weight:600;letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.rd-price-block{margin-top:8px}
+.rd-price-caption{display:block;font-size:11px;line-height:14px;font-weight:500;color:var(--rd-muted)}
+.rd-price-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:3px}
+.rd-price{font-size:24px;line-height:28px;font-weight:700;letter-spacing:-.02em;background:var(--rd-accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rd-dollar{font-size:.58em;color:var(--rd-muted);vertical-align:.15em;margin-right:2px}
+.rd-byn{font-size:12px;color:var(--rd-muted);font-weight:600}
+.rd-condition{margin-top:11px;font-size:12px;line-height:17px;color:var(--rd-muted)}
+.rd-condition strong{color:var(--rd-foreground);font-weight:600}
+.rd-condition.superb strong{color:#d4af37}
+.rd-condition.excellent strong{color:#16803a}
+.rd-condition.good strong{color:#2f6fed}
+.rd-condition.average strong{color:#f59e0b}
+.rd-condition.low strong{color:#ef4444}
+.rd-meta{margin:5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;line-height:18px;color:color-mix(in srgb,var(--rd-foreground) 68%,transparent);font-variant-numeric:tabular-nums}
+.rd-pagination{display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;margin:20px 0 0}
+.rd-page-btn{min-width:36px;height:36px;padding:0 9px;border:1px solid var(--rd-border);border-radius:9px;background:var(--rd-surface);color:var(--rd-foreground);font-size:13px;font-weight:600}
+.rd-page-btn:hover:not(:disabled){background:var(--rd-default)}
+.rd-page-btn.active{background:var(--rd-accent-g);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(150,15,15,.18)}
+.rd-page-btn:disabled{opacity:.4;cursor:not-allowed}
+.rd-page-dots{display:inline-flex;align-items:center;justify-content:center;width:24px;height:36px;color:var(--rd-muted);font-size:13px}
+.rd-more-status{display:none}
+.rd-status{padding:28px 0;color:var(--rd-muted);text-align:center}
+.rd-error{padding:14px 16px;border:1px solid #ef9b9b;background:rgba(235,28,36,.07);border-radius:12px;color:#b42318;margin-bottom:12px}
+.rd-request-cta{margin-top:18px;border:1px solid var(--rd-accent-border);border-radius:16px;background:linear-gradient(135deg,color-mix(in oklab,var(--rd-accent) 6%,var(--rd-surface)),var(--rd-surface) 50%);padding:18px}
+.rd-request-cta h3{margin:0 0 5px;font-size:17px;line-height:22px}
+.rd-request-cta p{margin:0;color:var(--rd-muted);font-size:13px;line-height:18px;max-width:680px}
+.rd-request-cta .rd-action{margin-top:12px}
+.rd-action{height:40px;padding:0 14px;border-radius:9px;border:1px solid var(--rd-border);background:var(--rd-surface);color:var(--rd-foreground);font-weight:600}
+.rd-action.primary{background:var(--rd-accent-g);border-color:transparent;color:#fff;box-shadow:0 4px 16px rgba(150,15,15,.4)}
+.rd-mobile-helper{display:none}
+#rd-red-dragon-catalog .rd-autotrigger-group{display:flex;align-items:center;min-height:36px;width:100%;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-default);color:var(--rd-foreground);padding:0 4px 0 12px;transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease;position:relative;cursor:pointer}
+#rd-red-dragon-catalog .rd-autotrigger-group:hover{background:#e5e5e6}
+#rd-red-dragon-catalog[data-theme=dark] .rd-autotrigger-group:hover{background:#303033;color:var(--rd-foreground)}
+#rd-red-dragon-catalog .rd-autotrigger-group:focus-within{border-color:var(--rd-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--rd-accent) 20%,transparent);background:var(--rd-surface)}
+#rd-red-dragon-catalog .rd-autotrigger-group .rd-field-value{flex:1;min-width:0;padding:8px 0;line-height:20px}
+#rd-red-dragon-catalog .rd-autotrigger-open{width:32px;height:34px;padding:0;border:0;background:transparent;color:var(--rd-foreground);display:grid;place-items:center;flex:0 0 32px;cursor:pointer}
+#rd-red-dragon-catalog .rd-autotrigger-open .rd-indicator{position:static;transform:none}
+#rd-red-dragon-catalog .rd-autocomplete.open .rd-autotrigger-open .rd-indicator{transform:rotate(180deg)}
+#rd-red-dragon-catalog .rd-autotrigger-clear{display:none;width:28px;height:28px;border:0;background:transparent;color:var(--rd-muted);border-radius:8px;place-items:center;padding:0;flex:0 0 28px;cursor:pointer}
+#rd-red-dragon-catalog .rd-autocomplete[data-has-value=true] .rd-autotrigger-clear{display:grid}
+#rd-red-dragon-catalog .rd-autotrigger-clear:hover{background:rgba(120,120,120,.12);color:var(--rd-foreground)}
+#rd-red-dragon-catalog .rd-autocomplete.open{z-index:1001}
+#rd-red-dragon-catalog .rd-autocomplete.open .rd-autopop{display:block!important}
+#rd-red-dragon-catalog .rd-autopop{max-height:320px;overflow:hidden;padding:8px 0 6px;box-shadow:0 10px 24px rgba(0,0,0,.16);transform-origin:top center;animation:rd-pop-in .12s ease-out}
+#rd-red-dragon-catalog .rd-autolist{max-height:254px;overflow-y:auto;overflow-x:hidden;padding:0 4px 0 0;overscroll-behavior:contain;scrollbar-width:thin}
+#rd-red-dragon-catalog .rd-options-pop{max-height:320px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
+#rd-red-dragon-catalog .rd-option{color:var(--rd-foreground)}
+#rd-red-dragon-catalog[data-theme=dark] .rd-option:hover,#rd-red-dragon-catalog[data-theme=dark] .rd-autotrigger-group:hover,#rd-red-dragon-catalog[data-theme=dark] .rd-seltrigger:hover{background:#303033;color:var(--rd-foreground)}
+#rd-red-dragon-catalog .rd-country-group{display:inline-flex;width:fit-content;height:36px;border-radius:12px;overflow:hidden;background:var(--rd-default);border:1px solid var(--rd-border)}
+#rd-red-dragon-catalog .rd-country-btn{position:relative;height:35px;border:0;border-radius:0;background:var(--rd-default);color:var(--rd-foreground);padding:0 14px;min-width:54px;font-size:14px;font-weight:500;transition:transform .25s ease,background-color .1s ease,box-shadow .1s ease}
+#rd-red-dragon-catalog .rd-country-btn+.rd-country-btn:before{content:"";position:absolute;left:0;top:25%;bottom:25%;width:1px;background:currentcolor;opacity:.15}
+#rd-red-dragon-catalog .rd-country-btn:hover{background:var(--rd-default)}
+#rd-red-dragon-catalog .rd-country-btn.active{background:var(--rd-accent-g);color:#fff;box-shadow:0 4px 14px rgba(150,15,15,.2)}
+#rd-red-dragon-catalog .rd-country-btn:active{transform:scale(.97)}
+#rd-red-dragon-catalog .rd-numberbox:before,#rd-red-dragon-catalog .rd-numberbox:after{content:none!important}
+#rd-red-dragon-catalog .rd-filter-input{appearance:none;-webkit-appearance:none;border:0!important;outline:0!important;box-shadow:none!important}
+#rd-red-dragon-catalog .rd-disclosure-source>button{transition:background-color .1s ease,transform .25s ease}
+#rd-red-dragon-catalog .rd-disclosure-source>button:active{transform:scale(.99)}
+#rd-red-dragon-catalog .rd-disclosure-source .rd-disclosure-body{display:none;padding:0 12px 12px}
+#rd-red-dragon-catalog .rd-disclosure-source.open .rd-disclosure-body{display:block}
+#rd-red-dragon-catalog .rd-source-sidebar,#rd-red-dragon-catalog .rd-filter-stack,#rd-red-dragon-catalog .rd-block,#rd-red-dragon-catalog .rd-two{min-width:0}
+#rd-red-dragon-catalog .rd-two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+#rd-red-dragon-catalog .rd-disclosure-body .rd-source-label{font-size:14px;line-height:20px;font-weight:500;margin:0 0 6px;color:var(--rd-foreground)}
+#rd-red-dragon-catalog .rd-disclosure-body .rd-chip-source{height:28px;padding:0 9px;font-size:10px;line-height:28px;font-weight:500}
+#rd-red-dragon-catalog[data-theme=dark] .rd-disclosure-body .rd-chip-source{background:#1c1c1f;color:#a1a1aa;border-color:#303033}
+#rd-red-dragon-catalog[data-theme=dark] .rd-disclosure-body .rd-chip-source:hover{background:#252528;color:#b5b5bb}
+#rd-red-dragon-catalog[data-theme=dark] .rd-disclosure-body .rd-chip-source.active{background:var(--rd-accent-g);color:#fff;border-color:transparent}
+#rd-red-dragon-catalog .rd-catalog-skeleton{overflow:hidden;border:1px solid color-mix(in srgb,var(--rd-border) 90%,transparent);border-radius:16px;background:var(--rd-surface)}
+#rd-red-dragon-catalog .rd-skel{position:relative;overflow:hidden;background:var(--rd-skel-bg,#e3e3e3);border-radius:10px;color:transparent;pointer-events:none}
+#rd-red-dragon-catalog .rd-skel:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.06) 35%,rgba(255,255,255,.16) 50%,rgba(255,255,255,.06) 65%,transparent 100%);animation:rd-catalog-skeleton 2s linear infinite}
+#rd-red-dragon-catalog[data-theme=dark] .rd-skel{--rd-skel-bg:#29292b}
+#rd-red-dragon-catalog .rd-skeleton-media{aspect-ratio:4/3;border-radius:0}
+#rd-red-dragon-catalog .rd-skeleton-body{padding:14px}
+#rd-red-dragon-catalog .rd-skeleton-title{height:20px;width:82%;border-radius:7px}
+#rd-red-dragon-catalog .rd-skeleton-title.short{width:64%}
+#rd-red-dragon-catalog .rd-skeleton-price{height:28px;width:42%;margin-top:13px;border-radius:7px}
+#rd-red-dragon-catalog .rd-skeleton-condition{height:17px;width:58%;margin-top:12px;border-radius:6px}
+#rd-red-dragon-catalog .rd-skeleton-meta{height:18px;width:72%;margin-top:6px;border-radius:6px}
+#rd-red-dragon-catalog .rd-grid.list .rd-catalog-skeleton{display:grid;grid-template-columns:280px minmax(0,1fr)}
+#rd-red-dragon-catalog .rd-grid.list .rd-skeleton-media{height:100%;min-height:190px;aspect-ratio:auto}
+.rd-seo-content{margin-top:28px;padding:24px;border:1px solid var(--rd-border);border-radius:16px;background:var(--rd-surface)}
+.rd-seo-content h2{margin:0 0 10px;font-size:22px;line-height:28px;font-weight:700;letter-spacing:-.015em;background:var(--rd-accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rd-seo-content h2:not(:first-child){margin-top:26px}
+.rd-seo-content h3{margin:18px 0 6px;font-size:16px;line-height:22px;font-weight:650}
+.rd-seo-content p{margin:0;color:var(--rd-muted);font-size:14px;line-height:22px;max-width:900px}
+.rd-seo-content ul{margin:10px 0 0;padding-left:20px;color:var(--rd-muted);font-size:14px;line-height:22px}
+.rd-seo-content li{margin:3px 0}
+@keyframes rd-catalog-skeleton{100%{transform:translateX(100%)}}
+@keyframes rd-pop-in{from{opacity:0;transform:translateY(-3px) scaleY(.985)}to{opacity:1;transform:none}}
+@media(max-width:1023px){
+.rd-layout{display:block}
+.rd-sidebar-wrap{display:none}
+.rd-mobile-quick-filters{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;min-width:0}
+.rd-mobile-quick-filters .rd-autocomplete{width:100%}
+.rd-mobile-filters{display:block;margin-bottom:10px;min-width:0}
+.rd-mobile-source{display:none;position:fixed;left:12px;right:12px;top:12px;bottom:12px;z-index:100000;border:1px solid var(--rd-border);border-radius:16px;background:var(--rd-surface);padding:0;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.28)}
+.rd-mobile-filters.open .rd-mobile-source{display:flex;flex-direction:column}
+.rd-mobile-source .rd-source-sidebar{border:0;border-radius:0;padding:18px 14px 10px;background:transparent;overflow-y:auto;overflow-x:hidden;flex:1;max-height:none}
+.rd-mobile-source .rd-source-sidebar>.rd-filter-stack{padding-top:40px}
+.rd-mobile-source .rd-country-row{display:flex;justify-content:center}
+.rd-mobile-source .rd-country-row>div:first-child{width:100%;text-align:center}
+.rd-mobile-source .rd-country-row .rd-source-label{justify-content:center;text-align:center}
+.rd-mobile-source .rd-country-group{display:flex;width:auto;height:36px}
+.rd-mobile-source .rd-country-btn{flex:1;width:33.333%;min-width:0}
+.rd-mobile-source .rd-country-btn+.rd-country-btn:before{display:block!important;content:""!important}
+.rd-mobile-source .rd-source-tools .rd-source-separator{display:none}
+.rd-mobile-source .rd-country-row{display:none}
+.rd-mobile-source .rd-filter-stack>.rd-source-separator[style*="width:100%"]{display:none}
+.rd-mobile-source .rd-mobile-source-head{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:center;padding:0 10px;background:var(--rd-surface);z-index:3;border-bottom:1px solid var(--rd-border)}
+.rd-mobile-filter-count{display:flex;align-items:center;justify-content:center;gap:7px;min-height:36px;width:100%;margin:0 auto 10px;padding:5px 10px;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-surface);color:var(--rd-foreground);font-size:13px;font-weight:600;box-sizing:border-box}
+.rd-mobile-filter-count svg{width:17px;height:17px;color:var(--rd-accent)!important;flex:0 0 auto}
+.rd-mobile-source-close{position:absolute;right:10px;width:34px;height:34px;border:0;border-radius:9px;background:transparent;color:var(--rd-muted);display:grid;place-items:center;padding:0}
+.rd-mobile-source-close:hover{background:var(--rd-default);color:var(--rd-foreground)}
+.rd-mobile-source-footer{display:flex;align-items:center;justify-content:center;flex:0 0 auto;padding:10px;border-top:1px solid var(--rd-border);background:var(--rd-surface)}
+.rd-mobile-source-collapse{width:100%;height:40px;border:1px solid transparent;border-radius:10px;background:var(--rd-accent-g);color:#fff;font-size:14px;font-weight:600;box-shadow:0 4px 16px rgba(150,15,15,.24)}
+.rd-mobile-source-collapse:hover{background:var(--rd-accent-g)}
+.rd-mobile-filter-button{display:inline-flex}
+.rd-mobile-reset-filter{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;height:36px;margin:0 0 10px;padding:0 10px;border:1px solid var(--rd-border);background:var(--rd-surface);color:var(--rd-foreground);border-radius:9px;font-size:13px;font-weight:500}
+.rd-mobile-reset-filter:hover{background:var(--rd-default)}
+.rd-count-mobile{display:flex;justify-content:center;margin:0 0 10px}
+.rd-count-mobile .rd-count{padding:5px 10px;border:1px solid var(--rd-border);border-radius:999px;background:var(--rd-surface);font-size:13px}
+.rd-results .rd-toolbar{padding-top:4px}
+.rd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:639px){
+.rd-main{padding:16px 16px 40px}
+.rd-breadcrumb{margin-bottom:12px;font-size:12px;line-height:17px}
+.rd-heading{margin-bottom:16px}
+.rd-heading h1{font-size:24px;line-height:30px}
+.rd-heading p{font-size:14px;line-height:20px}
+.rd-mobile-delivery-note{display:none}
+.rd-search-wrap{display:none}
+.rd-mobile-quick-filters{margin-bottom:8px}
+.rd-toolbar{align-items:center;gap:6px}
+.rd-toolbar-left .rd-count,.rd-toolbar-left .rd-subscribe{display:none}
+.rd-toolbar-left{display:none}
+.rd-toolbar-right{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0}
+.rd-sortbox{width:100%;min-width:0}
+.rd-sorttrigger{width:100%;justify-content:center}
+.rd-mobile-filter-button{width:100%;min-width:0;justify-content:center}
+.rd-view-group{display:none}
+.rd-mobile-reset-filter{width:100%}
+.rd-popular-top{position:relative;display:block;overflow:hidden;white-space:nowrap;min-width:0;width:100%;height:27px;margin:0 0 12px;padding:0;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 22px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 22px,#000 calc(100% - 22px),transparent 100%);touch-action:pan-y}
+.rd-popular-top-label{display:none}
+.rd-popular-top-track{display:flex;align-items:center;gap:0;width:max-content;min-width:max-content;transform:translate3d(0,0,0);will-change:transform}
+.rd-popular-top-set{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;padding-right:5px}
+.rd-popular-top .rd-chip-source{height:25px;padding:0 6px;font-size:9px;line-height:25px;flex:0 0 auto}
+.rd-grid{grid-template-columns:1fr}
+.rd-grid.list{grid-template-columns:1fr}
+.rd-grid.list .rd-card-link{display:block}
+.rd-grid.list .rd-card-media{min-height:0;aspect-ratio:3/2}
+.rd-card-media{aspect-ratio:3/2;touch-action:pan-y}
+.rd-card-media .rd-zones,.rd-card-media .rd-zone{pointer-events:none}
+.rd-card-media .rd-carousel-layer{opacity:1!important;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}.rd-card-media .rd-carousel-layer.active{transform:translate3d(0,0,0)}
+.rd-sortbox.open .rd-sort-pop{position:fixed;left:16px;right:16px;top:auto;min-width:0;max-width:none;max-height:calc(100vh - 32px);overflow-y:auto;overflow-x:hidden;z-index:100002}
+.rd-count-mobile{margin:0 0 10px}
+.rd-mobile-helper{display:block;margin:4px 0 12px}
+.rd-mobile-helper .rd-request-cta{margin-top:0}
+.rd-request-cta{padding:16px}
+.rd-request-cta h3{font-size:16px}
+.rd-request-cta p{font-size:12px;line-height:17px}
+.rd-pagination{gap:4px}
+.rd-page-btn{min-width:34px;height:34px;padding:0 8px}
+.rd-seo-content{margin-top:22px;padding:18px}
+.rd-seo-content h2{font-size:19px;line-height:25px}
+.rd-seo-content h3{font-size:15px;line-height:21px}
+.rd-seo-content p,.rd-seo-content ul{font-size:13px;line-height:20px}
+}
+@media(min-width:640px){.rd-count-mobile{display:none!important}}
+</style>
+<script>
+(function(){
+'use strict';
+var root=document.getElementById('rd-red-dragon-catalog');
+if(!root)return;
+var CONFIG={
+API_BASE:'https://red-dragon-api.red-dragon-minsk.workers.dev/api',
+API_PREFIX_CANDIDATES:[''],
+PAGE_SIZE:30,
+FIRST_LINE_PARAM:'firstLine',
+DETAIL_MODE:'url',
+CARD_URL_TEMPLATE:'/car?id={id}',
+SUBSCRIBE_HANDLER:null,
+REQUEST_TIMEOUT:18000
+};
+var SEO_CONFIG={
+title:'Автомобили из Китая, Кореи и США с доставкой в Беларусь',
+description:'Автомобили из Китая, Кореи и США с доставкой в Беларусь. Каталог авто, цены, марки и модели. Красный Дракон поможет подобрать, проверить и заказать автомобиль с доставкой.',
+keywords:'автомобили из Китая, авто из Китая, купить авто из Китая, заказать авто из Китая, автомобили из Кореи, авто из Кореи, купить авто из Кореи, автомобили из США, авто из США, купить авто из США, доставка авто в Беларусь, авто с доставкой в Беларусь, купить автомобиль в Беларуси, Красный Дракон',
+ogType:'website',
+ogSiteName:'Красный Дракон'
+};
+var FILTER_STORAGE_KEY='rd-catalog-filters-v1';
+var state={
+brand:'',
+model:'',
+country:'',
+firstLine:false,
+minPrice:'',
+maxPrice:'',
+minYear:'',
+maxYear:'',
+newCars:false,
+minMileage:'',
+maxMileage:'',
+fuel:[],
+body:[],
+gearbox:[],
+drive:[],
+color:[],
+source:[],
+q:'',
+page:1,
+pageSize:CONFIG.PAGE_SIZE,
+sort:'added',
+order:'desc',
+view:localStorage.getItem('rd-view')||'grid'
+};
+function loadSavedFilters(){try{var raw=localStorage.getItem(FILTER_STORAGE_KEY);if(!raw)return;var saved=JSON.parse(raw);if(!saved||typeof saved!=='object')return;var keys=['brand','model','country','firstLine','minPrice','maxPrice','minYear','maxYear','newCars','minMileage','maxMileage','fuel','body','gearbox','drive','color','source','q'];keys.forEach(function(k){if(!Object.prototype.hasOwnProperty.call(saved,k))return;var v=saved[k];if(['fuel','body','gearbox','drive','color','source'].indexOf(k)>=0){if(Array.isArray(v))state[k]=v.map(String);return}if(['firstLine','newCars'].indexOf(k)>=0){state[k]=v===true;return}state[k]=v==null?'':String(v)})}catch(e){}}
+function prepareFilterCache(){try{var key='rd-catalog-filter-context-v1',ctx=sessionStorage.getItem(key)||'',ref=document.referrer,host=window.location.hostname,catalogPath=(window.location.pathname||'/').replace(/\/$/,'')||'/',detailPath=new URL(CONFIG.CARD_URL_TEMPLATE.replace('{id}','0'),window.location.href).pathname.replace(/\/$/,'')||'/',refPath='',navType='';try{var navs=performance.getEntriesByType('navigation');if(navs&&navs.length)navType=navs[0].type;else if(performance.navigation)navType=performance.navigation.type===1?'reload':''}catch(e){}if(navType==='reload'){sessionStorage.setItem(key,'catalog');return}if(ref){var u=new URL(ref,window.location.href);if(u.hostname!==host){clearSavedFilters();sessionStorage.setItem(key,'other');return}refPath=(u.pathname||'/').replace(/\/$/,'')||'/';if(refPath===detailPath&&(ctx==='detail'||ctx==='catalog')){sessionStorage.setItem(key,'catalog');return}if(refPath===catalogPath&&(ctx==='catalog'||ctx==='detail')){sessionStorage.setItem(key,'catalog');return}clearSavedFilters();sessionStorage.setItem(key,'other');return}if(ctx==='catalog'||ctx==='detail'){sessionStorage.setItem(key,'catalog');return}clearSavedFilters();sessionStorage.setItem(key,'other')}catch(e){clearSavedFilters()}}
+function saveSavedFilters(){try{var data={brand:state.brand||'',model:state.model||'',country:state.country||'',firstLine:Boolean(state.firstLine),minPrice:state.minPrice||'',maxPrice:state.maxPrice||'',minYear:state.minYear||'',maxYear:state.maxYear||'',newCars:Boolean(state.newCars),minMileage:state.minMileage||'',maxMileage:state.maxMileage||'',fuel:Array.isArray(state.fuel)?state.fuel.slice():[],body:Array.isArray(state.body)?state.body.slice():[],gearbox:Array.isArray(state.gearbox)?state.gearbox.slice():[],drive:Array.isArray(state.drive)?state.drive.slice():[],color:Array.isArray(state.color)?state.color.slice():[],source:Array.isArray(state.source)?state.source.slice():[],q:state.q||''};localStorage.setItem(FILTER_STORAGE_KEY,JSON.stringify(data))}catch(e){}}
+function clearSavedFilters(){try{localStorage.removeItem(FILTER_STORAGE_KEY)}catch(e){}}
+function getCcmQueryFromHash(){var hash=window.location.hash||'';if(!hash)return null;var match=hash.match(/(?:^#|&)ccm=([^&]*)/);if(!match)return null;var raw='';try{raw=decodeURIComponent(match[1]||'')}catch(e){return null}if(!raw)return null;var qIndex=raw.indexOf('?');if(qIndex>=0)raw=raw.slice(qIndex+1);else raw=raw.replace(/^\/+/,'');if(raw.charAt(0)==='?')raw=raw.slice(1);return raw||null}
+function applyUrlFilters(){var params=null,usedHash=false,ccmQuery=getCcmQueryFromHash();if(ccmQuery){try{params=new URLSearchParams(ccmQuery);usedHash=true}catch(e){params=null}}if(!params){try{var search=window.location.search||'';if(search){var searchParams=new URLSearchParams(search);if(searchParams.has('brand')||searchParams.has('model')||searchParams.has('country')||searchParams.has('q'))params=searchParams}}catch(e){}}if(!params)return false;var changed=false;if(params.has('brand')){state.brand=params.get('brand')||'';changed=true}if(params.has('model')){state.model=params.get('model')||'';changed=true}else if(params.has('brand'))state.model='';if(params.has('country')){state.country=params.get('country')||'';changed=true}if(params.has('q')){state.q=params.get('q')||'';changed=true}if(params.has('minPrice')){state.minPrice=params.get('minPrice')||'';changed=true}if(params.has('maxPrice')){state.maxPrice=params.get('maxPrice')||'';changed=true}if(params.has('minYear')){state.minYear=params.get('minYear')||'';changed=true}if(params.has('maxYear')){state.maxYear=params.get('maxYear')||'';changed=true}if(params.has('minMileage')){state.minMileage=params.get('minMileage')||'';changed=true}if(params.has('maxMileage')){state.maxMileage=params.get('maxMileage')||'';changed=true}if(params.has('firstLine')){state.firstLine=params.get('firstLine')==='1'||params.get('firstLine')==='true';changed=true}var fuelValues=[];params.getAll('fuel').forEach(function(v){if(v)fuelValues.push(v)});params.getAll('fuelType').forEach(function(v){if(v)fuelValues.push(v)});if(fuelValues.length){state.fuel=fuelValues.join(',').split(',').filter(Boolean);changed=true}function readArrayParam(name,key){var vals=[];params.getAll(name).forEach(function(v){if(v)v.split(',').forEach(function(x){if(x)vals.push(x)})});if(vals.length){state[key]=vals;changed=true}}readArrayParam('body','body');readArrayParam('gearbox','gearbox');readArrayParam('drive','drive');readArrayParam('color','color');readArrayParam('source','source');if(usedHash&&changed)saveSavedFilters();return changed}
+prepareFilterCache();
+loadSavedFilters();
+applyUrlFilters();
+var catalog={prefix:null,refs:null,brands:null,items:[],meta:{},loading:false,loadingMore:false,requestSeq:0,loadQueued:false,favorites:loadFavs(),advanced:false,mobileFilters:false,hasMore:true,inputTimer:null,searchTimer:null,countryApiKey:null,countryApiValue:null,totalAllCount:null,detailCache:{},detailPromises:{},conditionRefMap:{}};
+function syncFavoriteState(){catalog.favorites=loadFavs();renderItems()}
+window.addEventListener('red-dragon:favorites-changed',syncFavoriteState);
+window.addEventListener('resize',function(){if(mobileHistoryEnabled())syncMobileFilterCountWidth()});
+var popular=[['audi','Audi'],['bmw','BMW'],['byd','BYD'],['deepal','Deepal'],['ford','Ford'],['geely','Geely'],['li-auto','Li Auto'],['toyota','Toyota'],['xiaomi','Xiaomi'],['zeekr','Zeekr']];
+var fallbackBrands=[["audi","Audi"],["bmw","BMW"],["byd","BYD"],["deepal","Deepal"],["ford","Ford"],["geely","Geely"],["li-auto","Li Auto"],["toyota","Toyota"],["xiaomi","Xiaomi"],["zeekr","Zeekr"],["car212","212"],["aion","AION"],["aito","AITO"],["arcfox","ARCFOX"],["acura","Acura"],["alfa-romeo","Alfa Romeo"],["aston-martin","Aston Martin"],["avatr","Avatr"],["baic","BAIC"],["beijing-off-road","BAIC (Beijing) Off-Road"],["baojun","Baojun"],["bentley","Bentley"],["bestune","Bestune"],["brabus","Brabus"],["buick","Buick"],["cadillac","Cadillac"],["changan","Changan"],["changan-kaicheng","Changan Kaicheng"],["changan-kuayue","Changan Kuayue"],["changan-qiyuan","Changan NEVO (Qiyuan)"],["changan-oshan","Changan Oshan"],["chery","Chery"],["chery-fengyun","Chery Fengyun (Fulwin)"],["chery-nev","Chery New Energy"],["chery-qq","Chery QQ"],["chevrolet","Chevrolet"],["chrysler","Chrysler"],["citro-n","Citroen"],["landian","DFSK"],["ds","DS"],["denza","Denza"],["dongfeng-aeolus","Dongfeng Aeolus"],["dongfeng-yufeng","Dongfeng Yufeng"],["dongfeng-yipai","Dongfeng eπ (Epai)"],["exeed","Exeed"],["fang-cheng-bao","FangChengBao (BYD)"],["farizon","Farizon"],["ferrari","Ferrari"],["firefly","Firefly"],["dongfeng-fengxing","Forthing (Fengxing)"],["gac-hyper","GAC Hyptec (Hyper)"],["gac-trumpchi","GAC Trumpchi"],["gmc","GMC"],["genesis","Genesis"],["great-wall","Great Wall"],["haval","Haval"],["hiphi","HiPhi"],["honda","Honda"],["hongqi","Hongqi"],["hummer","Hummer"],["hycan","Hycan"],["hyundai","Hyundai"],["im-motors","IM Motors"],["infiniti","Infiniti"],["isuzu","Isuzu"],["iveco","Iveco"],["jac","JAC"],["jac-refine","JAC Refine"],["jmc","JMC"],["jmc-nev","JMC New Energy"],["jaguar","Jaguar"],["jeep","Jeep"],["jetour","Jetour"],["jetour-shanhai","Jetour Shanhai"],["jetta","Jetta"],["jiyue","Ji Yue"],["jinbei","Jinbei"],["cowin","Kaiyi (Cowin)"],["kia","Kia"],["lamborghini","Lamborghini"],["land-rover","Land Rover"],["leapmotor","Leapmotor"],["lexus","Lexus"],["lincoln","Lincoln"],["lingxi","Lingxi"],["lorinser","Lorinser"],["lotus","Lotus"],["luxeed","Luxeed"],["lynk-co","Lynk & Co"],["mengshi","M-Hero (Mengshi)"],["mg","MG"],["mini","MINI"],["maextro","Maextro"],["maserati","Maserati"],["maybach","Maybach"],["mazda","Mazda"],["mclaren","McLaren"],["mercedes-benz","Mercedes-Benz"],["mitsubishi","Mitsubishi"],["nio","NIO"],["neta","Neta"],["nissan","Nissan"],["onvo","ONVO"],["ora","ORA"],["peugeot","Peugeot"],["porsche","Porsche"],["ram","RAM"],["rox","ROX"],["roewe","Roewe"],["rolls-royce","Rolls-Royce"],["ruichi","Ruichi"],["maxus","SAIC Maxus"],["sehol","Sehol"],["shangjie","Shangjie"],["skoda","Skoda"],["smart","Smart"],["stelato","Stelato"],["subaru","Subaru"],["suzuki","Suzuki"],["tank","Tank"],["tesla","Tesla"],["venucia","Venucia"],["volkswagen","Volkswagen"],["volvo","Volvo"],["voyah","Voyah"],["wey","WEY"],["wm-motor","WM Motor"],["wuling","Wuling"],["xpeng","XPeng"],["yangwang","Yangwang"],["icar","iCAR"]];
+var fallbackEnums={fuel:[['petrol','Бензин'],['diesel','Дизель'],['electric','Электро'],['hybrid','Гибрид'],['gas','Газ'],['other','Другое / не указан']],body:[['sedan','Седан'],['suv','SUV'],['hatchback','Хэтчбек'],['wagon','Универсал'],['coupe','Купе'],['convertible','Кабриолет'],['minivan','Минивэн'],['pickup','Пикап'],['van','Фургон']],gearbox:[['automatic','Автомат'],['manual','Механика'],['cvt','CVT'],['robot','Робот']],drive:[['fwd','Передний'],['rwd','Задний'],['awd','Полный']],color:[['white','Белый'],['black','Чёрный'],['gray','Серый'],['silver','Серебристый'],['blue','Синий'],['red','Красный'],['green','Зелёный'],['brown','Коричневый'],['beige','Бежевый'],['yellow','Жёлтый'],['orange','Оранжевый'],['purple','Фиолетовый']]};
+var RD_YEARS=(function(){var a=[];for(var y=2026;y>=2005;y--)a.push(y);return a})();
+var RD_MILEAGE=[1000,5000,10000,20000,30000,40000,50000,75000,100000,150000,200000,300000];
+var RD_FALLBACK_FUEL=[['GASOLINE','Бензин'],['DIESEL','Дизель'],['ELECTRIC','Электро'],['HYBRID_PHEV','Гибрид'],['NATURAL_GAS','Газ'],['OTHER','Другой / не указан']];
+var RD_PRICE_OPTIONS=(function(){var a=[];for(var i=1000;i<=10000;i+=1000)a.push([i,String(i)]);for(var i=12000;i<=20000;i+=2000)a.push([i,String(i)]);for(var i=25000;i<=50000;i+=5000)a.push([i,String(i)]);for(var i=60000;i<=100000;i+=10000)a.push([i,String(i)]);a.push(['100000+','100000+']);return a})();
+var RD_SVG={chev:'<svg class="rd-indicator" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" fill="currentColor"/></svg>',x:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',info:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M12 10.5v6"></path><path d="M12 7.5h.01"></path></svg>',search:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',car:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 11 1.5-4A2 2 0 0 1 8.4 5.6h7.2A2 2 0 0 1 17.5 7L19 11"/><path d="M3 11h18v6a2 2 0 0 1-2 2h-1v-2H6v2H5a2 2 0 0 1-2-2z"/><circle cx="7" cy="15" r="1"/><circle cx="17" cy="15" r="1"/></svg>',bell:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',sliders:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/></svg>',arrow:'<svg class="rd-sort-indicator" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5M17 9l-5-5-5 5"/></svg>',grid:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>',list:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="5" width="16" height="3" rx="1"/><rect x="4" y="11" width="16" height="3" rx="1"/><rect x="4" y="17" width="16" height="3" rx="1"/></svg>',camera:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L8 6H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3l-1.5-2Z"/><circle cx="12" cy="13" r="3.5"/></svg>',flag:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.3 2q2 0 3.1-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.53"/></svg>',dollar:'<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"',calendar:'<path d="M8 2v3M16 2v3"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"',route:'<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"',fuel:'<path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-7a2 2 0 0 0-.6-1.4L18 5"/><path d="M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16M2 21h13M3 9h11"/>'};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(v){if(v==null||v==='')return'—';return Number(v).toLocaleString('ru-RU')}
+function moneyNumber(v){if(v==null||v==='')return'—';return Number(v).toLocaleString('ru-RU')}
+function priceDisplay(v){if(v==null||v==='')return'—';if(String(v)==='100000+')return"100'000+";return Number(v).toLocaleString('en-US').replace(/,/g,"'")}
+function yearNumber(v){if(v==null||v==='')return null;var n=Number(v);return Number.isFinite(n)?Math.trunc(n):null}
+function bynNumber(v){if(v==null||v==='')return'';var n=Number(v);if(!Number.isFinite(n))return'';return Math.round(n/10)*10}
+function loadFavs(){try{var v=JSON.parse(localStorage.getItem('rd-favorites')||'[]');return Array.isArray(v)?v.map(String):[]}catch(e){return[]}}
+function saveFavs(){localStorage.setItem('rd-favorites',JSON.stringify(catalog.favorites));window.dispatchEvent(new CustomEvent('red-dragon:favorites-changed',{detail:{favorites:catalog.favorites.slice(),count:catalog.favorites.length}}))}
+function isFav(id){return catalog.favorites.indexOf(String(id))!==-1}
+function toggleFav(id){id=String(id);var i=catalog.favorites.indexOf(id);if(i>=0)catalog.favorites.splice(i,1);else catalog.favorites.push(id);saveFavs();renderItems()}
+function theme(){var html=document.documentElement,body=document.body||null,h1=html.getAttribute('data-rd-theme'),b1=body&&body.getAttribute('data-rd-theme'),h2=html.getAttribute('data-theme'),b2=body&&body.getAttribute('data-theme');var isDark=h1==='dark'||b1==='dark'||h2==='dark'||b2==='dark'||html.classList.contains('dark')||(body&&body.classList.contains('dark'));root.setAttribute('data-theme',isDark?'dark':'light')}
+function observeTheme(){theme();var mo=new MutationObserver(theme);mo.observe(document.documentElement,{attributes:true,attributeFilter:['data-rd-theme','data-theme','class']});if(document.body)mo.observe(document.body,{attributes:true,attributeFilter:['data-rd-theme','data-theme','class']})}
+function setMeta(name,content){if(!content)return;var meta=document.head.querySelector('meta[name="'+name+'"]');if(!meta){meta=document.createElement('meta');meta.setAttribute('name',name);document.head.appendChild(meta)}meta.setAttribute('content',content)}
+function setPropertyMeta(property,content){if(!content)return;var meta=document.head.querySelector('meta[property="'+property+'"]');if(!meta){meta=document.createElement('meta');meta.setAttribute('property',property);document.head.appendChild(meta)}meta.setAttribute('content',content)}
+function setCanonical(){var existing=document.head.querySelector('link[rel="canonical"]');var canonical=existing||document.createElement('link');canonical.setAttribute('rel','canonical');canonical.setAttribute('href',window.location.origin+(window.location.pathname||'/'));if(!existing)document.head.appendChild(canonical)}
+function initSEO(){document.title=SEO_CONFIG.title;setMeta('description',SEO_CONFIG.description);setMeta('keywords',SEO_CONFIG.keywords);setMeta('robots','index,follow,max-image-preview:large');setMeta('author','Красный Дракон');setPropertyMeta('og:type',SEO_CONFIG.ogType);setPropertyMeta('og:title',SEO_CONFIG.title);setPropertyMeta('og:description',SEO_CONFIG.description);setPropertyMeta('og:site_name',SEO_CONFIG.ogSiteName);setPropertyMeta('og:url',window.location.href);setMeta('twitter:card','summary_large_image');setMeta('twitter:title',SEO_CONFIG.title);setMeta('twitter:description',SEO_CONFIG.description);setCanonical()}
+function apiUrl(path,query){return CONFIG.API_BASE.replace(/\/$/,'')+(catalog.prefix||'')+path+(query?'?'+query:'')}
+async function fetchJson(url,opts){opts=opts||{};var ctl=new AbortController();var timer=setTimeout(function(){ctl.abort()},CONFIG.REQUEST_TIMEOUT);try{var headers=Object.assign({'Accept':'application/json'},opts.headers||{});var r=await fetch(url,{...opts,signal:ctl.signal,headers:headers}),data=await r.json().catch(function(){return{}});if(!r.ok){var msg=(data&&data.detail)||(data&&data.message)||(data&&data.title)||('HTTP '+r.status),code=data&&data.code?String(data.code):'',e=new Error(code?(code+' — '+msg):msg);e.status=r.status;e.code=code;e.data=data;e.retryAfter=r.headers.get('Retry-After');throw e}return data}finally{clearTimeout(timer)}}
+async function detectPrefix(){catalog.prefix='';try{catalog.refs=await fetchJson(apiUrl('/reference'));return catalog.refs}catch(e){return null}}
+function arrFromRefs(obj,key){if(!obj)return null;var v=obj[key]||obj[key+'s']||(obj.enums&&obj.enums[key])||(obj.values&&obj.values[key]);if(!Array.isArray(v))return null;return v.map(function(x){if(typeof x==='string')return[x,x];return[x.code??x.value??x.id??x.key,String(x.label??x.name??x.title??x.code??x.value??'')]}).filter(function(x){return x[0]})}
+function getEnums(key){return arrFromRefs(catalog.refs,key)||fallbackEnums[key]||[]}
+function getSourceEnums(key){var v=getEnums(key);if(key==='fuel'&&(!v||!v.length))return RD_FALLBACK_FUEL;return v||[]}
+function rawCount(x){if(!x||typeof x!=='object'||Array.isArray(x))return null;var v=x.count??x.carsCount??x.listingCount??x.vehicleCount??x.vehiclesCount??x.totalCount??x.total??x.meta?.count??x.stats?.count;return v==null||v===''?null:Number(v)}
+function allBrandList(){var b=catalog.brands,a=[];if(Array.isArray(b))a=b;else if(b&&Array.isArray(b.items))a=b.items;else if(b&&Array.isArray(b.brands))a=b.brands;else if(b&&Array.isArray(b.data))a=b.data;if(a.length)return a.map(function(x){if(Array.isArray(x))return[x[0],x[1],null,x[2]??null];return[x.code??x.id??x.slug,x.name??x.label??x.title,rawCount(x),x.models||x.items||[]]});return fallbackBrands.map(function(x){return[x[0],x[1],null,[]]})}
+function modelsForBrand(){var b=catalog.brands;if(!b)return[];var arr=Array.isArray(b)?b:(b.items||b.brands||b.data||[]);for(var i=0;i<arr.length;i++){var x=arr[i],code=Array.isArray(x)?x[0]:x.code??x.id??x.slug;if(String(code)===String(state.brand)){var m=Array.isArray(x)?x[2]||[]:x.models||x.items||[];return(m||[]).map(function(y){if(Array.isArray(y))return[y[0],y[1],y[2]??null];return[y.code??y.id??y.slug,y.name??y.label,rawCount(y)]})}}return[]}
+function labelFor(key,code){var a=getSourceEnums(key).find(function(x){return String(x[0])===String(code)});return a?a[1]:code}
+function brandName(code){var a=allBrandList().find(function(x){return String(x[0])===String(code)});return a?a[1]:code}
+function modelName(code){var a=modelsForBrand().find(function(x){return String(x[0])===String(code)});return a?a[1]:code}
+function hasFilters(){return Boolean(state.brand||state.model||state.country||state.firstLine||state.minPrice||state.maxPrice||state.minYear||state.maxYear||state.newCars||state.minMileage||state.maxMileage||state.q||state.fuel.length||state.body.length||state.gearbox.length||state.drive.length||state.color.length||state.source.length)}
+function serialize(countryKey,countryValue){var p=new URLSearchParams();p.set('page',state.page);p.set('pageSize',state.pageSize);p.set('sort',state.sort);p.set('order',state.order);var map={brand:state.brand,model:state.model,minSourcePrice:state.minPrice,maxSourcePrice:state.maxPrice,minYear:state.minYear,maxYear:state.maxYear,minMileage:state.minMileage,maxMileage:state.maxMileage,q:state.q,body:state.body.join(','),gearbox:state.gearbox.join(','),drive:state.drive.join(','),color:state.color.join(','),source:state.source.join(',')};Object.keys(map).forEach(function(k){var v=map[k];if(v!==''&&v!==null&&v!==undefined){if(Array.isArray(v)){if(v.length)p.set(k,v.join(','))}else p.set(k,v)}});if(state.fuel.length)p.set('fuel',state.fuel.join(','));if(countryKey&&countryValue!=null&&countryValue!=='')p.set(countryKey,countryValue);return p.toString()}
+function filterIcon(type){var p=RD_SVG[type];return p?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>':''}
+function brandCountFor(x){if(!x)return null;var v=x[2];if(v!=null&&v!=='')return Number(v);return null}
+function brandOptionButton(value,label,selected,count){var right=count!=null&&!Number.isNaN(Number(count))?'<span class="rd-option-count">'+esc(num(count))+'</span>':'';return'<button type="button" class="rd-option" data-brand="'+esc(value)+'" aria-selected="'+(selected?'true':'false')+'"><span class="rd-option-label">'+esc(label)+'</span><span class="rd-option-right">'+right+(selected?'<span class="rd-option-check">✓</span>':'')+'</span></button>'}
+function modelOptionButton(value,label,selected,count){var right=count!=null&&!Number.isNaN(Number(count))?'<span class="rd-option-count">'+esc(num(count))+'</span>':'';return'<button type="button" class="rd-option" data-model="'+esc(value)+'" aria-selected="'+(selected?'true':'false')+'"><span class="rd-option-label">'+esc(label)+'</span><span class="rd-option-right">'+right+(selected?'<span class="rd-option-check">✓</span>':'')+'</span></button>'}
+function popularMarkup(){return'<div class="rd-popular-side"><p>Популярные марки</p><div class="rd-popular-side-row">'+popular.map(function(x){var selected=String(state.brand)===String(x[0]);return'<button type="button" class="rd-option" data-popular="'+esc(x[0])+'" aria-selected="'+(selected?'true':'false')+'"><span class="rd-option-label">'+esc(x[1])+'</span>'+(selected?'<span class="rd-option-check">✓</span>':'')+'</button>'}).join('')+'</div></div>'}
+function popularTopMarkup(){return'<div class="rd-popular-top" id="rd-popular-top"><span class="rd-popular-top-label">Популярные:</span><span class="rd-popular-top-track">'+popular.map(function(x){return'<button type="button" class="rd-chip-source '+(String(state.brand)===String(x[0])?'active':'')+'" data-popular="'+esc(x[0])+'">'+esc(x[1])+'</button>'}).join('')+'</span></div>'}
+function autoField(kind){var isBrand=kind==='brand';var selected=isBrand?state.brand:state.model;var disabled=!isBrand&&!state.brand;var label=isBrand?(selected?brandName(selected):'Все марки'):(selected?modelName(selected):(state.brand?'Все модели':'Сначала выберите марку'));var vals=isBrand?allBrandList():modelsForBrand();var opts='';if(isBrand){opts=popularMarkup()+'<div class="rd-pop-caption">Все марки</div><button type="button" class="rd-option" data-brand="" aria-selected="'+(!selected)+'"><span class="rd-option-label">Все марки</span>'+(!selected?'<span class="rd-option-check">✓</span>':'')+'</button>'+vals.map(function(x){return brandOptionButton(x[0],x[1],String(selected)===String(x[0]),brandCountFor(x))}).join('')}else{opts='<button type="button" class="rd-option" data-model="" aria-selected="'+(!selected)+'"><span class="rd-option-label">'+(state.brand?'Все модели':'Сначала выберите марку')+'</span>'+(!selected?'<span class="rd-option-check">✓</span>':'')+'</button>'+vals.map(function(x){return modelOptionButton(x[0],x[1],String(selected)===String(x[0]),x[2])}).join('')}return'<div class="rd-autocomplete" data-autocomplete="'+kind+'" data-has-value="'+(selected?'true':'false')+'"><div class="rd-source-label">'+(isBrand?'Марка':'Модель')+'</div><div class="rd-autotrigger-group" role="group" tabindex="0"><span class="rd-field-value '+(!selected?'rd-field-placeholder':'')+'">'+esc(label)+'</span><button type="button" class="rd-autotrigger-clear" data-auto-clear="'+kind+'" aria-label="Очистить '+(isBrand?'марку':'модель')+'" '+(!selected?'disabled':'')+'>'+RD_SVG.x+'</button><button type="button" class="rd-autotrigger-open" data-auto-open="'+kind+'" '+(disabled?'disabled':'')+' aria-haspopup="listbox" aria-expanded="false" aria-label="'+(isBrand?'Марка':'Модель')+'">'+RD_SVG.chev+'</button></div><div class="rd-autopop"><input class="rd-auto-search" data-auto-search="'+kind+'" placeholder="Поиск '+(isBrand?'марки':'модели')+'…" aria-label="Поиск '+(isBrand?'марки':'модели')+'"><div class="rd-autolist">'+opts+'</div></div></div>'}
+function numberField(key,ph){var v=state[key]||'';return'<div class="rd-numberbox '+(v?'filled':'')+'"><input class="rd-filter-input" data-filter="'+key+'" inputmode="numeric" value="'+esc(v)+'" placeholder="'+ph+'" aria-label="'+ph+'"><button type="button" class="rd-clear-input" data-clear="'+key+'" aria-label="Очистить">'+RD_SVG.x+'</button></div>'}
+function priceSelect(key,ph){var v=state[key]||'',display=v?priceDisplay(v):ph;var opts='<button type="button" class="rd-option" data-price-code="" data-key="'+key+'" aria-checked="'+(!v)+'"><span>'+esc(ph)+'</span>'+(!v?'<span class="rd-option-check">✓</span>':'')+'</button>'+RD_PRICE_OPTIONS.map(function(x){var on=String(v)===String(x[0]);return'<button type="button" class="rd-option" data-price-code="'+esc(x[0])+'" data-key="'+key+'" aria-checked="'+on+'"><span>'+esc(priceDisplay(x[1]))+' $</span>'+(on?'<span class="rd-option-check">✓</span>':'')+'</button>'}).join('');return'<div class="rd-selectbox" data-selectbox="'+key+'"><button type="button" class="rd-seltrigger" data-select-open="'+key+'" aria-haspopup="listbox" aria-expanded="false"><span class="rd-field-value '+(!v?'rd-field-placeholder':'')+'">'+esc(display)+'</span>'+RD_SVG.chev+'</button><div class="rd-options-pop">'+opts+'</div></div>'}
+function sourceSelect(key,placeholder,vals,multiple){var chosen=state[key]||[];var display=multiple?(chosen.length?chosen.map(function(x){return labelFor(key,x)}).join(', '):placeholder):(chosen||placeholder);var opts=vals.map(function(x){var on=multiple?chosen.indexOf(x[0])>=0:String(chosen)===String(x[0]);return'<button type="button" class="rd-option" data-'+(multiple?'multi-code':'select-code')+'="'+esc(x[0])+'" data-key="'+key+'" aria-checked="'+(on?'true':'false')+'"><span class="rd-option-checkbox">'+(on?'✓':'')+'</span><span style="flex:1">'+esc(x[1])+'</span></button>'}).join('');return'<div class="rd-selectbox" data-selectbox="'+key+'"><button type="button" class="rd-seltrigger" data-select-open="'+key+'" aria-haspopup="listbox" aria-expanded="false"><span class="rd-field-value '+(!chosen.length?'rd-field-placeholder':'')+'">'+esc(display)+'</span>'+RD_SVG.chev+'</button><div class="rd-options-pop">'+opts+'</div></div>'}
+function sourceYears(key,ph){var v=state[key]||'';var opts=RD_YEARS.map(function(y){return'<button type="button" class="rd-option" data-select-code="'+y+'" data-key="'+key+'" aria-checked="'+(String(v)===String(y))+'"><span>'+y+'</span>'+(String(v)===String(y)?'<span class="rd-option-check">✓</span>':'')+'</button>'}).join('');return'<div class="rd-selectbox" data-selectbox="'+key+'"><button type="button" class="rd-seltrigger" data-select-open="'+key+'" aria-haspopup="listbox" aria-expanded="false"><span class="rd-field-value '+(!v?'rd-field-placeholder':'')+'">'+(v?v:ph)+'</span>'+RD_SVG.chev+'</button><div class="rd-options-pop">'+opts+'</div></div>'}
+function sourceMileage(key,ph){var v=state[key]||'',isDisabled=state.newCars;var opts=RD_MILEAGE.map(function(x){var on=String(v)===String(x);return'<button type="button" class="rd-option" data-select-code="'+x+'" data-key="'+key+'" aria-checked="'+on+'" '+(isDisabled?'disabled':'')+'><span>'+num(x)+'</span>'+(on?'<span class="rd-option-check">✓</span>':'')+'</button>'}).join('');return'<div class="rd-selectbox '+(isDisabled?'is-disabled':'')+'" data-selectbox="'+key+'"><button type="button" class="rd-seltrigger" data-select-open="'+key+'" aria-haspopup="listbox" aria-expanded="false" '+(isDisabled?'disabled':'')+'><span class="rd-field-value '+(!v?'rd-field-placeholder':'')+'">'+(v?num(v):ph)+'</span>'+RD_SVG.chev+'</button><div class="rd-options-pop">'+opts+'</div></div>'}
+function enumChips(key,title){var vals=getSourceEnums(key),chosen=state[key]||[];return'<div style="margin-top:10px"><div class="rd-source-label">'+esc(title)+'</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+vals.map(function(x){var on=chosen.indexOf(x[0])>=0;return'<button type="button" class="rd-chip-source '+(on?'active':'')+'" data-chip-key="'+key+'" data-chip-code="'+esc(x[0])+'">'+esc(x[1])+'</button>'}).join('')+'</div></div>'}
+function filterMarkup(skipAuto,mobileMode){var auto=skipAuto?'':autoField('brand')+autoField('model');var priceMarkup=mobileMode?'<div class="rd-block"><div class="rd-block-label"><span class="rd-icon-badge">'+filterIcon('dollar')+'</span>Цена в Китае, $</div><div class="rd-two">'+priceSelect('minPrice','от')+priceSelect('maxPrice','до')+'</div></div>':'<div class="rd-block"><div class="rd-block-label"><span class="rd-icon-badge">'+filterIcon('dollar')+'</span>Цена с доставкой, $</div><div class="rd-two">'+priceSelect('minPrice','от')+priceSelect('maxPrice','до')+'</div></div>';return'<div class="rd-source-sidebar">'+(mobileMode?'<div class="rd-mobile-source-head"><div class="rd-country-group" role="radiogroup">'+[['','Все'],['CN','Китай'],['KR','Корея']].map(function(x){return'<button type="button" class="rd-country-btn '+(state.country===x[0]?'active':'')+'" data-country="'+x[0]+'" data-selected="'+(state.country===x[0]?'true':'false')+'" role="radio" aria-checked="'+(state.country===x[0])+'">'+x[1]+'</button>'}).join('')+'</div><button type="button" class="rd-mobile-source-close" data-action="close-mobile-filters" aria-label="Закрыть">'+RD_SVG.x+'</button></div>':'')+'<div class="rd-filter-stack">'+(mobileMode?'<div class="rd-mobile-filter-count" id="rd-mobile-filter-count" aria-live="polite">'+RD_SVG.car+'<span>'+num(catalog.meta&&catalog.meta.totalCount!=null?catalog.meta.totalCount:catalog.items.length)+' авто</span></div>':'')+auto+'<div class="rd-country-row"><div><div class="rd-source-label">Страна отгрузки</div><div class="rd-country-group" role="radiogroup">'+[['','Все'],['CN','Китай'],['KR','Корея']].map(function(x){return'<button type="button" class="rd-country-btn '+(state.country===x[0]?'active':'')+'" data-country="'+x[0]+'" data-selected="'+(state.country===x[0]?'true':'false')+'" role="radio" aria-checked="'+(state.country===x[0])+'">'+x[1]+'</button>'}).join('')+'</div></div><div class="rd-source-tools"><button type="button" class="rd-source-ghost '+(state.firstLine?'active':'')+'" data-action="first-line"><span>С отчётом</span></button><button type="button" class="rd-icon-info" data-info="report" aria-label="Что такое «С отчётом»">'+RD_SVG.info+'</button></div></div><div class="rd-source-separator" style="width:100%;height:1px;margin:4px 0 0"></div>'+priceMarkup+'<div class="rd-block"><div class="rd-block-label"><span class="rd-icon-badge">'+filterIcon('calendar')+'</span>Год выпуска</div><div class="rd-two">'+sourceYears('minYear','от')+sourceYears('maxYear','до')+'</div></div><div class="rd-block"><div class="rd-mileage-head"><div class="rd-block-label" style="margin:0"><span class="rd-icon-badge">'+filterIcon('route')+'</span>Пробег, км</div><div class="rd-switch-line"><button type="button" class="rd-switch '+(state.newCars?'on':'')+'" data-action="new-cars" aria-pressed="'+state.newCars+'"><i></i></button><span class="rd-switch-label">Новые</span><button type="button" class="rd-icon-info" data-info="newcars" aria-label="Что значит «Новые» по пробегу">'+RD_SVG.info+'</button></div></div><div class="rd-two">'+sourceMileage('minMileage','от')+sourceMileage('maxMileage','до')+'</div></div><div class="rd-block"><div class="rd-block-label"><span class="rd-icon-badge">'+filterIcon('fuel')+'</span>Тип топлива</div>'+sourceSelect('fuel','Любой',getSourceEnums('fuel'),true)+'</div><div class="rd-disclosure-source '+(catalog.advanced?'open':'')+'"><button type="button" data-action="advanced"><span>Дополнительно</span>'+RD_SVG.chev+'</button><div class="rd-disclosure-body">'+enumChips('body','Кузов')+enumChips('gearbox','Коробка')+enumChips('drive','Привод')+enumChips('color','Цвет')+'</div></div><button type="button" class="rd-reset-source" data-action="reset" '+(!hasFilters()?'disabled':'')+'>'+RD_SVG.x+'<span>Сбросить фильтры</span></button></div></div>'+(mobileMode?'<div class="rd-mobile-source-footer"><button type="button" class="rd-mobile-source-collapse" data-action="close-mobile-filters">Применить</button></div>':'')}
+function renderShell(){root.innerHTML='<main class="rd-main"><div class="rd-breadcrumb"><a href="/">Главная</a><span class="rd-breadcrumb-sep">›</span><span class="rd-breadcrumb-current">Каталог автомобилей</span></div><div class="rd-heading"><h1>Автомобили из Китая, Кореи и США с доставкой в Беларусь</h1><p>Каталог автомобилей Красного Дракона. Подберите авто из Китая, Кореи и США по марке, модели, цене, году выпуска, пробегу и другим параметрам. <span class="rd-mobile-delivery-note">Стоимость и условия доставки уточняются для каждого автомобиля отдельно.</span></p></div><div class="rd-layout"><div class="rd-sidebar-wrap"><aside class="rd-sidebar" id="rd-sidebar"></aside></div><section class="rd-results"><div class="rd-mobile-popular" id="rd-mobile-popular"></div><div class="rd-mobile-quick-filters" id="rd-mobile-quick-filters"></div><div class="rd-mobile-filters" id="rd-mobile-filters"><div class="rd-mobile-source" id="rd-mobile-source"></div></div>'+popularTopMarkup()+'<div class="rd-search-wrap" id="rd-search-wrap"><span class="rd-search-icon">'+RD_SVG.search+'</span><input id="rd-global-search" class="rd-search" data-global-search type="search" maxlength="300" placeholder="Найти авто: марка, модель, цена…" aria-label="Найти авто: марка, модель, цена…"><button type="button" class="rd-search-clear" data-clear-search aria-label="Очистить поиск">'+RD_SVG.x+'</button></div><div class="rd-active-source" id="rd-active-source"></div><div class="rd-toolbar"><div class="rd-toolbar-left"><span class="rd-count" id="rd-count"></span><a class="rd-subscribe" href="https://red-dragon.by/podbor-auto/" aria-label="Оставить заявку на подбор"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg><span>Оставить заявку на подбор</span></a></div><div class="rd-toolbar-right"><div class="rd-sortbox" data-sortbox><button type="button" class="rd-sorttrigger" data-sort-open aria-haspopup="listbox" aria-expanded="false"><span id="rd-sort-label">По дате</span>'+RD_SVG.arrow+'</button><div class="rd-sort-pop">'+sortOption('added|desc','Новые объявления')+sortOption('price|asc','Цена: по возрастанию')+sortOption('price|desc','Цена: по убыванию')+sortOption('year|desc','Новее по году выпуска')+sortOption('mileage|asc','Меньший пробег')+'</div></div><div class="rd-view-group"><button class="rd-view" data-view="grid" aria-label="Карточки">'+RD_SVG.grid+'</button><button class="rd-view" data-view="list" aria-label="Список">'+RD_SVG.list+'</button></div><button class="rd-mobile-filter-button" data-action="mobile-filters">'+RD_SVG.sliders+'<span>Фильтры</span></button></div></div><button type="button" class="rd-mobile-reset-filter" data-action="reset">'+RD_SVG.x+'<span>Сброс фильтра</span></button><div class="rd-count-mobile" id="rd-count-mobile"></div><div id="rd-errors"></div><div id="rd-grid" class="rd-grid"></div><div id="rd-more-status"></div><div id="rd-pagination"></div><div id="rd-request-cta"></div><div class="rd-mobile-helper" id="rd-mobile-helper"></div><p class="rd-small-note" style="margin:16px 2px 0;color:var(--rd-muted);font-size:12px;line-height:18px">В карточках — исходная цена автомобиля у продавца, без доставки и обязательных платежей. Стоимость с доставкой и таможней рассчитывается отдельно.</p><section class="rd-seo-content" aria-label="Информация о покупке автомобилей"><h2>Автомобили из Китая, Кореи и США</h2><p>Красный Дракон поставляет автомобили из Китая, Кореи и США. В каталоге можно подобрать автомобиль по марке, модели, цене, году выпуска, пробегу, типу топлива, кузову, коробке передач и другим параметрам. Доступность конкретного автомобиля и стоимость доставки зависят от выбранного варианта.</p><h2>Автомобили из Китая с доставкой в Беларусь</h2><p>В каталоге представлены автомобили китайских производителей и автомобили международных марок, доступные на китайском рынке. Выберите марку и модель, задайте бюджет и дополнительные параметры, чтобы найти подходящие варианты.</p><h2>Автомобили из Кореи с доставкой в Беларусь</h2><p>Красный Дракон помогает подбирать автомобили с корейских площадок. Вы можете сравнить варианты по стоимости, году выпуска, пробегу, типу топлива и другим характеристикам, а затем запросить расчёт доставки в Беларусь.</p><h2>Автомобили из США</h2><p>Автомобили из США также являются отдельным направлением поставок Красного Дракона. Для конкретного автомобиля можно уточнить доступность, характеристики и итоговую стоимость поставки.</p><h2>Как выбрать автомобиль</h2><h3>Выберите марку и модель</h3><p>Начните с выбора производителя и модели. В каталоге доступны популярные марки, а также широкий перечень других производителей.</p><h3>Задайте бюджет и характеристики</h3><p>Используйте фильтры по цене, году выпуска, пробегу, топливу, кузову, коробке передач, приводу и цвету. Это позволяет сократить количество подходящих предложений.</p><h3>Уточните стоимость доставки</h3><p>Цена автомобиля в карточке и окончательная стоимость поставки — разные показатели. После выбора автомобиля партнёр может уточнить стоимость доставки и обязательных платежей.</p><h2>Красный Дракон — поставка автомобилей в Беларусь</h2><p>Мы помогаем подобрать автомобили из Китая, Кореи и США и организовать их поставку в Беларусь. Используйте каталог для поиска подходящего варианта или отправьте заявку на подбор, если нужного автомобиля нет среди найденных предложений.</p></section></section></div></main><div class="rd-tooltip" id="rd-tooltip"></div>'}
+function sortOption(value,label){var parts=value.split('|');return'<button type="button" class="rd-sort-option '+(state.sort===parts[0]&&state.order===parts[1]?'active':'')+'" data-sort-code="'+value+'"><span>'+label+'</span>'+(state.sort===parts[0]&&state.order===parts[1]?'<span class="rd-sort-check">✓</span>':'')+'</button>'}
+function sortButtonLabel(){if(state.sort==='price'&&state.order==='asc')return'Цена min';if(state.sort==='price'&&state.order==='desc')return'Цена max';if(state.sort==='year'&&state.order==='desc')return'Новее';if(state.sort==='mileage'&&state.order==='asc')return'Пробег min';return'По дате'}
+function renderSort(){var label='По дате';if(window.matchMedia('(max-width:1023px)').matches)label=sortButtonLabel();else if(state.sort==='price'&&state.order==='asc')label='Цена: по возрастанию';else if(state.sort==='price'&&state.order==='desc')label='Цена: по убыванию';else if(state.sort==='year')label='Новее по году выпуска';else if(state.sort==='mileage')label='Меньший пробег';var s=root.querySelector('#rd-sort-label');if(s)s.textContent=label;var p=root.querySelector('.rd-sort-pop');if(p)p.innerHTML=sortOption('added|desc','Новые объявления')+sortOption('price|asc','Цена: по возрастанию')+sortOption('price|desc','Цена: по убыванию')+sortOption('year|desc','Новее по году выпуска')+sortOption('mileage|asc','Меньший пробег')}
+function renderSidebar(){var y=window.scrollY||window.pageYOffset||0,mob=root.querySelector('#rd-mobile-source'),mobileScrollTop=mob&&mob.querySelector('.rd-source-sidebar')?mob.querySelector('.rd-source-sidebar').scrollTop:0,openAcs=[],openSels=[],adv=catalog.advanced;root.querySelectorAll('.rd-autocomplete.open').forEach(function(x){openAcs.push(x.getAttribute('data-autocomplete'))});root.querySelectorAll('.rd-selectbox.open').forEach(function(x){openSels.push(x.getAttribute('data-selectbox'))});var d=root.querySelector('#rd-sidebar');if(d)d.innerHTML=filterMarkup(false,false);if(mob)mob.innerHTML=filterMarkup(false,true);var q=root.querySelector('#rd-mobile-quick-filters');if(q)q.innerHTML=autoField('brand')+autoField('model');openAcs.forEach(function(name){root.querySelectorAll('[data-autocomplete="'+name+'"]').forEach(function(x){x.classList.add('open');var b=x.querySelector('[data-auto-open]');if(b)b.setAttribute('aria-expanded','true')})});openSels.forEach(function(name){root.querySelectorAll('[data-selectbox="'+name+'"]').forEach(function(x){x.classList.add('open');var b=x.querySelector('[data-select-open]');if(b)b.setAttribute('aria-expanded','true')})});root.querySelectorAll('.rd-disclosure-source').forEach(function(x){x.classList.toggle('open',adv)});root.querySelectorAll('[data-popular]').forEach(function(b){b.classList.toggle('active',String(b.getAttribute('data-popular'))===String(state.brand))});requestAnimationFrame(function(){window.scrollTo({top:y,left:window.scrollX,behavior:'auto'});var box=root.querySelector('#rd-mobile-source .rd-source-sidebar');if(box)box.scrollTop=mobileScrollTop;syncMobileFilterCountWidth()});renderActiveFilters();syncSearch()}
+function renderActiveFilters(){var a=root.querySelector('#rd-active-source');if(!a)return;var tags=[];if(state.brand)tags.push(['brand','Марка: '+brandName(state.brand)]);if(state.model)tags.push(['model','Модель: '+modelName(state.model)]);if(state.country)tags.push(['country',state.country==='CN'?'Китай':'Корея']);if(state.firstLine)tags.push(['firstLine','С отчётом']);if(state.minPrice)tags.push(['minPrice','Цена от '+priceDisplay(state.minPrice)+' $']);if(state.maxPrice)tags.push(['maxPrice','Цена до '+priceDisplay(state.maxPrice)+' $']);if(state.minYear)tags.push(['minYear','Год от '+state.minYear]);if(state.maxYear)tags.push(['maxYear','Год до '+state.maxYear]);if(state.minMileage)tags.push(['minMileage','Пробег от '+num(state.minMileage)+' км']);if(state.maxMileage)tags.push(['maxMileage','Пробег до '+num(state.maxMileage)+' км']);['fuel','body','gearbox','drive','color'].forEach(function(k){(state[k]||[]).forEach(function(v){tags.push([k+':'+v,labelFor(k,v)])})});a.innerHTML=tags.map(function(x){return'<button type="button" data-tag="'+esc(x[0])+'"><span>'+esc(x[1])+'</span>'+RD_SVG.x+'</button>'}).join('')}
+function syncSearch(){var i=root.querySelector('#rd-global-search'),w=root.querySelector('#rd-search-wrap');if(!i)return;i.value=state.q||'';if(w)w.classList.toggle('filled',Boolean(state.q))}
+function renderCount(){var total=catalog.meta&&catalog.meta.totalCount!=null?catalog.meta.totalCount:catalog.items.length;var txt=num(total)+' авто';var el=root.querySelector('#rd-count');if(el)el.innerHTML=RD_SVG.car+'<span>'+txt+'</span>';var mobile=root.querySelector('#rd-count-mobile');if(mobile)mobile.innerHTML='<span class="rd-count">'+RD_SVG.car+'<span>'+txt+'</span></span>';var filterMobile=root.querySelector('#rd-mobile-filter-count');if(filterMobile)filterMobile.innerHTML=RD_SVG.car+'<span>'+txt+'</span>'}
+function normalizeCountry(v){if(v==null||v==='')return'';if(typeof v==='object'){return String(v.code??v.iso2??v.isoCode??v.countryCode??v.name??v.label??v.title??'').trim()}return String(v).trim()}
+function countryFlag(c){var v=normalizeCountry(c).toLowerCase();if(['cn','china','chinese','китай','кнр','中国'].indexOf(v)>=0)return'<span class="rd-flag" aria-label="Китай" title="Китай"><img src="https://static.tildacdn.biz/tild3236-6661-4234-b532-373737636239/250px-Flag_of_the_Pe.jpg" alt="Китай" loading="lazy"></span>';if(['kr','korea','south korea','korean','корея','южная корея','대한민국','한국'].indexOf(v)>=0)return'<span class="rd-flag" aria-label="Корея" title="Корея"><img src="https://static.tildacdn.biz/tild3733-3439-4336-b163-346463356262/Flag_of_South_Korea.jpg" alt="Корея" loading="lazy"></span>';return''}
+function countryName(v){var n=normalizeCountry(v).toLowerCase();if(['cn','china','chinese','китай','кнр','中国'].indexOf(n)>=0)return'Китай';if(['kr','korea','south korea','korean','корея','южная корея','대한민국','한국'].indexOf(n)>=0)return'Корея';return normalizeCountry(v)}
+function ownersWord(n){n=Number(n);var m=n%10,p=n%100;return m===1&&p!==11?'владелец':m>=2&&m<=4&&(p<12||p>14)?'владельца':'владельцев'}
+function conditionRefBuild(obj){var map=catalog.conditionRefMap||{};function walk(v,depth){if(v==null||depth>6)return;if(Array.isArray(v)){v.forEach(function(x){if(x&&typeof x==='object'){var code=x.code??x.value??x.id??x.key,lab=x.label??x.name??x.title??x.text;if(code!=null&&lab!=null)map[String(code)]=String(lab);walk(x,depth+1)}});return}if(typeof v==='object'){var keys=Object.keys(v);keys.forEach(function(k){var x=v[k];if(/condition/i.test(k)&&Array.isArray(x)){x.forEach(function(y){if(y&&typeof y==='object'){var code=y.code??y.value??y.id??y.key,lab=y.label??y.name??y.title??y.text;if(code!=null&&lab!=null)map[String(code)]=String(lab)}})}walk(x,depth+1)})}}walk(obj,0);catalog.conditionRefMap=map;return map}
+function conditionScoreRaw(it){var v=it?.conditionScore??it?.syncRecord?.conditionScore??it?.data?.conditionScore;if(v===undefined||v===null||v==='')return null;var n=Number(v);return Number.isFinite(n)?Math.max(0,Math.min(100,n)):null}
+function conditionInfo(it){var score=conditionScoreRaw(it);if(score===null)return{label:'Без оценки',cls:'unrated',real:false};if(score>=90)return{label:'Превосходное',cls:'superb',real:true};if(score>=70)return{label:'Отличное',cls:'excellent',real:true};if(score>=50)return{label:'Хорошее',cls:'good',real:true};if(score>=30)return{label:'Среднее',cls:'average',real:true};return{label:'Ниже среднего',cls:'low',real:true}}
+function getItemCountry(it){return it?.source?.countryCode??it?.source?.country??it?.source?.country?.code??it?.source?.country?.name??it?.countryCode??it?.country??it?.sourceCountryCode??it?.sourceCountry??it?.originCountryCode??it?.originCountry??it?.shippingCountryCode??it?.shippingCountry??it?.shipment?.countryCode??it?.shipment?.country??''}
+function countryMatchesValue(it,country){var v=normalizeCountry(getItemCountry(it)).toLowerCase().trim();if(country==='CN')return['cn','china','chinese','китай','кнр','中国'].indexOf(v)>=0;if(country==='KR')return['kr','korea','south korea','korean','корея','южная корея','대한민국','한국'].indexOf(v)>=0;return false}
+function countryResponseIsValid(data,country){var items=responseItems(data),total=responseTotal(data);if(!items.length)return Number(total)>0;var matched=0,known=0;items.forEach(function(it){var c=getItemCountry(it);if(c){known++;if(countryMatchesValue(it,country))matched++}});if(known)return matched/known>=.7;return Number(total)>0}
+function getCountryReferenceValues(country){var out=[],keys=['country','countries','sourceCountry','sourceCountries','countryCode','countryCodes','sourceCountryCode','sourceCountryCodes'];function add(v){if(!Array.isArray(v))return;v.forEach(function(x){if(Array.isArray(x)){if(x[0]!=null)out.push(String(x[0]));return}if(typeof x==='string'){out.push(x);return}if(x&&typeof x==='object'){var code=x.code??x.value??x.id??x.key;if(code!=null)out.push(String(code))}})}keys.forEach(function(k){if(catalog.refs&&catalog.refs[k]!=null)add(catalog.refs[k]);if(catalog.refs&&catalog.refs.enums)add(catalog.refs.enums[k]);if(catalog.refs&&catalog.refs.values)add(catalog.refs.values[k])});var wanted=country==='CN'?['CN','cn','china','CHINA','China','китай','Китай','КНР','中国']:['KR','kr','korea','KOREA','Korea','корея','Корея','Южная Корея','대한민국','한국'];var exact=[];out.forEach(function(v){if(wanted.indexOf(v)>=0&&!exact.includes(v))exact.push(v)});return exact}
+function countryRequestCandidates(country){var names=['country','countryCode','sourceCountry','sourceCountryCode','source_country','source_country_code'],values=getCountryReferenceValues(country),fallback=country==='CN'?['CN','cn','china','CHINA','China','китай','Китай','КНР','中国']:['KR','kr','korea','KOREA','Korea','корея','Корея','Южная Корея','대한민국','한국'];fallback.forEach(function(v){if(!values.includes(v))values.push(v)});var out=[];names.forEach(function(name){values.forEach(function(value){out.push([name,value])})});return out}
+function sourcePriceInfo(it){var sp=it?.sourcePrice;if(!sp)return{value:null,by:null,currency:'',country:countryName(getItemCountry(it))};var value=sp.usd!=null&&sp.usd!==''?Number(sp.usd):null;var rate=Number(catalog.meta?.rates?.perUsd?.BYN);var by=Number.isFinite(value)&&Number.isFinite(rate)?bynNumber(value*rate):null;return{value:Number.isFinite(value)?value:null,by:by,currency:sp.currency||'',country:countryName(getItemCountry(it))}}
+function cardData(it){var specs=it.specs||{},rawCountry=getItemCountry(it),country=countryName(rawCountry),photoUrls=[];if(it.cover?.url)photoUrls.push(it.cover.url);(it.photos||[]).forEach(function(p){var u=p?.url||p;if(u&&!photoUrls.includes(u))photoUrls.push(u)});var pc=Number(it.photoCount??it.photosCount??it.photos_count??photoUrls.length??0),sp=sourcePriceInfo(it),cond=conditionInfo(it);return{title:it.title||(it.brand?.name+' '+(it.model?.name||'')),id:it.id,year:it.year,mileage:it.mileage,fuel:labelFor('fuel',specs.fuel||it.fuel),price:sp.value,byPrice:sp.by,sourceCurrency:sp.currency,priceCaption:sp.country==='Корея'?'Цена в Корее':sp.country==='Китай'?'Цена в Китае':'Цена у источника',photoUrls:photoUrls,country:country,rawCountry:rawCountry,photoCount:pc,firstLine:Boolean(it.firstLine??it.isFirstLine??it.first_line),conditionInfo:cond,owners:it.owners,gearbox:labelFor('gearbox',specs.gearbox||it.gearbox),drive:labelFor('drive',specs.drive||it.drive),body:labelFor('body',specs.body||it.body),color:labelFor('color',specs.color||it.color)}}
+function renderCardImages(urls){var u=urls.slice(0,5);if(!u.length)return'<div style="display:grid;place-items:center;width:100%;height:100%;color:var(--rd-muted);font-size:12px">Нет фото</div>';var layers='',bars='',zones='';u.forEach(function(url,i){layers+='<img src="'+esc(url)+'" alt="" class="rd-carousel-layer '+(i===0?'active':'')+'" data-photo-layer="'+i+'" loading="'+(i===0?'eager':'lazy')+'" onerror="this.style.opacity=\'0\';">';bars+='<span class="'+(i===0?'active':'')+'"></span>';zones+='<button type="button" class="rd-zone" data-zone="'+i+'" aria-label="Фото '+(i+1)+'"></button>'});return'<div class="rd-carousel">'+layers+'</div><div class="rd-zones">'+zones+'</div><div class="rd-progress">'+bars+'</div>'}
+function setCardPhotoSwipe(media,index,direction){
+var layers=media.querySelectorAll('[data-photo-layer]');
+if(!layers.length)return;
+if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}
+var activeIndex=0;
+layers.forEach(function(img,i){if(img.classList.contains('active'))activeIndex=i});
+index=Math.max(0,Math.min(index,layers.length-1));
+if(index===activeIndex)return;
+var width=media.clientWidth||1,current=layers[activeIndex],next=layers[index],dir=direction||'next';
+layers.forEach(function(img,i){if(i!==activeIndex&&i!==index){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.visibility='hidden';img.style.opacity='1'}});
+current.style.visibility='visible';
+current.style.opacity='1';
+next.style.visibility='visible';
+next.style.opacity='1';
+next.style.transform='translate3d('+(dir==='next'?width:-width)+'px,0,0)';
+next.classList.add('active');
+current.classList.remove('active');
+void next.offsetWidth;
+current.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';
+next.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';
+current.style.transform='translate3d('+(dir==='next'?-width:width)+'px,0,0)';
+next.style.transform='translate3d(0,0,0)';
+media._rdSwipeTimer=setTimeout(function(){media._rdSwipeTimer=0;layers.forEach(function(img,i){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.visibility=i===index?'visible':'hidden';img.style.opacity='1';img.classList.toggle('active',i===index)})},320);
+media.querySelectorAll('.rd-progress span').forEach(function(s,i){s.classList.toggle('active',i===index)})
+}
+function bindMobilePhotoSwipe(g){
+if(!window.matchMedia('(max-width:639px)').matches||!g)return;
+g.querySelectorAll('.rd-card-media').forEach(function(media){
+var startX=0,startY=0,currentX=0,currentIndex=0;
+var swiping=false,dragging=false,hasMoved=false;
+var layers=media.querySelectorAll('[data-photo-layer]');
+if(!layers.length)return;
+function getIndex(){var active=media.querySelector('[data-photo-layer].active');return active?Number(active.getAttribute('data-photo-layer')||0):0}
+function resetDrag(){if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}var active=getIndex();layers.forEach(function(img,i){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.opacity='1';img.style.visibility=i===active?'visible':'hidden';img.classList.toggle('active',i===active)})}
+resetDrag();
+media.addEventListener('touchstart',function(e){if(!e.touches||!e.touches.length)return;if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}startX=currentX=e.touches[0].clientX;startY=e.touches[0].clientY;currentIndex=getIndex();swiping=false;dragging=false;hasMoved=false;resetDrag()},{passive:true});
+media.addEventListener('touchmove',function(e){if(!e.touches||!e.touches.length)return;currentX=e.touches[0].clientX;var currentY=e.touches[0].clientY,dx=currentX-startX,dy=currentY-startY;if(!hasMoved){if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)){swiping=true;dragging=true;hasMoved=true}else if(Math.abs(dy)>8&&Math.abs(dy)>Math.abs(dx)){hasMoved=true;return}}if(!dragging)return;e.preventDefault();var width=media.clientWidth||1,offset=Math.max(-width,Math.min(width,dx)),nextIndex=currentIndex;if(offset<0&&currentIndex<layers.length-1)nextIndex=currentIndex+1;if(offset>0&&currentIndex>0)nextIndex=currentIndex-1;var current=layers[currentIndex];current.style.transition='none';current.style.visibility='visible';current.style.opacity='1';current.style.transform='translate3d('+offset+'px,0,0)';if(nextIndex!==currentIndex){var next=layers[nextIndex],enter=offset<0?width:-width;next.style.transition='none';next.style.visibility='visible';next.style.opacity='1';next.style.transform='translate3d('+(enter+offset)+'px,0,0)'}},{passive:false});
+media.addEventListener('touchend',function(e){
+if(!swiping||!dragging){resetDrag();swiping=false;dragging=false;return}
+var dx=(e.changedTouches&&e.changedTouches.length?e.changedTouches[0].clientX:currentX)-startX,threshold=Math.max(42,(media.clientWidth||320)*.16),nextIndex=currentIndex,direction=dx<0?'next':'prev';
+if(Math.abs(dx)>=threshold){if(dx<0&&currentIndex<layers.length-1)nextIndex=currentIndex+1;if(dx>0&&currentIndex>0)nextIndex=currentIndex-1}
+if(nextIndex!==currentIndex){
+if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}
+var width=media.clientWidth||1,current=layers[currentIndex],next=layers[nextIndex];
+next.style.visibility='visible';
+next.style.opacity='1';
+next.style.transition='none';
+next.style.transform='translate3d('+(direction==='next'?width:-width)+'px,0,0)';
+next.classList.add('active');
+current.classList.remove('active');
+void next.offsetWidth;
+current.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';
+next.style.transition='transform 300ms cubic-bezier(.22,.61,.36,1)';
+current.style.transform='translate3d('+(direction==='next'?-width:width)+'px,0,0)';
+next.style.transform='translate3d(0,0,0)';
+media._rdSwipeTimer=setTimeout(function(){media._rdSwipeTimer=0;layers.forEach(function(img,i){img.style.transition='none';img.style.transform='translate3d(0,0,0)';img.style.visibility=i===nextIndex?'visible':'hidden';img.style.opacity='1';img.classList.toggle('active',i===nextIndex)})},320);
+media.querySelectorAll('.rd-progress span').forEach(function(s,i){s.classList.toggle('active',i===nextIndex)})
+}else{
+var current=layers[currentIndex],duration=260;
+if(media._rdSwipeTimer){clearTimeout(media._rdSwipeTimer);media._rdSwipeTimer=0}
+current.style.transition='transform '+duration+'ms cubic-bezier(.22,.61,.36,1)';
+current.style.transform='translate3d(0,0,0)';
+media._rdSwipeTimer=setTimeout(function(){media._rdSwipeTimer=0;resetDrag()},duration+20)
+}
+media.setAttribute('data-rd-swipe-ignore-click',Math.abs(dx)>=threshold?'1':'0');
+setTimeout(function(){media.removeAttribute('data-rd-swipe-ignore-click')},350);
+swiping=false;
+dragging=false;
+},{passive:true});
+media.addEventListener('touchcancel',function(){resetDrag();swiping=false;dragging=false},{passive:true});
+media.addEventListener('click',function(e){if(media.getAttribute('data-rd-swipe-ignore-click')==='1'){e.preventDefault();e.stopPropagation()}})
+})
+}
+function bindMobilePopularSwipe(){
+if(!window.matchMedia('(max-width:639px)').matches)return;
+var box=root.querySelector('#rd-popular-top'),track=box&&box.querySelector('.rd-popular-top-track');
+if(!box||!track||track.getAttribute('data-rd-popular-bound')==='1')return;
+track.setAttribute('data-rd-popular-bound','1');
+var sourceHtml=track.innerHTML;
+track.innerHTML='<span class="rd-popular-top-set">'+sourceHtml+'</span><span class="rd-popular-top-set">'+sourceHtml+'</span><span class="rd-popular-top-set">'+sourceHtml+'</span>';
+var firstSet=track.querySelector('.rd-popular-top-set');
+if(!firstSet)return;
+var position=0,cycleWidth=0,startX=0,lastX=0,lastTime=0,velocity=0,dragging=false,moved=false,raf=0,lastFrame=performance.now(),pausedUntil=0;
+var speed=.022;
+function normalize(){if(!cycleWidth)return;while(position<cycleWidth*.5)position+=cycleWidth;while(position>=cycleWidth*2.5)position-=cycleWidth}
+function render(){track.style.transform='translate3d('+(-position).toFixed(3)+'px,0,0)'}
+function measure(){cycleWidth=firstSet.getBoundingClientRect().width||0;if(!cycleWidth)return;if(!position)position=cycleWidth;normalize();render()}
+function stopAnimation(){if(raf){cancelAnimationFrame(raf);raf=0}}
+function animate(now){var dt=Math.min(40,Math.max(0,now-lastFrame));lastFrame=now;if(!dragging&&now>=pausedUntil){position+=speed*dt;normalize();render()}raf=requestAnimationFrame(animate)}
+function resumeAfter(ms){pausedUntil=performance.now()+(ms||0);stopAnimation();lastFrame=performance.now();raf=requestAnimationFrame(animate)}
+function inertialStop(initialVelocity){var v=initialVelocity,prev=performance.now();stopAnimation();function step(now){var dt=Math.min(32,now-prev);prev=now;position-=v*dt;normalize();render();v*=Math.pow(.0008,dt/1000);if(Math.abs(v)<.002){resumeAfter(900);return}requestAnimationFrame(step)}requestAnimationFrame(step)}
+measure();
+setTimeout(measure,0);
+try{var resizeObserver=new ResizeObserver(measure);resizeObserver.observe(box);resizeObserver.observe(firstSet)}catch(e){}
+window.addEventListener('resize',measure);
+resumeAfter(0);
+box.addEventListener('touchstart',function(e){if(!e.touches||!e.touches.length)return;stopAnimation();pausedUntil=Infinity;startX=lastX=e.touches[0].clientX;lastTime=performance.now();velocity=0;dragging=false;moved=false;track.style.transition='none'},{passive:true});
+box.addEventListener('touchmove',function(e){if(!e.touches||!e.touches.length)return;var now=performance.now(),x=e.touches[0].clientX,dx=x-lastX,dt=Math.max(8,now-lastTime);if(!dragging&&Math.abs(x-startX)>8){dragging=true;moved=true}if(!dragging){lastX=x;lastTime=now;return}e.preventDefault();position-=dx;normalize();render();velocity=dx/dt;lastX=x;lastTime=now},{passive:false});
+box.addEventListener('touchend',function(e){if(!dragging){resumeAfter(500);return}var now=performance.now(),x=(e.changedTouches&&e.changedTouches.length?e.changedTouches[0].clientX:lastX),dx=x-lastX,dt=Math.max(8,now-lastTime);if(Math.abs(dx)>0){position-=dx;normalize();render();velocity=dx/dt}if(moved)e.preventDefault();dragging=false;track.style.transition='none';inertialStop(Math.max(-.55,Math.min(.55,velocity)))},{passive:false});
+box.addEventListener('touchcancel',function(){if(!dragging){resumeAfter(500);return}dragging=false;inertialStop(0)},{passive:true});
+box.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}});
+}
+function renderItems(){
+var g=root.querySelector('#rd-grid');
+if(!g)return;
+if(!catalog.items.length){g.innerHTML='<div class="rd-status">По выбранным параметрам автомобили не найдены.</div>';renderPagination();return}
+g.className='rd-grid'+(state.view==='list'?' list':'');
+g.innerHTML=catalog.items.map(function(raw){
+var c=cardData(raw),fav=isFav(c.id),condition=c.conditionInfo,meta=[c.year?yearNumber(c.year):null,c.mileage!=null?num(c.mileage)+' км':null,c.fuel||null,c.owners!=null?num(c.owners)+' '+ownersWord(c.owners):null].filter(Boolean).join(' · '),href=CONFIG.DETAIL_MODE==='url'?CONFIG.CARD_URL_TEMPLATE.replace('{id}',encodeURIComponent(c.id)):'#',flag=countryFlag(c.rawCountry),conditionHtml='<div class="rd-condition '+condition.cls+'"><span>Состояние · </span><strong>'+esc(condition.label)+'</strong></div>',priceHtml=c.price!=null?'<div class="rd-price-block"><span class="rd-price-caption">'+esc(c.priceCaption)+'</span><div class="rd-price-row"><div class="rd-price"><span class="rd-dollar">$</span>'+moneyNumber(c.price)+'</div>'+(c.byPrice?'<span class="rd-byn">'+num(c.byPrice)+' BYN</span>':'')+'</div></div>':'<div class="rd-price-block"><span class="rd-price-caption">'+esc(c.priceCaption)+'</span><div class="rd-price-row"><div class="rd-price">—</div></div></div>';
+return'<article class="rd-card" data-id="'+esc(c.id)+'"><a href="'+href+'" class="rd-card-link"><div class="rd-card-media">'+renderCardImages(c.photoUrls)+'<div class="rd-card-top"><div class="rd-card-top-left">'+(state.firstLine?'<span class="rd-badge">С отчётом</span>':'')+'</div><button type="button" class="rd-fav '+(fav?'active':'')+'" data-fav="'+esc(c.id)+'" aria-label="'+(fav?'Убрать из избранного':'Добавить в избранное')+'" aria-pressed="'+(fav?'true':'false')+'"><svg width="24" height="24" viewBox="0 0 24 24" fill="'+(fav?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5Z"></path></svg></button></div>'+(flag?'<div class="rd-card-country-bottom">'+flag+'</div>':'')+(c.photoCount?'<div class="rd-card-photos">'+RD_SVG.camera+'<span>'+num(c.photoCount)+'</span></div>':'')+'</div><div class="rd-card-body"><h3 class="rd-card-title">'+esc(c.title)+'</h3>'+priceHtml+conditionHtml+'<p class="rd-meta">'+esc(meta)+'</p></div></a></article>'
+}).join('');
+if(!window.matchMedia('(max-width:639px)').matches){
+g.querySelectorAll('[data-zone]').forEach(function(btn){btn.addEventListener('mouseenter',function(){setCardPhoto(btn,Number(btn.getAttribute('data-zone')||0))});btn.addEventListener('mousemove',function(){setCardPhoto(btn,Number(btn.getAttribute('data-zone')||0))})});
+g.querySelectorAll('.rd-card-media').forEach(function(m){m.addEventListener('mouseleave',function(){setCardPhoto(m,0)})});
+}
+g.querySelectorAll('[data-fav]').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();toggleFav(btn.getAttribute('data-fav'))})});
+bindMobilePhotoSwipe(g)
+}
+function setCardPhoto(target,index){
+var media=target.classList&&target.classList.contains('rd-card-media')?target:target.closest('.rd-card-media');
+if(!media)return;
+var card=media.closest('.rd-card'),id=card&&card.getAttribute('data-id');
+if(!id)return;
+var raw=catalog.items.find(function(x){return String(x.id)===String(id)});
+if(!raw)return;
+var urls=cardData(raw).photoUrls.slice(0,5);
+if(!urls.length)return;
+index=Math.max(0,Math.min(index,urls.length-1));
+media.querySelectorAll('[data-photo-layer]').forEach(function(img,i){img.classList.toggle('active',i===index);img.style.transform='translateX(0)';img.style.opacity=i===index?'1':'0';img.style.transition=''});
+media.querySelectorAll('.rd-progress span').forEach(function(s,i){s.classList.toggle('active',i===index)})
+}
+function renderPagination(){
+var p=root.querySelector('#rd-pagination');
+if(!p)return;
+var total=Number(catalog.meta?.totalCount||0),max=Number(catalog.meta?.maxPage||Math.ceil(total/state.pageSize)||1),current=state.page;
+if(total&&catalog.meta?.hasMore===false)max=Math.max(1,current);
+max=Math.max(1,max);
+var start=Math.max(1,current-2),end=Math.min(max,current+2),a=[];
+a.push('<button class="rd-page-btn" data-page="'+Math.max(1,current-1)+'" '+(current===1?'disabled':'')+'>‹</button>');
+for(var i=start;i<=end;i++)a.push('<button class="rd-page-btn '+(i===current?'active':'')+'" data-page="'+i+'">'+i+'</button>');
+if(end<max)a.push('<span class="rd-page-dots">…</span><button class="rd-page-btn" data-page="'+max+'">'+max+'</button>');
+a.push('<button class="rd-page-btn" data-page="'+Math.min(max,current+1)+'" '+(current===max?'disabled':'')+'>›</button>');
+p.innerHTML='<div class="rd-pagination">'+a.join('')+'</div>'
+}
+function renderRequestCta(){var box=root.querySelector('#rd-request-cta');if(!box)return;box.innerHTML='<div class="rd-request-cta"><h3>Не нашли подходящий автомобиль?</h3><p>Опишите параметры — партнёры подберут варианты с китайских, корейских и американских площадок и бесплатно рассчитают стоимость доставки.</p><button type="button" class="rd-action primary" data-action="request-car">Найдите мне авто</button></div>';var helper=root.querySelector('#rd-mobile-helper');if(helper)helper.innerHTML=hasFilters()?'':'<div class="rd-request-cta"><h3>Уточните параметры поиска</h3><p>Фильтры не заданы — показаны разные авто из каталога. Укажите марку, бюджет или другие параметры, чтобы сузить выдачу.</p><button type="button" class="rd-action" data-action="mobile-filters">Открыть фильтры</button></div>'}
+function catalogLoadingSkeleton(){var cards=[];for(var i=0;i<6;i++){cards.push('<article class="rd-catalog-skeleton"><div class="rd-skel rd-skeleton-media"></div><div class="rd-skeleton-body"><div class="rd-skel rd-skeleton-title'+(i%3===1?' short':'')+'"></div><div class="rd-skel rd-skeleton-price"></div><div class="rd-skel rd-skeleton-condition"></div><div class="rd-skel rd-skeleton-meta"></div></div></article>')}return cards.join('')}
+function renderMoreStatus(){var el=root.querySelector('#rd-more-status');if(el)el.innerHTML=''}
+function responseItems(data){if(Array.isArray(data))return data;if(Array.isArray(data?.items))return data.items;if(Array.isArray(data?.listings))return data.listings;if(Array.isArray(data?.results))return data.results;if(Array.isArray(data?.data))return data.data;if(Array.isArray(data?.data?.items))return data.data.items;if(Array.isArray(data?.data?.listings))return data.data.listings;if(Array.isArray(data?.data?.results))return data.data.results;if(Array.isArray(data?.data?.cars))return data.data.cars;if(Array.isArray(data?.cars))return data.cars;return[]}
+function responseTotal(data){return data?.totalCount??data?.total??data?.meta?.totalCount??data?.meta?.total??data?.data?.totalCount??data?.data?.total??data?.data?.meta?.totalCount??data?.data?.meta?.total??null}
+function countryDisplayTotal(data){var t=responseTotal(data);return t!=null?Number(t):catalog.items.length}
+async function requestListings(query){var paths=['/listings','/cars'],last=null;for(var i=0;i<paths.length;i++){try{var d=await fetchJson(apiUrl(paths[i],query));if(responseItems(d).length||responseTotal(d)!==null)return d;last=new Error('API returned empty result')}catch(e){last=e}}throw last||new Error('Не удалось загрузить каталог')}
+async function hasDetailedReport(id){if(!id)return false;var key=String(id);if(Object.prototype.hasOwnProperty.call(catalog.detailCache,key))return catalog.detailCache[key]===true;if(catalog.detailPromises[key])return catalog.detailPromises[key];catalog.detailPromises[key]=(async function(){try{var d=await fetchJson(apiUrl('/listings/'+encodeURIComponent(key)));var c=d&&typeof d==='object'?(d.listing||d.item||d.data||d):null;var summary=c&&c.inspectionSummary;var ok=Array.isArray(summary)&&summary.length>0;catalog.detailCache[key]=ok;return ok}catch(e){catalog.detailCache[key]=false;return false}})();try{return await catalog.detailPromises[key]}finally{delete catalog.detailPromises[key]}}
+async function filterItemsWithReports(items){if(!state.firstLine)return items;if(!Array.isArray(items)||!items.length)return[];var results=await Promise.all(items.map(async function(item){var ok=await hasDetailedReport(item&&item.id);return ok?item:null}));return results.filter(function(item){return item!==null})}
+function sortLoadedItems(items){if(!Array.isArray(items))return items;if(state.sort==='price'&&state.order==='asc'){return items.slice().sort(function(a,b){var av=Number(a?.sourcePrice?.usd),bv=Number(b?.sourcePrice?.usd);if(!Number.isFinite(av))av=Infinity;if(!Number.isFinite(bv))bv=Infinity;return av-bv})}if(state.sort==='year'&&state.order==='desc'){return items.slice().sort(function(a,b){var av=Number(a?.year),bv=Number(b?.year);if(!Number.isFinite(av))av=-Infinity;if(!Number.isFinite(bv))bv=-Infinity;return bv-av})}return items}
+async function loadListings(){if(catalog.loading){catalog.loadQueued=true;++catalog.requestSeq;return}catalog.loading=true;catalog.loadQueued=false;var token=++catalog.requestSeq;var grid=root.querySelector('#rd-grid');if(grid)grid.innerHTML=catalogLoadingSkeleton();try{var data=null,lastErr=null;if(!state.country){data=await requestListings(serialize());catalog.countryApiKey=null;catalog.countryApiValue=null}else{if(catalog.countryApiKey&&catalog.countryApiValue){try{var saved=await requestListings(serialize(catalog.countryApiKey,catalog.countryApiValue));if(countryResponseIsValid(saved,state.country))data=saved;else{catalog.countryApiKey=null;catalog.countryApiValue=null}}catch(e){catalog.countryApiKey=null;catalog.countryApiValue=null}}if(!data){var candidates=countryRequestCandidates(state.country);for(var ci=0;ci<candidates.length;ci++){var pair=candidates[ci];try{var candidate=await requestListings(serialize(pair[0],pair[1]));if(countryResponseIsValid(candidate,state.country)){data=candidate;catalog.countryApiKey=pair[0];catalog.countryApiValue=pair[1];break}}catch(err){lastErr=err}}}if(!data)throw lastErr||new Error('API не принял параметр фильтра страны')}if(token!==catalog.requestSeq)return;var items=sortLoadedItems(responseItems(data));if(state.country&&!countryResponseIsValid(data,state.country))throw new Error('API вернул неподходящий результат для выбранной страны');var reportItems=await filterItemsWithReports(items);if(token!==catalog.requestSeq)return;catalog.items=reportItems;if(state.firstLine){catalog.meta={...(data.meta||data.data?.meta||{}),totalCount:reportItems.length,maxPage:reportItems.length?Math.max(1,Math.ceil(reportItems.length/state.pageSize)):1,hasMore:Boolean(data.hasMore??data.data?.hasMore)}}else{catalog.meta={...(data.meta||data.data?.meta||{}),totalCount:countryDisplayTotal(data),maxPage:data.maxPage??data.data?.maxPage??null,hasMore:data.hasMore??data.data?.hasMore}}catalog.hasMore=typeof catalog.meta.hasMore==='boolean'?catalog.meta.hasMore:(catalog.items.length===state.pageSize);renderCount();renderItems();renderPagination();renderRequestCta();var er=root.querySelector('#rd-errors');if(er)er.innerHTML=''}catch(e){if(token!==catalog.requestSeq)return;var er=root.querySelector('#rd-errors');if(er)er.innerHTML='<div class="rd-error">Не удалось загрузить каталог: '+esc(e.message||'Ошибка запроса')+'</div>';if(grid)grid.innerHTML=''}finally{catalog.loading=false;if(catalog.loadQueued){catalog.loadQueued=false;loadListings()}}}
+async function initialLoadListings(){if(catalog.loading)return;catalog.loading=true;var token=++catalog.requestSeq;var grid=root.querySelector('#rd-grid');var errors=root.querySelector('#rd-errors');if(grid)grid.innerHTML=catalogLoadingSkeleton();try{var data=await requestListings(serialize());if(token!==catalog.requestSeq)return;var items=responseItems(data);if(!items.length&&responseTotal(data)===null)throw new Error('API не вернул автомобили для первоначальной загрузки');var reportItems=await filterItemsWithReports(items);if(token!==catalog.requestSeq)return;catalog.items=reportItems;if(state.firstLine){catalog.meta={...(data?.meta||data?.data?.meta||{}),totalCount:reportItems.length,maxPage:reportItems.length?Math.max(1,Math.ceil(reportItems.length/state.pageSize)):1,hasMore:Boolean(data?.hasMore??data?.data?.hasMore)}}else{catalog.meta={...(data?.meta||data?.data?.meta||{}),totalCount:responseTotal(data)??items.length,maxPage:data?.maxPage??data?.data?.maxPage??null,hasMore:data?.hasMore??data?.data?.hasMore}}catalog.hasMore=typeof catalog.meta.hasMore==='boolean'?catalog.meta.hasMore:(catalog.items.length===state.pageSize);renderCount();renderItems();renderPagination();renderRequestCta();renderMoreStatus();if(errors)errors.innerHTML=''}catch(e){if(grid)grid.innerHTML='';if(errors)errors.innerHTML='<div class="rd-error">Не удалось загрузить каталог: '+esc(e.message||'Ошибка запроса')+'</div>'}finally{catalog.loading=false}}
+function changeFilter(key,val){state[key]=val;if(key==='brand')state.model='';if(key==='country'){catalog.countryApiKey=null;catalog.countryApiValue=null}state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();return loadListings()}
+function removeTag(k){var map={brand:'',model:'',country:'',firstLine:false,minPrice:'',maxPrice:'',minYear:'',maxYear:'',newCars:false,minMileage:'',maxMileage:'',q:''};if(k.indexOf(':')>0){var p=k.split(':'),a=state[p[0]]||[],i=a.indexOf(p[1]);if(i>=0)a.splice(i,1)}else if(k in map){state[k]=map[k];if(k==='maxMileage'&&state.newCars)state.newCars=false;if(k==='brand')state.model='';if(k==='country'){catalog.countryApiKey=null;catalog.countryApiValue=null}}state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();loadListings()}
+function resetFilters(){var keep={page:1,pageSize:CONFIG.PAGE_SIZE,sort:state.sort,order:state.order,view:state.view};state={brand:'',model:'',country:'',firstLine:false,minPrice:'',maxPrice:'',minYear:'',maxYear:'',newCars:false,minMileage:'',maxMileage:'',fuel:[],body:[],gearbox:[],drive:[],color:[],source:[],q:'',...keep};clearSavedFilters();catalog.countryApiKey=null;catalog.countryApiValue=null;catalog.hasMore=true;renderSidebar();loadListings()}
+function setView(v,persist){state.view=v;root.querySelectorAll('[data-view]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-view')===v)});var g=root.querySelector('#rd-grid');if(g)g.classList.toggle('list',v==='list');if(persist!==false)localStorage.setItem('rd-view',v)}
+function closeFilterPops(){root.querySelectorAll('.rd-autocomplete.open,.rd-selectbox.open,.rd-sortbox.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('[aria-expanded=true]');if(b)b.setAttribute('aria-expanded','false')})}
+function closeMobileFilters(){var mf=root.querySelector('#rd-mobile-filters');if(mf)mf.classList.remove('open');closeFilterPops()}
+function mobileHistoryEnabled(){return window.matchMedia('(max-width:1023px)').matches}
+function pushMobileHistory(type){if(!mobileHistoryEnabled()||catalog.mobilePopHandling)return;catalog.mobileHistoryDepth++;try{history.pushState({rdCatalogMobile:true,rdCatalogState:type,rdCatalogDepth:catalog.mobileHistoryDepth},'',window.location.href)}catch(e){}}
+function clearMobileHistoryState(){catalog.mobileHistoryDepth=0}
+function closeMobileStateFromBack(){if(!mobileHistoryEnabled())return false;var sort=root.querySelector('.rd-sortbox.open');if(sort){sort.classList.remove('open');var b=sort.querySelector('[aria-expanded=true]');if(b)b.setAttribute('aria-expanded','false');return true}var auto=root.querySelector('.rd-autocomplete.open');if(auto){auto.classList.remove('open');var ab=auto.querySelector('[aria-expanded=true]');if(ab)ab.setAttribute('aria-expanded','false');return true}var sel=root.querySelector('.rd-selectbox.open');if(sel){sel.classList.remove('open');var sb=sel.querySelector('[aria-expanded=true]');if(sb)sb.setAttribute('aria-expanded','false');return true}var mf=root.querySelector('#rd-mobile-filters');if(mf&&mf.classList.contains('open')){closeMobileFilters();return true}return false}
+function bindMobileBack(){if(!mobileHistoryEnabled())return;window.addEventListener('popstate',function(){if(!mobileHistoryEnabled())return;if(catalog.mobilePopHandling){catalog.mobilePopHandling=false;return}if(closeMobileStateFromBack()){if(catalog.mobileHistoryDepth>0)catalog.mobileHistoryDepth--;return}catalog.mobileHistoryDepth=0})}
+function syncMobileFilterCountWidth(){if(!mobileHistoryEnabled())return;var head=root.querySelector('.rd-mobile-source-head .rd-country-group'),count=root.querySelector('#rd-mobile-filter-count');if(!head||!count)return;var w=Math.round(head.getBoundingClientRect().width);count.style.width=w>0?w+'px':''}
+function scrollMobileToTarget(el){if(!mobileHistoryEnabled()||!el)return;setTimeout(function(){var box=el.closest('.rd-source-sidebar');if(!box)return;var br=box.getBoundingClientRect(),er=el.getBoundingClientRect(),target=box.scrollTop+(er.top-br.top)-18;box.scrollTo({top:Math.max(0,target),behavior:'smooth'})},80)}
+function toggleMobileInfo(t){if(!mobileHistoryEnabled())return;var tt=root.querySelector('#rd-tooltip'),typ=t.getAttribute('data-info'),shown=tt&&tt.style.display==='block'&&tt.getAttribute('data-rd-info-target')===typ;if(shown)hideInfo();else showInfo(t)}
+function subscribe(){if(typeof CONFIG.SUBSCRIBE_HANDLER==='function')return CONFIG.SUBSCRIBE_HANDLER();window.dispatchEvent(new CustomEvent('red-dragon:subscribe',{detail:{filters:JSON.parse(JSON.stringify(state))}}))}
+function requestCar(){window.dispatchEvent(new CustomEvent('red-dragon:car-request',{detail:{filters:JSON.parse(JSON.stringify(state))}}));subscribe()}
+function showInfo(t){var tt=root.querySelector('#rd-tooltip'),typ=t.getAttribute('data-info');if(!tt)return;tt.textContent=typ==='report'?'«С отчётом» — автомобили, для которых доступен подробный отчёт о состоянии и повреждениях.':'"Новые" - автомобили с пробегом до 300 км.';tt.style.display='block';tt.setAttribute('data-rd-info-target',typ);var r=t.getBoundingClientRect(),left=Math.max(8,Math.min(window.innerWidth-290,r.left)),top=r.bottom+7;if(top+tt.offsetHeight>window.innerHeight-8)top=Math.max(8,r.top-tt.offsetHeight-7);tt.style.left=left+'px';tt.style.top=top+'px'}
+function hideInfo(){var tt=root.querySelector('#rd-tooltip');if(tt)tt.style.display='none'}
+async function loadRefsAndBrands(){var ref=catalog.refs||await detectPrefix();if(ref){catalog.refs=ref;conditionRefBuild(ref)}try{catalog.brands=await fetchJson(apiUrl('/brands'))}catch(e){catalog.brands=null}}
+async function setup(){
+observeTheme();
+initSEO();
+renderShell();
+renderSidebar();
+renderRequestCta();
+var initialGrid=root.querySelector('#rd-grid');
+if(initialGrid)initialGrid.innerHTML=catalogLoadingSkeleton();
+bindMobileBack();root.addEventListener('mouseover',function(e){if(mobileHistoryEnabled())return;var t=e.target.closest('[data-info]');if(t)showInfo(t)});
+root.addEventListener('mouseout',function(e){if(mobileHistoryEnabled())return;var t=e.target.closest('[data-info]');if(t&&(!e.relatedTarget||!t.contains(e.relatedTarget)))hideInfo()});
+root.addEventListener('focusin',function(e){if(mobileHistoryEnabled())return;var t=e.target.closest('[data-info]');if(t)showInfo(t)});
+root.addEventListener('focusout',function(e){if(mobileHistoryEnabled())return;var t=e.target.closest('[data-info]');if(t)hideInfo()});
+renderSort();
+setView(state.view,false);
+root.addEventListener('input',function(e){var el=e.target;if(el.matches('[data-filter]')){var k=el.getAttribute('data-filter'),v=el.value.replace(/\D/g,'');el.value=v;state[k]=v;saveSavedFilters();el.closest('.rd-numberbox')?.classList.toggle('filled',!!v);clearTimeout(catalog.inputTimer);catalog.inputTimer=setTimeout(function(){state.page=1;catalog.hasMore=true;loadListings()},350)}else if(el.matches('.rd-auto-search')){var q=el.value.toLowerCase().trim(),pop=el.closest('.rd-autopop');if(pop)pop.querySelectorAll('.rd-option').forEach(function(b){b.style.display=!q||b.textContent.toLowerCase().indexOf(q)>=0?'flex':'none'})}else if(el.matches('[data-global-search]')){state.q=el.value.trim();saveSavedFilters();clearTimeout(catalog.searchTimer);catalog.searchTimer=setTimeout(function(){state.page=1;catalog.hasMore=true;renderActiveFilters();renderRequestCta();loadListings()},300);var sw=root.querySelector('#rd-search-wrap');if(sw)sw.classList.toggle('filled',!!state.q)}});
+root.addEventListener('click',async function(e){
+var field=e.target.closest('#rd-red-dragon-catalog .rd-autotrigger-group');
+if(field&&!e.target.closest('[data-auto-clear]')&&!e.target.closest('[data-auto-open]')){
+var openBtn=field.querySelector('[data-auto-open]');
+if(openBtn&&!openBtn.disabled){
+e.preventDefault();
+e.stopPropagation();
+openBtn.click();
+return
+}
+}
+var t=e.target.closest('[data-action],[data-brand],[data-model],[data-country],[data-popular],[data-page],[data-auto-open],[data-select-open],[data-select-code],[data-price-code],[data-multi-code],[data-chip-code],[data-clear],[data-auto-clear],[data-tag],[data-info],[data-view],[data-fav],[data-sort-open],[data-sort-code],[data-clear-search]');
+if(!t)return;
+var a=t.getAttribute('data-action');
+if(t.hasAttribute('data-view')){setView(t.getAttribute('data-view'));return}
+if(t.hasAttribute('data-page')){
+var pv=t.getAttribute('data-page'),total=Number(catalog.meta&&catalog.meta.totalCount)||0,pages=Math.ceil(total/state.pageSize),target=state.page;
+if(pv==='prev'){if(state.page>1)target=state.page-1}else if(pv==='next'){if(state.page<pages)target=state.page+1}else{var pn=Number(pv);if(pn>=1&&pn<=pages)target=pn}
+if(target!==state.page){
+var pageGrid=root.querySelector('#rd-grid');
+var pageFirstCard=pageGrid&&pageGrid.querySelector('.rd-card');
+var pageGridRect=pageGrid&&pageGrid.getBoundingClientRect();
+var pageCardRect=pageFirstCard&&pageFirstCard.getBoundingClientRect();
+var pageOffset=pageCardRect&&pageCardRect.height?Math.round(pageCardRect.height/2):Math.round((window.innerHeight||800)*.25);
+var immediateTop=pageGridRect?Math.max(0,pageGridRect.top+(window.scrollY||window.pageYOffset||0)-pageOffset):0;
+var previousOverflowAnchor=document.documentElement.style.overflowAnchor;
+document.documentElement.style.overflowAnchor='none';
+window.scrollTo({top:immediateTop,left:window.scrollX,behavior:'auto'});
+state.page=target;
+catalog.hasMore=true;
+await loadListings();
+var newGrid=root.querySelector('#rd-grid');
+var newCard=newGrid&&newGrid.querySelector('.rd-card');
+var newGridRect=newGrid&&newGrid.getBoundingClientRect();
+var newCardRect=newCard&&newCard.getBoundingClientRect();
+var finalOffset=newCardRect&&newCardRect.height?Math.round(newCardRect.height/2):pageOffset;
+var finalTop=newGridRect?Math.max(0,newGridRect.top+(window.scrollY||window.pageYOffset||0)-finalOffset):immediateTop;
+window.scrollTo({top:finalTop,left:window.scrollX,behavior:'auto'});
+document.documentElement.style.overflowAnchor=previousOverflowAnchor;
+}
+return
+}
+if(a==='mobile-filters'){var mf=root.querySelector('#rd-mobile-filters');if(mf){var was=mf.classList.contains('open');if(!was){mf.classList.add('open');pushMobileHistory('filters');requestAnimationFrame(syncMobileFilterCountWidth)}else{closeMobileFilters();var depth=catalog.mobileHistoryDepth;if(mobileHistoryEnabled()&&depth>0){catalog.mobileHistoryDepth=0;catalog.mobilePopHandling=true;history.go(-depth)}}}return}
+if(a==='close-mobile-filters'){var depth=catalog.mobileHistoryDepth;closeMobileFilters();if(mobileHistoryEnabled()&&depth>0){catalog.mobileHistoryDepth=0;catalog.mobilePopHandling=true;history.go(-depth)}else clearMobileHistoryState();return}
+if(a==='reset'){resetFilters();return}
+if(a==='request-car'){requestCar();return}
+if(a==='subscribe'){subscribe();return}
+if(a==='first-line'){state.firstLine=!state.firstLine;state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(a==='new-cars'){state.newCars=!state.newCars;if(state.newCars){state.minMileage='';state.maxMileage='300'}else state.maxMileage='';state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(a==='advanced'){catalog.advanced=!catalog.advanced;renderSidebar();if(catalog.advanced&&mobileHistoryEnabled())scrollMobileToTarget(root.querySelector('.rd-mobile-source .rd-disclosure-source.open'));return}
+if(t.hasAttribute('data-info')){if(mobileHistoryEnabled()){e.preventDefault();e.stopPropagation();toggleMobileInfo(t)}return}
+if(t.hasAttribute('data-auto-clear')){var ck=t.getAttribute('data-auto-clear');state[ck]='';if(ck==='brand')state.model='';if(ck==='country'){catalog.countryApiKey=null;catalog.countryApiValue=null}state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-clear-search')){state.q='';saveSavedFilters();syncSearch();state.page=1;catalog.hasMore=true;renderActiveFilters();await loadListings();return}
+if(t.hasAttribute('data-brand')){await changeFilter('brand',t.getAttribute('data-brand'));closeFilterPops();return}
+if(t.hasAttribute('data-model')){if(!state.brand)return;await changeFilter('model',t.getAttribute('data-model'));closeFilterPops();return}
+if(t.hasAttribute('data-country')){state.country=t.getAttribute('data-country');catalog.countryApiKey=null;catalog.countryApiValue=null;state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-popular')){await changeFilter('brand',t.getAttribute('data-popular'));return}
+if(t.hasAttribute('data-auto-open')){var ac=t.closest('.rd-autocomplete');if(ac){var wasOpen=ac.classList.contains('open');closeFilterPops();if(!wasOpen){ac.classList.add('open');t.setAttribute('aria-expanded','true');if(mobileHistoryEnabled())pushMobileHistory('autocomplete')}}return}
+if(t.hasAttribute('data-select-open')){var sb=t.closest('.rd-selectbox');if(sb){var wasOpenSelect=sb.classList.contains('open');closeFilterPops();if(!wasOpenSelect){sb.classList.add('open');t.setAttribute('aria-expanded','true');if(mobileHistoryEnabled()){pushMobileHistory('select');if(sb.getAttribute('data-selectbox')==='fuel')scrollMobileToTarget(sb)}}}return}
+if(t.hasAttribute('data-price-code')){var pk=t.getAttribute('data-key'),pv2=t.getAttribute('data-price-code');state[pk]=pv2;state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-select-code')){var k=t.getAttribute('data-key'),v=t.getAttribute('data-select-code');state[k]=v;state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-multi-code')){var mk=t.getAttribute('data-key'),mv=t.getAttribute('data-multi-code'),arr=state[mk]||[],ii=arr.indexOf(mv);if(ii>=0)arr.splice(ii,1);else arr.push(mv);state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-chip-code')){var ck=t.getAttribute('data-chip-key'),cv=t.getAttribute('data-chip-code'),ca=state[ck]||[],ci=ca.indexOf(cv);if(ci>=0)ca.splice(ci,1);else ca.push(cv);state.page=1;catalog.hasMore=true;saveSavedFilters();renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-clear')){state[t.getAttribute('data-clear')]='';saveSavedFilters();state.page=1;catalog.hasMore=true;renderSidebar();await loadListings();return}
+if(t.hasAttribute('data-tag')){removeTag(t.getAttribute('data-tag'));return}
+if(t.hasAttribute('data-sort-open')){var so=t.closest('.rd-sortbox');if(window.matchMedia('(max-width:1023px)').matches){var wasOpenSort=so&&so.classList.contains('open');if(wasOpenSort){so.classList.remove('open');t.setAttribute('aria-expanded','false')}else{closeFilterPops();if(so){so.classList.add('open');t.setAttribute('aria-expanded','true');var pop=so.querySelector('.rd-sort-pop');if(pop){requestAnimationFrame(function(){var r=t.getBoundingClientRect(),h=pop.offsetHeight,w=Math.min(320,window.innerWidth-32),top=r.bottom+6;if(top+h>window.innerHeight-16)top=Math.max(16,r.top-h-6);pop.style.left=Math.round((window.innerWidth-w)/2)+'px';pop.style.right='auto';pop.style.width=w+'px';pop.style.top=Math.round(top)+'px'})}}}}else{closeFilterPops();if(so){so.classList.add('open');t.setAttribute('aria-expanded','true')}}return}
+if(t.hasAttribute('data-sort-code')){var parts=t.getAttribute('data-sort-code').split('|');state.sort=parts[0];state.order=parts[1];state.page=1;catalog.hasMore=true;renderSort();closeFilterPops();await loadListings();return}
+if(t.hasAttribute('data-fav')){e.preventDefault();e.stopPropagation();toggleFav(t.getAttribute('data-fav'));return}
+});
+document.addEventListener('click',function(e){
+var link=e.target.closest('a[href]');
+if(link&&e.button===0&&!e.defaultPrevented&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'){
+try{
+var u=new URL(link.href,window.location.href),cp=(window.location.pathname||'/').replace(/\/$/,'')||'/',dp=new URL(CONFIG.CARD_URL_TEMPLATE.replace('{id}','0'),window.location.href).pathname.replace(/\/$/,'')||'/';
+if(u.hostname===window.location.hostname)sessionStorage.setItem('rd-catalog-filter-context-v1',u.pathname.replace(/\/$/,'')===dp?'detail':(u.pathname.replace(/\/$/,'')===cp?'catalog':'other'));else sessionStorage.setItem('rd-catalog-filter-context-v1','other')
+}catch(err){sessionStorage.setItem('rd-catalog-filter-context-v1','other')}
+}
+if(!e.target.closest('#rd-red-dragon-catalog .rd-autocomplete,#rd-red-dragon-catalog .rd-selectbox,#rd-red-dragon-catalog .rd-sortbox'))closeFilterPops();
+if(!e.target.closest('#rd-red-dragon-catalog [data-info]'))hideInfo()
+});
+await loadRefsAndBrands();
+renderSidebar();
+bindMobilePopularSwipe();
+await initialLoadListings();
+bindMobilePopularSwipe()
+}
+window.RDRedDragonCatalog=window.RDRedDragonCatalog||{};
+window.RDRedDragonCatalog.getFilters=function(){return JSON.parse(JSON.stringify(state))};
+window.RDRedDragonCatalog.getFavorites=function(){return catalog.favorites.slice()};
+window.RDRedDragonCatalog.getFavoriteCount=function(){return catalog.favorites.length};
+window.RDRedDragonCatalog.isFavorite=function(id){return isFav(id)};
+window.RDRedDragonCatalog.toggleFavorite=function(id){toggleFav(id);return isFav(id)};
+window.RDRedDragonCatalog.setFilters=function(incoming){if(!incoming||typeof incoming!=='object')return;Object.keys(state).forEach(function(k){if(Object.prototype.hasOwnProperty.call(incoming,k))state[k]=incoming[k]});saveSavedFilters();catalog.countryApiKey=null;catalog.countryApiValue=null;state.page=1;catalog.hasMore=true;renderSidebar();loadListings()};
+window.RDRedDragonCatalog.refresh=function(){state.page=1;catalog.hasMore=true;return loadListings()};
+window.RDRedDragonCatalog.setView=setView;
+setup();
+})();
+</script>
