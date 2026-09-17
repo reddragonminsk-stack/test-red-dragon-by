@@ -1,0 +1,496 @@
+<div id="red-dragon-about">
+<script>
+(function(){
+  const seo={
+    title:'КРАСНЫЙ ДРАКОН — автомобили из Китая, Кореи и США | Беларусь',
+    description:'КРАСНЫЙ ДРАКОН — автомобили из Китая, Кореи и США в Беларуси. Подбор, покупка, проверка, доставка, оформление, предпродажная подготовка и автосервис.',
+    image:'https://static.tildacdn.biz/tild3535-3861-4366-a535-383039393766/IMG_1497jpg_1.jpg'
+  };
+  const canonicalUrl=window.location.href.split('#')[0];
+  function setMeta(name,content){
+    if(!content)return;
+    let el=document.head.querySelector('meta[name="'+name+'"]');
+    if(!el){
+      el=document.createElement('meta');
+      el.setAttribute('name',name);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content',content);
+  }
+  function setProperty(property,content){
+    if(!content)return;
+    let el=document.head.querySelector('meta[property="'+property+'"]');
+    if(!el){
+      el=document.createElement('meta');
+      el.setAttribute('property',property);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content',content);
+  }
+  document.title=seo.title;
+  setMeta('description',seo.description);
+  setMeta('robots','index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1');
+  setMeta('twitter:card','summary_large_image');
+  setMeta('twitter:title',seo.title);
+  setMeta('twitter:description',seo.description);
+  setMeta('twitter:image',seo.image);
+  setProperty('og:type','website');
+  setProperty('og:title',seo.title);
+  setProperty('og:description',seo.description);
+  setProperty('og:url',canonicalUrl);
+  setProperty('og:image',seo.image);
+  setProperty('og:site_name','КРАСНЫЙ ДРАКОН');
+  setProperty('og:locale','ru_RU');
+  let canonical=document.head.querySelector('link[rel="canonical"]');
+  if(!canonical){
+    canonical=document.createElement('link');
+    canonical.setAttribute('rel','canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.href=canonicalUrl;
+  const schema={
+    '@context':'https://schema.org',
+    '@type':'AutoDealer',
+    'name':'КРАСНЫЙ ДРАКОН',
+    'legalName':'ООО "РЭД ДРЭГОН"',
+    'description':seo.description,
+    'url':window.location.origin+'/',
+    'image':seo.image,
+    'areaServed':{
+      '@type':'Country',
+      'name':'Беларусь'
+    },
+    'address':{
+      '@type':'PostalAddress',
+      'addressCountry':'BY'
+    },
+    'makesOffer':[
+      {
+        '@type':'Offer',
+        'category':'Автомобили из Китая'
+      },
+      {
+        '@type':'Offer',
+        'category':'Автомобили из Кореи'
+      },
+      {
+        '@type':'Offer',
+        'category':'Автомобили из США'
+      },
+      {
+        '@type':'Offer',
+        'category':'Автосервис'
+      }
+    ]
+  };
+  let ld=document.getElementById('red-dragon-jsonld');
+  if(!ld){
+    ld=document.createElement('script');
+    ld.type='application/ld+json';
+    ld.id='red-dragon-jsonld';
+    document.head.appendChild(ld);
+  }
+  ld.textContent=JSON.stringify(schema);
+})();
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+:root,:root.light,:root[data-theme="light"]{
+color-scheme:light;
+--background:#f5f5f5;
+--foreground:#18181b;
+--surface:#ffffff;
+--surface-secondary:#efeff0;
+--surface-tertiary:#eaeaeb;
+--surface-hover:#f1f1f2;
+--muted:#71717a;
+--default:#ebebec;
+--default-hover:#dfdfe1;
+--border:#e3e3e5
+}
+:root.dark,:root[data-theme="dark"]{
+color-scheme:dark;
+--background:#060607;
+--foreground:#f5f5f5;
+--surface:#18181b;
+--surface-secondary:#232325;
+--surface-tertiary:#262728;
+--surface-hover:#202024;
+--muted:#9f9fa9;
+--default:#29292c;
+--default-hover:#323236;
+--border:#303034
+}
+#red-dragon-about{
+--accent:#d92f2f;
+--accent-g:linear-gradient(135deg,#c1272d 0%,#a01818 45%,#7a0d0d 75%,#4a0606 100%);
+--accent-g-text:linear-gradient(135deg,#b81f23 0%,#8b1316 40%,#5e0808 75%,#2d0303 100%);
+--bg:var(--background);
+--fg:var(--foreground);
+--surface2:var(--surface-secondary);
+--soft:rgba(217,47,47,.08);
+--abr:rgba(217,47,47,.22);
+--glow:rgba(180,20,20,.07);
+--r:18px;
+--rs:12px;
+--rx:10px;
+--sx:0 1px 2px rgba(0,0,0,.04);
+--sm:0 1px 3px rgba(0,0,0,.06);
+--md:0 6px 20px rgba(0,0,0,.07);
+--lg:0 14px 38px rgba(0,0,0,.11);
+font:400 14px/1.5 Inter,system-ui,sans-serif;
+color:var(--fg);
+background:var(--bg);
+min-height:100vh;
+color-scheme:inherit;
+-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility
+}
+#red-dragon-about *{box-sizing:border-box}
+#red-dragon-about a{text-decoration:none;color:inherit}
+#red-dragon-about img{display:block;max-width:100%}
+.rda-wrap{width:min(1152px,calc(100% - 32px));margin:auto}
+.rda-page{padding:30px 0 60px}
+.rda-crumbs{display:flex;align-items:center;gap:8px;margin-bottom:18px;font:500 12.5px/1.3 Inter,sans-serif;color:var(--muted);letter-spacing:-.01em}
+.rda-crumbs a,.rda-crumbs span:last-child{color:var(--muted);font-weight:500;padding:0;background:none}
+.rda-crumbs a{transition:color .2s}
+.rda-crumbs a:hover{color:var(--accent)}
+.rda-crumbs span:not(:last-child){color:var(--border);font-size:13px}
+.rda-title{padding-left:16px;margin-bottom:30px}
+.rda-title h1{margin:0;font-size:34px;line-height:1.05;letter-spacing:-.045em;font-weight:800;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rda-title p{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.55;max-width:880px}
+.rda-hero{position:relative;overflow:hidden;border:1px solid var(--abr);border-radius:26px;background:var(--surface);min-height:510px;display:grid;grid-template-columns:1.04fr .96fr;box-shadow:var(--lg)}
+.rda-hero-copy{padding:46px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.rda-hero-copy:before{content:"";position:absolute;left:-180px;top:-180px;width:520px;height:520px;background:var(--glow);border-radius:50%;pointer-events:none}
+.rda-eyebrow{display:inline-flex;width:max-content;padding:7px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--abr);color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.rda-hero h2{margin:18px 0 14px;font-size:44px;line-height:1.02;letter-spacing:-.055em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rda-hero-copy>p{margin:0;color:var(--muted);max-width:570px;font-size:15px;line-height:1.68}
+.rda-hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.rda-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 17px;font-size:14px;font-weight:700;transition:.18s}
+.rda-btn-primary{position:relative;overflow:hidden;background:var(--accent-g);color:#fff!important;box-shadow:0 8px 22px rgba(150,15,15,.4)}
+.rda-btn-primary:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.15) 45%,transparent 70%);transform:translateX(-110%);transition:transform .45s ease}
+.rda-btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(150,15,15,.48)}
+.rda-btn-primary:hover:before{transform:translateX(110%)}
+.rda-btn-secondary{background:var(--default);color:var(--foreground)}
+.rda-btn-secondary:hover{background:var(--default-hover);transform:translateY(-1px)}
+.rda-hero-note{margin-top:17px;font-size:12px;color:var(--muted);line-height:1.5}
+.rda-hero-image{position:relative;min-height:510px;background:#ddd}
+.rda-hero-image img{width:100%;height:100%;object-fit:cover}
+.rda-hero-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--surface) 0%,rgba(255,255,255,.74) 9%,transparent 32%),linear-gradient(0deg,rgba(0,0,0,.28),transparent 55%)}
+.rda-section{margin-top:52px}
+.rda-section-head{margin-bottom:20px}
+.rda-section h2{margin:0;font-size:25px;letter-spacing:-.035em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rda-section-sub{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.5;max-width:800px}
+.rda-intro{display:grid;grid-template-columns:1.08fr .92fr;gap:16px}
+.rda-card{border:1px solid var(--border);border-radius:18px;background:var(--surface);overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s}
+.rda-card:hover{border-color:var(--abr);box-shadow:var(--md)}
+.rda-card-body{padding:22px}
+.rda-card h3{margin:0;font-size:18px;letter-spacing:-.025em}
+.rda-card p{margin:9px 0 0;color:var(--muted);font-size:13px;line-height:1.62}
+.rda-card strong{color:var(--foreground)}
+.rda-quote{position:relative;padding:28px;background:linear-gradient(135deg,var(--soft),var(--surface))}
+.rda-quote:before{content:"“";position:absolute;top:-14px;right:18px;font:900 110px/1 Georgia,serif;color:rgba(217,47,47,.12)}
+.rda-quote p{margin:0;color:var(--foreground);font-size:19px;line-height:1.45;font-weight:600;letter-spacing:-.025em;position:relative;z-index:1}
+.rda-quote small{display:block;margin-top:16px;color:var(--muted);font-size:11px;position:relative;z-index:1}
+.rda-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rda-stat{border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:22px 18px;text-align:center;transition:.2s}
+.rda-stat:hover{border-color:var(--abr);transform:translateY(-2px);box-shadow:var(--md)}
+.rda-stat-num{font:900 34px/1 Inter,Arial,sans-serif;letter-spacing:-.045em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rda-stat-label{margin-top:8px;color:var(--muted);font:500 12px/1.4 Inter,Arial,sans-serif}
+.rda-stat-line{height:2px;width:30px;background:var(--accent-g);margin:12px auto 0;border-radius:2px}
+.rda-features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rda-feature{border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:22px;transition:.2s}
+.rda-feature:hover{border-color:var(--abr);transform:translateY(-2px);box-shadow:var(--sm)}
+.rda-feature-num{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--soft);color:var(--accent);font:800 12px/1 "Roboto Mono",monospace;margin-bottom:15px}
+.rda-feature h3{margin:0;font-size:16px}
+.rda-feature p{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.58}
+.rda-process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rda-step{position:relative;border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:22px;overflow:hidden}
+.rda-step:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--accent-g)}
+.rda-step-num{font:900 54px/1 Inter,sans-serif;letter-spacing:-.06em;color:rgba(217,47,47,.16)}
+.rda-step h3{margin:16px 0 7px;font-size:16px}
+.rda-step p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.55}
+.rda-service{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px}
+.rda-service-image{min-height:360px;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--surface-secondary)}
+.rda-service-image img{width:100%;height:100%;object-fit:cover}
+.rda-service-copy{border:1px solid var(--abr);border-radius:18px;background:linear-gradient(135deg,color-mix(in oklab,var(--accent) 6%,var(--surface)),var(--surface) 60%);padding:24px}
+.rda-service-copy h3{margin:0;font-size:22px;letter-spacing:-.03em}
+.rda-service-copy p{margin:9px 0 0;color:var(--muted);font-size:13px;line-height:1.62}
+.rda-service-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.rda-service-item{padding:11px 12px;border-radius:11px;background:var(--surface-secondary);font-size:12px;color:var(--foreground)}
+.rda-service-item b{display:block;font-size:12.5px;margin-bottom:3px}
+.rda-service-item span{color:var(--muted)}
+.rda-future{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rda-future .rda-card{height:100%}
+.rda-contact{margin-top:52px;border:1px solid var(--abr);border-radius:24px;background:linear-gradient(135deg,color-mix(in oklab,var(--accent) 6%,var(--surface)),var(--surface) 60%);padding:30px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.rda-contact h2{margin:0;font-size:29px;letter-spacing:-.04em;background:var(--accent-g-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rda-contact p{margin:8px 0 0;color:var(--muted);font-size:13px;max-width:660px;line-height:1.55}
+.rda-contact-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.rda-note{margin-top:22px;padding:13px 14px;border:1px dashed var(--border);border-radius:12px;color:var(--muted);font-size:11px;line-height:1.55;background:var(--surface-secondary)}
+@media(max-width:980px){
+.rda-hero{grid-template-columns:1fr}
+.rda-hero-image{min-height:320px;order:-1}
+.rda-hero-copy{padding:32px}
+.rda-intro,.rda-service,.rda-future{grid-template-columns:1fr}
+.rda-stats{grid-template-columns:repeat(2,1fr)}
+.rda-features,.rda-process{grid-template-columns:repeat(2,1fr)}
+.rda-service-image{min-height:260px}
+.rda-contact{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:620px){
+.rda-wrap{width:min(100% - 24px,1152px)}
+.rda-page{padding:24px 0 38px}
+.rda-crumbs{gap:6px;margin-bottom:15px;font-size:12px}
+.rda-title{padding-left:8px}
+.rda-title h1{font-size:29px}
+.rda-hero{border-radius:20px}
+.rda-hero-image{min-height:230px}
+.rda-hero-copy{padding:24px}
+.rda-hero h2{font-size:33px}
+.rda-hero-copy>p{font-size:14px}
+.rda-stats,.rda-features,.rda-process,.rda-service-list{grid-template-columns:1fr 1fr}
+.rda-stat{padding:18px 12px;border-radius:15px}
+.rda-stat-num{font-size:29px}
+.rda-stat-label{font-size:11px}
+.rda-contact{padding:22px;border-radius:20px}
+.rda-contact h2{font-size:24px}
+.rda-contact-actions{width:100%}
+.rda-contact-actions .rda-btn{flex:1}
+.rda-service-copy{padding:20px}
+}
+@media(max-width:420px){
+.rda-stats,.rda-features,.rda-process,.rda-service-list{grid-template-columns:1fr}
+}
+</style>
+<main class="rda-wrap rda-page">
+<nav class="rda-crumbs"><a href="/">Главная</a><span>›</span><span>О нас</span></nav>
+<div class="rda-title">
+<h1>КРАСНЫЙ ДРАКОН — автомобили из Китая, Кореи и США</h1>
+<p>КРАСНЫЙ ДРАКОН (ООО «РЭД ДРЭГОН») — автомобильная компания в Беларуси, специализирующаяся на подборе, покупке, проверке, доставке и обслуживании автомобилей из Китая, Кореи и США. Мы сопровождаем клиента на всех этапах: от поиска и проверки автомобиля до логистики, оформления, подготовки и последующего технического обслуживания.</p>
+</div>
+<section class="rda-hero">
+<div class="rda-hero-copy">
+<span class="rda-eyebrow">КРАСНЫЙ ДРАКОН · БЕЛАРУСЬ</span>
+<h2>Мы сделали путь к автомобилю короче, понятнее и безопаснее.</h2>
+<p>КРАСНЫЙ ДРАКОН создавался с простой целью: наполнить автомобильный рынок современными автомобилями по максимально доступным ценам и сделать их покупку понятной и безопасной для клиента. Сегодня этот подход вырос в полноценный сервис — от поиска и подбора автомобиля до его доставки, подготовки и обслуживания.</p>
+<div class="rda-hero-actions">
+<a href="/catalog/" class="rda-btn rda-btn-primary">Открыть каталог</a>
+<a href="/request" class="rda-btn rda-btn-secondary">Подобрать автомобиль</a>
+</div>
+<div class="rda-hero-note">Более 1 000 автомобилей уже поставлено клиентам КРАСНОГО ДРАКОНА. Сотрудники отдела закупок работают непосредственно в Китае и контролируют процесс отгрузки.</div>
+</div>
+<div class="rda-hero-image">
+<img src="https://static.tildacdn.biz/tild3535-3861-4366-a535-383039393766/IMG_1497jpg_1.jpg" alt="Автомобиль КРАСНЫЙ ДРАКОН" loading="eager">
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Кто такой КРАСНЫЙ ДРАКОН</h2>
+<p class="rda-section-sub">Мы начинали как компания, ориентированная на поставки современных автомобилей из Китая, а сегодня развиваем собственную автомобильную экосистему.</p>
+</div>
+<div class="rda-intro">
+<article class="rda-card">
+<div class="rda-card-body">
+<h3>Автосалон, который находится ближе к источнику автомобиля</h3>
+<p>Автосалон «КРАСНЫЙ ДРАКОН» создан в партнёрстве с представителями автомобильного бизнеса из Китайской Народной Республики. Основа нашей философии — <strong>«Делай то, что ты умеешь делать лучше других!»</strong></p>
+<p>Мы стремимся наполнить автомобильный рынок современными китайскими автомобилями по доступным ценам и при этом убрать из процесса максимум лишних звеньев, неопределённости и ненужных рисков.</p>
+<p>Наши сотрудники отдела закупок находятся непосредственно в Китае. Это позволяет контролировать процесс отгрузки автомобилей, проверять выбранные машины перед транспортировкой и быть ближе к реальному источнику предложения.</p>
+</div>
+</article>
+<article class="rda-card rda-quote">
+<div class="rda-card-body">
+<p>«Делай то, что ты умеешь делать лучше других!»</p>
+<small>Основа философии КРАСНОГО ДРАКОНА</small>
+<p style="margin-top:22px">Мы не хотим быть ещё одним сайтом с автомобилями. Наша задача — сделать покупку автомобиля из другой страны понятным процессом, в котором клиент понимает, что он покупает, за что платит и что произойдёт дальше.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>КРАСНЫЙ ДРАКОН в цифрах</h2>
+<p class="rda-section-sub">Главные показатели компании и направления работы.</p>
+</div>
+<div class="rda-stats">
+<div class="rda-stat">
+<div class="rda-stat-num">1000+</div>
+<div class="rda-stat-label">автомобилей поставлено клиентам</div>
+<div class="rda-stat-line"></div>
+</div>
+<div class="rda-stat">
+<div class="rda-stat-num">1 млн+</div>
+<div class="rda-stat-label">актуальных автомобилей доступны на складах Китая, Кореи и США</div>
+<div class="rda-stat-line"></div>
+</div>
+<div class="rda-stat">
+<div class="rda-stat-num">98%</div>
+<div class="rda-stat-label">довольных клиентов</div>
+<div class="rda-stat-line"></div>
+</div>
+<div class="rda-stat">
+<div class="rda-stat-num">24/7</div>
+<div class="rda-stat-label">оперативная обратная связь для клиентов</div>
+<div class="rda-stat-line"></div>
+</div>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Почему нас выбирают</h2>
+<p class="rda-section-sub">Мы строим сервис вокруг интересов покупателя: от поиска автомобиля до его получения и последующего обслуживания.</p>
+</div>
+<div class="rda-features">
+<article class="rda-feature">
+<div class="rda-feature-num">01</div>
+<h3>Контроль отгрузок</h3>
+<p>Сотрудники отдела закупок находятся непосредственно в Китае. Каждый автомобиль перед транспортировкой проходит обязательную проверку.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">02</div>
+<h3>Без посредников</h3>
+<p>Мы работаем с прямыми поставками и стремимся сокращать количество посреднических звеньев. Это снижает риски и помогает уменьшать конечную стоимость автомобиля.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">03</div>
+<h3>Безопасная доставка</h3>
+<p>Автомобили доставляются самыми быстрыми и безопасными способами с привлечением проверенных логистических партнёров.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">04</div>
+<h3>Официальное оформление</h3>
+<p>Мы работаем в рамках законодательства Республики Беларусь и КНР, без серых схем и оформления через подставных лиц.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">05</div>
+<h3>Подбор под задачу</h3>
+<p>Помогаем подобрать автомобиль по бюджету, силовому агрегату, комплектации, назначению и десяткам других параметров.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">06</div>
+<h3>24/7 обратная связь</h3>
+<p>Клиент может получить консультацию, уточнить детали автомобиля или задать вопрос по текущему этапу сделки.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">07</div>
+<h3>Подготовка автомобиля</h3>
+<p>После поступления выполняется предпродажная подготовка, обновление программного обеспечения, русификация бортовых меню, зарядка батареи и проверка технических жидкостей.</p>
+</article>
+<article class="rda-feature">
+<div class="rda-feature-num">08</div>
+<h3>Доставка до двери</h3>
+<p>После прохождения необходимых процедур подготовленный автомобиль может быть доставлен непосредственно клиенту.</p>
+</article>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Как работает КРАСНЫЙ ДРАКОН</h2>
+<p class="rda-section-sub">Один автомобиль проходит несколько этапов, прежде чем оказаться у своего владельца.</p>
+</div>
+<div class="rda-process">
+<article class="rda-step">
+<div class="rda-step-num">01</div>
+<h3>Выбор автомобиля</h3>
+<p>Доверяем вам выбор из каталога или находим подходящий автомобиль по бюджету, марке, модели, году, комплектации, типу двигателя и другим параметрам.</p>
+</article>
+<article class="rda-step">
+<div class="rda-step-num">02</div>
+<h3>Проверка и покупка</h3>
+<p>Проверяем выбранный автомобиль и контролируем процесс его подготовки и отгрузки непосредственно со стороны закупочного направления в Китае.</p>
+</article>
+<article class="rda-step">
+<div class="rda-step-num">03</div>
+<h3>Логистика и оформление</h3>
+<p>Организуем перевозку, юридическое и таможенное сопровождение, прохождение необходимых процедур и дальнейшую доставку в Беларусь.</p>
+</article>
+<article class="rda-step">
+<div class="rda-step-num">04</div>
+<h3>Подготовка и передача</h3>
+<p>Автомобиль проходит необходимую подготовку, после чего его можно получить в Минске либо организовать доставку до места назначения.</p>
+</article>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Не только продажа автомобиля</h2>
+<p class="rda-section-sub">Мы развиваем сервис вокруг автомобиля, чтобы клиент мог обратиться к одному бренду не только в момент покупки.</p>
+</div>
+<div class="rda-service">
+<div class="rda-service-image">
+<img src="https://static.tildacdn.biz/tild3538-3839-4431-a537-383639663030/photo_53078801987264.jpg" alt="Автосервис КРАСНЫЙ ДРАКОН" loading="lazy">
+</div>
+<div class="rda-service-copy">
+<h3>Собственный автосервис в Гомеле</h3>
+<p>Автосервис КРАСНЫЙ ДРАКОН в Гомеле — часть автомобильного направления бренда. Здесь можно провести диагностику и автоэлектрику, выполнить ремонт подвески, 3-D развал-схождение, замену технических жидкостей, шиномонтаж и ремонт дисков, ремонт двигателя и топливной системы, а также обслуживание электромобилей.</p>
+<div class="rda-service-list">
+<div class="rda-service-item"><b>Диагностика и автоэлектрика</b><span>Компьютерная диагностика и поиск неисправностей</span></div>
+<div class="rda-service-item"><b>Ремонт подвески</b><span>Техническое обслуживание и ремонт узлов</span></div>
+<div class="rda-service-item"><b>3-D развал-схождение</b><span>Точная регулировка геометрии колёс</span></div>
+<div class="rda-service-item"><b>Шиномонтаж и диски</b><span>Шиномонтаж и ремонт колёс</span></div>
+<div class="rda-service-item"><b>Двигатель и топливная система</b><span>Диагностика и ремонт</span></div>
+<div class="rda-service-item"><b>Электромобили</b><span>Диагностика и обслуживание</span></div>
+</div>
+<p><strong>Адрес автосервиса: г. Гомель, ул. Барыкина, 271/1.</strong></p>
+</div>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Сегодня КРАСНЫЙ ДРАКОН — это больше, чем автосалон</h2>
+<p class="rda-section-sub">Мы постепенно объединяем несколько этапов автомобильной жизни в одной системе.</p>
+</div>
+<div class="rda-future">
+<article class="rda-card">
+<div class="rda-card-body">
+<h3>От автомобиля до полноценного сервиса</h3>
+<p>В начале своего пути КРАСНЫЙ ДРАКОН делал акцент на продаже и поставке современных автомобилей из Китая. Сегодня бренд развивается дальше: подбор, единый каталог, прямые поставки, логистика, подготовка и собственный сервис постепенно объединяются в одну экосистему.</p>
+<p><strong>Наша задача: найти → проверить → купить → доставить → подготовить → обслуживать.</strong></p>
+</div>
+</article>
+<article class="rda-card">
+<div class="rda-card-body">
+<h3>Единый каталог для поиска автомобиля</h3>
+<p>Новая платформа объединяет предложения из Китая, Кореи и США в одном каталоге. Посетитель может искать автомобиль по марке, модели, цене, типу двигателя и другим параметрам.</p>
+<p>Для опубликованных предложений доступны фотографии, характеристики, отчёты и ориентиры по стоимости с доставкой в Беларусь. Если подходящей машины нет в каталоге, можно отправить запрос на индивидуальный подбор.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="rda-section">
+<div class="rda-section-head">
+<h2>Для нас автомобиль начинается не с объявления</h2>
+<p class="rda-section-sub">Хорошая сделка — это когда клиент понимает, что именно он покупает, сколько это стоит и что произойдёт после нажатия кнопки «Заказать».</p>
+</div>
+<div class="rda-intro">
+<article class="rda-card">
+<div class="rda-card-body">
+<h3>Поэтому мы стараемся убрать неопределённость</h3>
+<p>Не нашли подходящую машину в каталоге? Мы можем начать поиск отдельно.</p>
+<p>Не знаете, какую комплектацию выбрать? Поможем разобраться в характеристиках.</p>
+<p>Не уверены, стоит ли конкретный автомобиль своих денег? Сравним альтернативы.</p>
+<p>Нужна доставка и оформление? Организуем дальнейшие этапы.</p>
+<p>Автомобиль уже приехал? На этом работа КРАСНОГО ДРАКОНА не обязана заканчиваться — его можно обслуживать в собственной сервисной инфраструктуре бренда.</p>
+</div>
+</article>
+<article class="rda-card rda-quote">
+<div class="rda-card-body">
+<p>«Наша цель — не продать вам любой автомобиль. Наша цель — помочь вам найти автомобиль, который вы действительно захотите оставить себе.»</p>
+<small>КРАСНЫЙ ДРАКОН</small>
+<p style="margin-top:20px">Мы считаем, что доверие возникает не из красивых обещаний. Оно складывается из конкретных действий: проверки автомобиля, понятной цены, официального оформления, контроля отгрузки, связи с клиентом и ответственности за результат.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="rda-contact">
+<div>
+<span class="rda-eyebrow">КРАСНЫЙ ДРАКОН</span>
+<h2>Ищете автомобиль из Китая, Кореи или США?</h2>
+<p>Начните с каталога. Если нужного автомобиля нет среди опубликованных предложений — оставьте запрос. Подберём варианты под ваш бюджет, требования и задачи.</p>
+</div>
+<div class="rda-contact-actions">
+<a href="/catalog/" class="rda-btn rda-btn-primary">Открыть каталог</a>
+<a href="/podbor-auto" class="rda-btn rda-btn-secondary">Подобрать автомобиль</a>
+</div>
+</section>
+</main>
+</div>
